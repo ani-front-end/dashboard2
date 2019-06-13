@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import First from './views/First.vue'
 import Second from './views/Second.vue'
 import Third from './views/Third.vue'
+import Four from './views/Four.vue'
+import Five from './views/Five.vue'
 
 Vue.use(Router)
 
@@ -39,6 +41,16 @@ export default new Router({
         name: 'third',
         component: Third
     },
+      {
+          path: '/four',
+          name: 'four',
+          component: Four
+      },
+      {
+          path: '/five',
+          name: 'five',
+          component: Five
+      },
       {
           path: '*',
           redirect: '/',

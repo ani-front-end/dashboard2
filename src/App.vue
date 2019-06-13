@@ -15,6 +15,8 @@
                 <router-link to="/" class="banner-title-div"><div :class="firstTitle" class="title">首页</div></router-link>
                 <router-link to="/second" class="banner-title-div"><div :class="secondTitle" class="title">环比情况</div></router-link>
                 <router-link to="/third" class="banner-title-div"><div :class="thirdTitle" class="title">重要信息展示</div></router-link>
+                <router-link to="/four" class="banner-title-div"><div :class="firstTitle" class="title">four</div></router-link>
+                <router-link to="/five" class="banner-title-div"><div :class="firstTitle" class="title">five</div></router-link>
             </div>
             <div class="app-header-right" style="position: relative">
                 <span class="right-title">{{nowTime}}</span> ,,
