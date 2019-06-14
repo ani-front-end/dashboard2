@@ -1,29 +1,29 @@
 <template>
   <div class="content">
-    <div class="content-left">
-      <LegendNum :num=totalNum word="总数"></LegendNum>
-    </div>
-    <div class="content-right"   @mouseover="mouseOver()" @mouseout="mouseOut()">
-      <Carousel v-model="value1"
-                :autoplay=autoplay
-                :autoplay-speed=autoplaySpeed
-                arrow="never"
-                :radius-dot=true
-                height="1.42rem"
-                style="height:100%;"
+    <!--<div class="content-left">-->
+      <!--<LegendNum :num=totalNum word="总数"></LegendNum>-->
+    <!--</div>-->
+    <!--<div class="content-right"   @mouseover="mouseOver()" @mouseout="mouseOut()">-->
+      <!--<Carousel v-model="value1"-->
+                <!--:autoplay=autoplay-->
+                <!--:autoplay-speed=autoplaySpeed-->
+                <!--arrow="never"-->
+                <!--:radius-dot=true-->
+                <!--height="1.42rem"-->
+                <!--style="height:100%;"-->
 
-      >
-        <CarouselItem style="" v-for="(item,index) in options" :key="index">
+      <!--&gt;-->
+        <!--<CarouselItem style="" v-for="(item,index) in options" :key="index">-->
           <chart  ref="chart"
                   style="height: 100%;width: 100%"
-                  :options="item"
+                  :options="option"
                   :autoresize=true
                   @click="onClick"
           ></chart>
-        </CarouselItem>
+        <!--</CarouselItem>-->
 
-      </Carousel>
-    </div>
+      <!--</Carousel>-->
+    <!--</div>-->
 
   </div>
 </template>
@@ -45,78 +45,182 @@
 
 
                 option: {
-                    textStyle: {
-                        fontFamily: 'monospace',
-                    },
-
-                    grid: {
-                        x:50,
-                        y:20,
-                        x2:1,
-                        y2:50
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: ['合成一营','合成二营','炮兵营','侦察营'],
-                            axisTick: {
-                                alignWithLabel: true
-                            },
-                            splitLine: {
-                                show: false
-                            },
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 10,
-                                rotate: 45,
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: '#4d648f',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
-                                }
-                            }
+                    title: {
+                        text: '组织建设情况',
+                        textStyle: {
+                            color: '#fff',
+                            borderRadius: 3,
+                            padding: [3, 5]
                         }
-                    ],
-                    yAxis: [
+                    },
+                    tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                        }
+                    },
+                    legend: {
+                        data:['非党员','党员'],
+                        textStyle: {
+                            color: '#fff',
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    grid: {
+                        x1: 0,
+                        x2: 0,
+                        y1: 0,
+                        y2: 20,
+                        containLabel: true
+                    },
+                    xAxis : [
                         {
-                            type: 'value',
-                            boundaryGap: ['0%', '20%'],
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 10,
-                            },
+                            type : 'category',
+                            data : ['1营','2营'],
                             splitLine: {
                                 show: true,
                                 lineStyle: {
-                                    color: ['#333']
+                                    color: ['#fff']
                                 }
                             },
                             axisLine: {
-                                lineStyle: {
-                                    color: '#4d648f',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
+                                lineStyle :{
+                                    color : '#fff'
                                 }
-                            }
+                            },
+                        },
+
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            splitLine: {
+                                show: true,
+                                lineStyle: {
+                                    color: ['#fff']
+                                }
+                            },
+                            axisLine: {
+                                lineStyle :{
+                                    color : '#fff'
+                                }
+                            },
                         }
                     ],
-                    series: [
+                    series : [
                         {
-                            //name:'直接访问',
-                            type: 'bar',
-                            barWidth: '10',
+                            name:'非党员',
+                            type:'bar',
+                            stack:'1',
+                            data:[320, 332],
+                            label:{
+                                normal:{
+                                    show: true,
+                                    distance: 20,
+                                    position: 'bottom',
+                                    formatter: '干部',
+                                    fontSize: 12,
+                                    rich: {
+                                        name: {
+                                            textBorderColor: '#fff'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            name:'党员',
+                            type:'bar',
+                            stack:'1',
+                            data:[120, 132]
+                        },
+                        {
+                            name:'非党员',
+                            type:'bar',
+                            stack: '2',
+                            data:[220, 182],
+                            label:{
+                                normal:{
+                                    show: true,
+                                    distance: 20,
+                                    position: 'bottom',
+                                    formatter: '士官',
+                                    fontSize: 12,
+                                    rich: {
+                                        name: {
+                                            textBorderColor: '#fff'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            name:'党员',
+                            type:'bar',
+                            stack: '2',
+                            data:[150, 232],
+
+                        },
+                        {
+                            name:'非党员',
+                            type:'bar',
+                            stack: '3',
+                            data:[862, 1018],
+                            label:{
+                                normal:{
+                                    show: true,
+                                    distance: 20,
+                                    position: 'bottom',
+                                    formatter: '文职',
+                                    fontSize: 12,
+                                    rich: {
+                                        name: {
+                                            textBorderColor: '#fff'
+                                        }
+                                    }
+                                }
+                            }
+
+                        },
+                        {
+                            name:'党员',
+                            type:'bar',
+                            stack: '3',
+                            data:[620, 732],
                             itemStyle: {
-                                color: '#132f6a',
-                                borderColor: '#47cdee',
-                                borderWidth: 1,
-                                opacity: 1
+                                color: '#2af7fa',
+                                borderColor: '#08ceef',
+                                borderWidth: 1
                             },
-                            data: [3,2,5,2]
-                        }
+                        },
+                        {
+                            name:'非党员',
+                            type:'bar',
+                            stack: '4',
+                            data:[120, 132],
+                            label:{
+                                normal:{
+                                    show: true,
+                                    distance: 20,
+                                    position: 'bottom',
+                                    formatter: '义务兵',
+                                    fontSize: 12,
+                                    rich: {
+                                        name: {
+                                            textBorderColor: '#fff'
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            name:'党员',
+                            type:'bar',
+                            stack: '4',
+                            data:[60, 72]
+                        },
+
                     ]
                 },
                 value1: 0,
