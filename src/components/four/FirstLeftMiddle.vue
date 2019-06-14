@@ -1,37 +1,24 @@
 <template>
   <div class="content">
       <div class="content-left"  @mouseover="mouseOver()" @mouseout="mouseOut()">
-        <!--<chart  ref="chart1"-->
-                <!--style="height:100%;width: 100%"-->
-                <!--:options="option"-->
-                <!--:autoresize=true-->
-        <!--&gt;</chart>-->
-          <Carousel v-model="value1"
-                    :autoplay=autoplay
-                    :autoplay-speed=autoplaySpeed
-                    arrow="never"
-                    :radius-dot=true
-                    height="1.42rem"
-                    style="height:100%;"
+          <!--<Carousel v-model="value1"-->
+                    <!--:autoplay=autoplay-->
+                    <!--:autoplay-speed=autoplaySpeed-->
+                    <!--arrow="never"-->
+                    <!--:radius-dot=true-->
+                    <!--height="2rem"-->
+                    <!--style="height:100%;"-->
 
-          >
-              <CarouselItem style="" v-for="(item,index) in options" :key="index">
+          <!--&gt;-->
+              <!--<CarouselItem style="" v-for="(item,index) in options" :key="index">-->
                   <chart  ref="chart1"
                           style="height: 100%;width: 100%"
-                          :options="item"
+                          :options="options[0]"
                           :autoresize=true
                           @click="onClick"
                   ></chart>
-              </CarouselItem>
-          </Carousel>
-      </div>
-      <div class="content-right">
-          <div class="block">
-              <div class="item" v-for="(item,index) in dataList" :key="index">
-                  <div class="item-left" :style="{background:item.colorStyle}"></div>
-                  <div class="item-right">{{item.word}}</div>
-              </div>
-          </div>
+              <!--</CarouselItem>-->
+          <!--</Carousel>-->
       </div>
       <el-dialog
               title="11"
@@ -101,87 +88,126 @@
                 name:'',
                 seriesName:'',
                 centerDialogVisible:false,
-                options:[],
+                options:[{
+                    title : {
+                        text: '人员在位情况',
+                        x:'center',
+                        textStyle:{
+                            color:'#fff'
+                        }
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: ['在位','不在位'],
+                        textStyle:{
+                            color:'#fff'
+                        }
+                    },
+                    series : [
+                        {
+                            name: '人员在位情况',
+                            type: 'pie',
+                            radius : '55%',
+                            center: ['50%', '60%'],
+                            data:[
+                                {value:335, name:'不在位'},
+                                {value:1548, name:'在位'}
+                            ],
+                            label: {
+                                normal: {
+                                    formatter: '{b|{b}：}{c} ({d}%)',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    rich: {
+                                        a: {
+                                            color: '#999',
+                                            lineHeight: 22,
+                                            align: 'center'
+                                        },
+                                        hr: {
+                                            borderColor: '#aaa',
+                                            width: '100%',
+                                            borderWidth: 0.5,
+                                            height: 0
+                                        },
+                                        b: {
+                                            fontSize: 12,
+                                            lineHeight: 33
+                                        },
+                                        per: {
+                                            color: '#eee',
+                                            backgroundColor: '#334455',
+                                            padding: [2, 4],
+                                            borderRadius: 2
+                                        }
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                },
+                                normal:{
+                                    color:function(params) {
+                                        var colorList = [
+                                            '#7ec8fd','#FF7243',
+                                        ];
+                                        return colorList[params.dataIndex]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }],
                 value1:0,
                 dialogOptions:[],
                 value2:0,
-                option: {
-                    color: ['#c09216','#c80813'],
-                    grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
+                option : {
+                    title : {
+                        text: '某站点用户访问来源',
+                        subtext: '纯属虚构',
+                        x:'center'
                     },
-                    xAxis: {
-                        type: 'value',
-                        boundaryGap: [0, 0.01],
-                        axisLabel: {
-                            color: '#ffffff'
-                        },
-                        axisLine: {
-                            lineStyle: {
-                                color: '#4e6590',
-                                width: 1,
-                                shadowColor: '#4e6590',
-                                shadowBlur: 10
-                            }
-                        },
-                        splitLine: {
-                            show: true,
-                            lineStyle: {
-                                color: ['#333']
-                            }
-                        },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
-                    yAxis: {
-                        minInterval:1,
-                        type: 'category',
-                        axisLabel: {
-                            color: '#ffffff'
-                        },
-                        axisLine: {
-                            lineStyle: {
-                                color: '#4e6590',
-                                width: 1,
-                                shadowColor: '#4e6590',
-                                shadowBlur: 10
-                            }
-                        },
-                        splitLine: {
-                            show: false,
-                            lineStyle: {
-                                color: ['#333']
-                            }
-                        },
-                        data: ['涉案载体管理','枪支管理','车辆管理','人员管理'],
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
                     },
-                    series: [
+                    series : [
                         {
-                            name: '系统检查',
-                            type: 'bar',
-                            barWidth: '20%',
-                            data: [2, 3, 4, 2]
-                        },
-
-                        {
-                            name: '机关检查',
-                            type: 'bar',
-                            barWidth: '20%',
-                            data: [1, 5, 3, 2]
+                            name: '访问来源',
+                            type: 'pie',
+                            radius : '55%',
+                            center: ['50%', '60%'],
+                            data:[
+                                {value:335, name:'直接访问'},
+                                {value:310, name:'邮件营销'},
+                                {value:234, name:'联盟广告'},
+                                {value:135, name:'视频广告'},
+                                {value:1548, name:'搜索引擎'}
+                            ],
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
                         }
                     ]
                 },
-                dataList:[
-                    {
-                        colorStyle:'#c1951b',
-                        word:'系统检查'
-                    },
-                    {
-                        colorStyle:'#c90b18',
-                        word:'机关检查'
-                    }
-                ],
+
                 dialogOption:{
                     textStyle: {
                         fontFamily: 'monospace',
@@ -291,7 +317,7 @@
                 this.barBorderColor=properties.BAR_BORDER_COLOR;
                 this.secondBarColor=properties.SECOND_BAR_COLOR;
                 this.secondBarBorderColor=properties.SECOND_BAR_BORDER_COLOR;
-                this.queryData();
+                //this.queryData();
 //                setInterval(() => {
 //                    this.queryData();
 //                },properties.QUERY_TIME_SPACE)
@@ -761,47 +787,16 @@
         font-size: 0.3rem !important;
     }
   .content{
-    height: 82%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.1rem;
     .content-left{
       height: 100%;
-      width: 60%;
+      width: 100%;
       /*border:1px solid grey;*/
-    }
-    .content-right{
-      width: 30%;
-      height: 40%;
-        .block{
-            width: 100%;
-            height: 100%;
-            background-image: url("../../assets/images/little-around.png");
-            background-size: 100% 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            align-items: center;
-            padding-top: 5%;
-            padding-bottom: 5%;
-            .item{
-                width: 70%;
-                height: 30%;
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-                .item-left{
-                    width: 25%;
-                    height: 4px;
-                }
-                .item-right{
-                    width: 70%;
-                    height: 18px;
-                    font-size: 12px !important;
-                }
-            }
-        }
     }
   }
 </style>

@@ -9,152 +9,103 @@
                 :autoresize=true
         ></chart>
       </div>
-      <div class="content-top-right">
-        <LittleLegendBlock word1="实检" word2="应检"></LittleLegendBlock>
-      </div>
     </div>
-    <div class="content-bottom"  @mouseover="mouseOver()" @mouseout="mouseOut()">
-
-      <Carousel v-model="value1"
-                :autoplay=autoplay
-                :autoplay-speed=autoplaySpeed
-                arrow="never"
-                :radius-dot=true
-                height="1.42rem"
-                style="height:100%;"
-
-      >
-        <CarouselItem style="" v-for="(item,index) in options" :key="index">
-          <chart  ref="chart1"
-                  style="height:100%;width: 100%"
-                  :options="item"
-                  :autoresize=true
-                  @click="onClick"
-
-          ></chart>
-        </CarouselItem>
-      </Carousel>
-    </div>
-    <el-dialog
-            title="11"
-            :visible.sync="centerDialogVisible"
-            width="60%"
-            center>
-      <div class="dialog-content" style="position: relative">
-        <img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">
-        <img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">
-
-        <div class="dialog-top">
-          <div class="top-left">
-
-          </div>
-          <div class="top-right">
-            机关人员履职情况
-          </div>
-        </div>
-        <div class="dialog-bottom">
-          <div class="bottom-left">
-            <div class="left1">{{name}}</div>
-            <div class="left2">履职情况</div>
-          </div>
-          <div class="bottom-center">
-
-          </div>
-          <div class="bottom-right">
-            <div class="right1">
-              <Carousel v-model="value2"
-                        :autoplay=autoplay
-                        :autoplay-speed=autoplaySpeed
-                        arrow="never"
-                        :radius-dot=true
-                        height="1.42rem"
-                        style="height:100%;"
-
-              >
-                <CarouselItem class="screen-carousel" v-for="(item,index) in dialogOptions" :key="index">
-                  <chart ref="chart1"
-                         style="height: 100%;width: 100%"
-                         :options="item"
-                         :autoresize=true
-                  ></chart>
-                </CarouselItem>
-              </Carousel>
-            </div>
-            <div class="right2">
-              <div class="right2-top">
-                <LittleLegendBlock word1="实检" word2="应检"></LittleLegendBlock>
-              </div>
-              <div class="right2-middle">
-                <chart  ref="chart"
-                        style="height: 100%;width: 100%"
-                        :options="dialogOptionRound"
-                        :autoresize=true
-                ></chart>
-              </div>
-              <div class="right2-bottom">
-                {{name}}检查完成率
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </el-dialog>
    </div>
 </template>
-<script src="../service/FirstLeftBottom.js"></script>
-
+<!--<script src="../service/FirstLeftBottom.js"></script>-->
+<script>
+  export default{
+    data(){
+      return {
+        option : {
+          title : {
+            text: '人员不在位原因及数量',
+            textStyle:{color:'#fff'},
+            x:'center'
+          },
+          tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+          },
+          legend: {
+            x : 'center',
+            y : 'bottom',
+            data:['临时外出','探亲休假','住院','外学集训','执行任务'],
+            textStyle:{color:'#fff'}
+          },
+          series : [
+            {
+              name:'面积模式',
+              type:'pie',
+              radius : [30, 110],
+              // center : ['50%', '50%'],
+              roseType : 'area',
+              label: {
+                normal: {
+                  formatter: '{b|{b}：}{c}',
+                  borderWidth: 1,
+                  borderRadius: 4,
+                  rich: {
+                    a: {
+                      color: '#999',
+                      lineHeight: 22,
+                      align: 'center'
+                    },
+                    hr: {
+                      borderColor: '#aaa',
+                      width: '100%',
+                      borderWidth: 0.5,
+                      height: 0
+                    },
+                    b: {
+                      fontSize: 12,
+                      lineHeight: 33
+                    },
+                    per: {
+                      color: '#eee',
+                      backgroundColor: '#334455',
+                      padding: [2, 4],
+                      borderRadius: 2
+                    }
+                  }
+                }
+              },
+              itemStyle: {
+                emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                },
+                normal:{
+                  color:function(params) {
+                    var colorList = [
+                      '#ff7f50','#87cefa','#da70d6','#32cd32','#6495ed'
+                    ];
+                    return colorList[params.dataIndex]
+                  }
+                }
+              },
+              data:[
+                {value:10, name:'临时外出'},
+                {value:5, name:'探亲休假'},
+                {value:15, name:'住院'},
+                {value:25, name:'外学集训'},
+                {value:20, name:'执行任务'},
+              ]
+            }
+          ]
+        },
+      }
+    }
+  }
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-  .bottom-left{
-    align-items: center !important;
-  }
-  .left1{
-    font-size: 0.3rem;
-  }
-  .bottom-right{
-    width: 80%!important;
-    display: flex;
-    /*border: 1px solid red;*/
-  }
-  .right1{
-    width: 75%;
-  }
-  .right2{
-    width: 25%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-
-    .right2-top{
-      height: 15%;
-      width: 70%;
-
-    }
-    .right2-middle{
-      height: 85%;
-      width: 100%;
-    }
-    .right2-bottom{
-      height: 3%;
-      width: 100%;
-      position: absolute;
-      bottom:20%;
-      text-align: center;
-      color: #fff;
-    }
-  }
   .content{
     width: 100%;
-    height: 82%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
+    height: 100%;
     .content-top{
-      height: 40%;
+      height: 100%;
       width: 100%;
       /*border: 1px solid grey;*/
       display: flex;
@@ -162,19 +113,10 @@
       align-items: center;
       .content-top-left{
         height: 100%;
-        width: 70%;
+        width: 100%;
+        padding: 0.1rem;
         /*border: 1px solid grey;*/
       }
-      .content-top-right{
-        height: 44%;
-        width: 18%;
-        /*border: 1px solid grey;*/
-      }
-    }
-    .content-bottom{
-      height: 60%;
-      /*border: 1px solid grey;*/
-      width: 90%;
     }
   }
 </style>

@@ -1,369 +1,150 @@
 <template>
   <div class="content">
-    <div class="content-left">
-      <LegendNum :num=totalNum word="总数"></LegendNum>
+    <div class="content-top">
+      <!--<div class="conTxt">-->
+        <!--<LegendNum :num=bingqiTotal word="兵器室总数"></LegendNum>-->
+      <!--</div>-->
+      <div class="conTxt">
+        <LegendNum :num=qiangzhiTotal word="枪支总数"></LegendNum>
+      </div>
+      <div class="conTxt">
+        <LegendNum :num=useTotal word="枪支动用总数"></LegendNum>
+      </div>
     </div>
-    <div class="content-right"   @mouseover="mouseOver()" @mouseout="mouseOut()">
-      <Carousel v-model="value1"
-                :autoplay=autoplay
-                :autoplay-speed=autoplaySpeed
-                arrow="never"
-                :radius-dot=true
-                height="1.42rem"
-                style="height:100%;"
-
+    <div class="content-bottom">
+      <Carousel  v-model="value1"
+                 :autoplay=true
+                 :autoplay-speed=8000
+                 arrow="never"
+                 :radius-dot=true
+                 height="2.2rem"
+                 style="height:100%;"
       >
-        <CarouselItem style="" v-for="(item,index) in options" :key="index">
-          <chart  ref="chart"
-                  style="height: 100%;width: 100%"
-                  :options="item"
-                  :autoresize=true
-                  @click="onClick"
-          ></chart>
+        <CarouselItem style="" class="bottom-carousel" v-for="(dataList,index) in dataLists" :key="index">
+          <div class="chart"  v-for="(item,index) in dataList" :key="index">
+            <ThirdTopRightLeftSon :message=item.name :num1=item.num1 :num2=item.num2></ThirdTopRightLeftSon>
+          </div>
         </CarouselItem>
-
       </Carousel>
+      <div class="footer">
+        <div class="onNum">
+          <div class="onSquare"></div>
+          <div class="ontxt">在位数</div>
+        </div>
+        <div class="useNum">
+          <div class="useSquare"></div>
+          <div class="usetxt">动用数</div>
+        </div>
+      </div>
     </div>
-
   </div>
 </template>
 <script>
-  import LegendNum from '../LegendNum'
-  import properties from '../../services/properties'
+  import ThirdTopRightLeftSon from '../third/ThirdTopRightLeftSon'
+  import LegendNum from '../LegendNum';
 
   export default {
-        data () {
-            return {
-                autoplay:true,
-                autoplaySpeed:10000,
-                pageNums:5,
-                barWidth:40,
-                barColor:'#fff',
-                barBorderColor:'#fff',
-                secondBarColor:'#fff',
-                secondBarBorderColor:'#fff',
+    data () {
+      return {
+        msg: '',
+        dataLists: [],
+        value1: 0,
+        bingqiTotal:0,
+        qiangzhiTotal:0,
+        useTotal:0
+      }
+    },
+    components: {
+      'ThirdTopRightLeftSon': ThirdTopRightLeftSon,
+      'LegendNum': LegendNum
+    },
+    props: [],
+    mounted() {
+      this.queryData();
+//            setInterval(() => {
+//                this.queryData();
+//            },properties.QUERY_TIME_SPACE)
+    },
+    methods: {
+      queryData(){
+        this.dataLists = [];
+//                this.http.get(this.ports.manage.gunMoveUse, (res) => {
 
+//                    if (res.success) {
+//                        let data = res.data;
+        let data = {
+          "合成一营": {
+            "sum": 800,
+            "out": 720
+          },
+          "合成二营": {
+            "sum": 870,
+            "out": 710
+          },
+          "合成三营": {
+            "sum": 880,
+            "out": 700
+          },
+          "合成四营": {
+            "sum": 850,
+            "out": 700
+          },
+          "炮营": {
+            "sum": 800,
+            "out": 750
+          },
+          "侦察营": {
+            "sum": 800,
+            "out": 720
+          },
 
-                option: {
-                    textStyle: {
-                        fontFamily: 'monospace',
-                    },
-
-                    grid: {
-                        x:50,
-                        y:20,
-                        x2:1,
-                        y2:50
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: ['合成一营','合成二营','炮兵营','侦察营'],
-                            axisTick: {
-                                alignWithLabel: true
-                            },
-                            splitLine: {
-                                show: false
-                            },
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 10,
-                                rotate: 45,
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: '#4d648f',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
-                                }
-                            }
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value',
-                            boundaryGap: ['0%', '20%'],
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 10,
-                            },
-                            splitLine: {
-                                show: true,
-                                lineStyle: {
-                                    color: ['#333']
-                                }
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: '#4d648f',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
-                                }
-                            }
-                        }
-                    ],
-                    series: [
-                        {
-                            //name:'直接访问',
-                            type: 'bar',
-                            barWidth: '10',
-                            itemStyle: {
-                                color: '#132f6a',
-                                borderColor: '#47cdee',
-                                borderWidth: 1,
-                                opacity: 1
-                            },
-                            data: [3,2,5,2]
-                        }
-                    ]
-                },
-                value1: 0,
-                options:[],
-                totalNum:0
-            }
-        },
-        components:{
-            'LegendNum':LegendNum,
-        },
-        props: [
-        ],
-        mounted() {
-            setTimeout(() => {
-                //进行一级页面颜色动态配置
-
-                this.autoplay=Boolean(properties.AUTO_PLAY);
-                this.autoplaySpeed=Number(properties.CHANGE_TIME);
-                this.pageNums=Number(properties.PAGE_NUMS)-1;
-                this.barWidth=Number(properties.BAR_WIDTH);
-                this.barColor=properties.BAR_COLOR;
-                this.barBorderColor=properties.BAR_BORDER_COLOR;
-                this.secondBarColor=properties.SECOND_BAR_COLOR;
-                this.secondBarBorderColor=properties.SECOND_BAR_BORDER_COLOR;
-                this.queryData();
-//                setInterval(() => {
-//                    this.queryData();
-//
-//                },properties.QUERY_TIME_SPACE)
-            },properties.LOOP_WAIT_TIME)
-
-        },
-        methods: {
-            mouseOver(){
-                this.autoplay=false;
-            },
-            mouseOut(){
-                this.autoplay=true;
-            },
-            queryData(){
-                this.value1=0;
-                this.options = [];
-                this.http.get(this.ports.manage.basicDuty, (res) => {
-                    if(res.success){
-                        let data = res.data;
-                        let num = 0;
-                        let pageNum = 0;
-                        this.options.push({
-                            textStyle: {
-                                fontFamily: 'monospace',
-                            },
-
-                            grid: {
-                                x:50,
-                                y:20,
-                                x2:1,
-                                y2:50
-                            },
-                            xAxis: [
-                                {
-                                    minInterval:1,
-                                    type: 'category',
-                                    data: [],
-                                    axisTick: {
-                                        alignWithLabel: true
-                                    },
-                                    splitLine: {
-                                        show: false
-                                    },
-                                    axisLabel: {
-                                        color: '#edf1f4',
-                                        fontSize: 10,
-                                        rotate: 45,
-                                    },
-                                    axisLine: {
-                                        lineStyle: {
-                                            color: '#4d648f',
-                                            width: 1,
-                                            shadowColor: '#4d648f',
-                                            shadowBlur: 10
-                                        }
-                                    }
-                                }
-                            ],
-                            yAxis: [
-                                {
-                                    minInterval:1,
-                                    type: 'value',
-                                    boundaryGap: ['0%', '20%'],
-                                    axisLabel: {
-                                        color: '#edf1f4',
-                                        fontSize: 10,
-                                    },
-                                    splitLine: {
-                                        show: true,
-                                        lineStyle: {
-                                            color: ['#333']
-                                        }
-                                    },
-                                    axisLine: {
-                                        lineStyle: {
-                                            color: '#4d648f',
-                                            width: 1,
-                                            shadowColor: '#4d648f',
-                                            shadowBlur: 10
-                                        }
-                                    }
-                                }
-                            ],
-                            series: [
-                                {
-                                    //name:'直接访问',
-                                    type: 'bar',
-                                    barWidth: this.barWidth,
-                                    itemStyle: {
-                                        color: this.barColor,
-                                        borderColor: this.barBorderColor,
-                                        borderWidth: 1,
-                                        opacity: 1
-                                    },
-                                    data: [],
-                                    label: {
-                                        normal: {
-                                            show: true,
-                                            position: 'top',
-                                            color: '#fff',
-                                        }
-                                    },
-                                }
-                            ]
-                        });
-
-                        this.option.xAxis[0].data = [];
-                        this.option.series[0].data = [];
-                        Object.keys(data).forEach(p => {
-                            if(p == 'allCount'){
+          "sum": 50,
+          "out": 5200,
+          "pointSum": 4320
+        };
+        let num = 0;
+        let arr = [];
+        let pageNum = 0;
+        this.dataLists.push(arr)
+        Object.keys(data).forEach(p => {
+          if (p == 'sum' || p == 'out' || p == 'pointSum') {
 //                                return true;
-                            }else{
-                                this.options[pageNum].xAxis[0].data.push(p);
-                                this.options[pageNum].series[0].data.push(data[p]);
-                                num++;
-                                if(num>this.pageNums){
-                                    num = 0;
-                                    this.options.push({
-                                        textStyle: {
-                                            fontFamily: 'Microsoft YaHei',
-                                            fontSize: 12,
-                                            fontWeight: 'bold',
-                                        },
-                                        color: ['#53d3d9', '#1f5081'],
-                                        grid: {
-                                            top: '2%',
-                                            left: '5%',
-                                            right: '4%',
-                                            bottom: '3%',
-                                            containLabel: true
-                                        },
-                                        xAxis:  {
-                                            minInterval:1,
-                                            show: false,
-                                            type: 'value',
-                                            borderWidth: 0,
+          }else{
+            let item = {
+              name: p,
+              num1: data[p].sum,
+              num2: data[p].out
+            }
+            this.dataLists[pageNum].push(item);
+            num++;
+            if (num > 5) {
+              arr = [];
+              pageNum++;
+              num = 0;
+              this.dataLists.push(arr);
 
-                                        },
-                                        yAxis: {
-                                            minInterval:1,
-                                            type: 'category',
-                                            axisLabel: {
-                                                color: '#ffffff'
-                                            },
-                                            axisTick: {
-                                                show: false
-                                            },
-                                            axisLine: {
-                                                show: false
-                                            },
-                                            data: []
-                                        },
-                                        series: [
-                                            {
-                                                //name: '直接访问',
+            }
+          }
 
-                                                type: 'bar',
-                                                stack: '总量',
-                                                barWidth: this.barWidth,
-                                                label: {
-                                                    normal: {
-                                                        formatter:'{c|{c}}',
-                                                        rich: {
-                                                            c:{
-                                                                color:'#ffffff',
-                                                                //fontSize: 30,
-                                                                opacity: 1
-                                                            }
-                                                        },
-                                                        show: true,
-                                                        position: 'insideRight',
-                                                        textStyle: {
-                                                            color: '#ffffff',
-                                                            opacity: 1
-                                                        }
+        })
+        //暂时去掉第二页的空白
+        if(this.dataLists[this.dataLists.length-1].length == 0){
+          this.dataLists.pop();
+        }
+        this.bingqiTotal=data.sum
+        this.qiangzhiTotal=data.out
+        this.useTotal=data.pointSum
+        console.log('this.dataLists')
+        console.log(this.dataLists)
 
-                                                    }
-                                                },
-                                                data: [],
-                                                itemStyle:{
-                                                    borderColor:'#08ceef',
-                                                    borderWidth:1
-                                                }
-                                            },
-                                            {
-                                                //name: '邮件营销',
-                                                type: 'bar',
-                                                stack: '总量',
-                                                label: {
-                                                    normal: {
-                                                        show: true,
-                                                        position: 'insideRight',
-                                                    },
-                                                    //opacity: 1
-                                                },
-                                                data: [],
-                                                itemStyle:{
-                                                    color:this.barColor,
-                                                    borderColor:this.barBorderColor,
-                                                    borderWidth:1,
-                                                    //opacity: 0.28
-                                                },
-                                            },
-
-                                        ]
-                                    })
-                                    pageNum++;
-                                }
-                            }
-
-                        })
-                        this.totalNum = data.allCount
-                    }
+//                    }
 //                    let newOptions = Object.assign({}, this.option);
 //                    this.option = newOptions;
-                })
-            }
-        },
-        computed: {
-        }
+//                })
+      },
+
     }
+  }
 </script>
 
 
@@ -371,26 +152,76 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-  .content{
-    /*padding-left: 35%;*/
-    height: 82%;
-    width: 100%;
-    display: flex;
-    .content-left{
+  .content {
+    /*border: 1px solid red;*/
+    height: 90%;
+    .content-top {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 30%;
-      height: 44%;
-      /*border: 1px solid grey;*/
+      height: 20%;
+      .conTxt {
+        width: 50%;
+        margin-left: 12%;
+        margin-top: 3%;
+      }
     }
-    .content-right{
-      width: 70%;
-      height: 100%;
-      /*border: 1px solid grey;*/
+    .content-bottom {
+      /*border:1px solid black;*/
+      height: 70%;
+      width: 100%;
+      .bottom-carousel {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .chart {
+        width: 50%;
+        height: 22%;
+        /*border:1px red solid;*/
+      }
+      .footer {
+        height: 10%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .onNum {
+          width: 50%;
+          height: 100%;
+          font-size: 12px;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          .onSquare{
+            width: 20px;
+            height: 10px;
+            background: #0eafd4;
+            border: 1px solid #0eafd4;
+          }
+          .ontxt{
+            line-height: 100%;
+            width: 50px;
+            height: 10px;
+          }
+        }
+        .useNum {
+          width: 50%;
+          height: 100%;
+          font-size: 12px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          .useSquare {
+            width: 20px;
+            height: 10px;
+            background: #1f5081;
+            border: 1px solid #0eafd4;
+          }
+          .usetxt {
+            line-height: 100%;
+            width: 50px;
+            height: 10px;
+          }
+        }
+      }
+
     }
-  }
-  .ivu-carousel-list{
-    height: 100% !important;
   }
 </style>

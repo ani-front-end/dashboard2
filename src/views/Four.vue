@@ -111,7 +111,8 @@
 <style scoped lang="less">
   @bgColor:rgba(9,60,118,0.23);
   @centerBottomBgColor:none;
-  @centerBorder:1px solid rgba(0,131,179,0.23);
+  /*@centerBorder:1px solid rgba(0,131,179,0.23);*/
+  @centerBorder:1px solid #5fd8e8;
   .first{
     width: 100%;
     height: 90%;
@@ -128,15 +129,18 @@
         height: 28%;
         /*background:#093c76;*/
         background-color:@bgColor; //#093c76 23%
+        border: @centerBorder;
       }
       .left-middle{
         margin: 0 0 0.1rem 0;
         background-color:@bgColor;
         height: 28%;
+        border: @centerBorder;
       }
       .left-bottom{
         background-color:@bgColor;
         height: 43%;
+        border: @centerBorder;
       }
     }
     .center{
@@ -206,16 +210,19 @@
     }
     .right{
       width: 30%;
-      padding: 0.2rem 0 0.1rem 0;
+      margin: 0.2rem 0 0.1rem 0;
+      border: @centerBorder;
       .right-top{
         margin: 0 0 0.1rem 0;
         background-color:@bgColor;
         height: 50%;
+
       }
       .right-middle{
         margin: 0 0 0.1rem 0;
         background-color:@bgColor;
         height: 28%;
+
       }
       .right-bottom{
         background-color:@bgColor;
