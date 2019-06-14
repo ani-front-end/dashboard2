@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="content-left">
-      <LegendNum :num=totalNum word="总数"></LegendNum>
+      <h6>官兵情况</h6>
     </div>
     <div class="content-right" @mouseover="mouseOver()" @mouseout="mouseOut()">
       <Carousel v-model="value1"
@@ -9,7 +9,7 @@
                 :autoplay-speed=autoplaySpeed
                 arrow="never"
                 :radius-dot=true
-                height="1.42rem"
+                height="1.9rem"
                 style="height:100%;"
 
       >
@@ -78,197 +78,255 @@
     import properties from '../../services/properties'
     import LegendNum from '../../components/LegendNum'
     export default {
-        data () {
-            return {
-                autoplay:true,
-                autoplaySpeed:10000,
-                pageNums:5,
-                barWidth:40,
-                barColor:'#fff',
-                barBorderColor:'#fff',
-                secondBarColor:'#fff',
-                secondBarBorderColor:'#fff',
-
-                totalNum:0,
-                option: {
-                    textStyle: {
-                        fontFamily: 'monospace',
-                    },
-                    tooltip: {
-                        trigger: 'axis',
-                        axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                            type: 'line'           // 默认为直线，可选为：'line' | 'shadow'
-                        }
-                    },
-                    grid: {
-                        x:50,
-                        y:20,
-                        x2:1,
-                        y2:50
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: ['督导组', '部队管理科'],
-                            axisTick: {
-                                alignWithLabel: true
-                            },
-                            splitLine: {
-                                show: false
-                            },
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 10,
-                                rotate: 45,
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: '#4d648f',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
-                                }
-                            }
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value',
-                            boundaryGap: ['0%', '20%'],
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 10,
-                            },
-                            splitLine: {
-                                show: true,
-                                lineStyle: {
-                                    color: ['#333']
-                                }
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: '#4d648f',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
-                                }
-                            }
-                        }
-                    ],
-                    series: [
-                        {
-                            type: 'bar',
-                            barWidth: 10,
-                            itemStyle: {
-                                color: '#132f6a',
-                                borderColor: '#47cdf0',
-                                borderWidth: 1,
-                                //opacity: 0.28
-                            },
-                            data: [3,2]
-                        }
-                    ]
+      data () {
+        return {
+          option: {
+            textStyle: {
+              fontFamily: 'Microsoft YaHei',
+            },
+            tooltip: {
+              trigger: 'axis',
+              axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'line'           // 默认为直线，可选为：'line' | 'shadow'
+              }
+            },
+            grid: {
+              //type: 'dotted',
+              x:30,
+              y:30,
+              x2:30,
+              y2:60
+            },
+            xAxis: [
+              {
+                type: 'category',
+                data: ['1连', '2连', '3连', '4连', '5连', '6连', '7连'],
+                splitLine: {
+                  show: false
                 },
-                value1: 0,
-                value2: 0,
-                pages:5,
-                options:[],
-                centerDialogVisible:false,
-                name:'',
-                dialogOptions:[],
-                dialogOption:{
-                    textStyle: {
-                        fontFamily: 'monospace',
-                    },
-
-                    grid: {
-                        x:50,
-                        y:20,
-                        x2:1,
-                        y2:100
-                    },
-                    xAxis: [
-                        {
-                            type: 'category',
-                            data: ['督导组', '部队管理科'],
-                            axisTick: {
-                                alignWithLabel: true
-                            },
-                            splitLine: {
-                                show: false
-                            },
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 15,
-                                interval: 0,
-                                formatter: function (value) {
-                                    //x轴的文字改为竖版显示
-                                    var str = value.split("");
-                                    return str.join("\n");
-                                }
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: '#fff',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
-                                }
-                            }
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value',
-                            boundaryGap: ['0%', '20%'],
-                            axisLabel: {
-                                color: '#edf1f4',
-                                fontSize: 10,
-                            },
-                            splitLine: {
-                                show: false,
-                                lineStyle: {
-                                    color: ['#333']
-                                }
-                            },
-                            axisLine: {
-                                lineStyle: {
-                                    color: '#fff',
-                                    width: 1,
-                                    shadowColor: '#4d648f',
-                                    shadowBlur: 10
-                                }
-                            }
-                        }
-                    ],
-                    series: [
-                        {
-                            //name:'直接访问',
-                            type: 'bar',
-                            barWidth: 10,
-                            itemStyle: {
-                                color: '#3b78bf',
-                                borderColor: '#47cdee',
-//                                color: '#fff',
-//                                borderColor: '#fff',
-                                borderWidth: 1,
-                                opacity: 1
-                            },
-                            data: [3,2],
-                            label: {
-                                normal: {
-                                    show: true,
-                                    position: 'top',
-                                    color: '#fff',
-                                }
-                            },
-                        }
-                    ]
+                axisLabel: {
+                  color: '#edf1f4',
+                  fontSize: 10,
+                  rotate: 45,
                 },
-//                itemHeight: "1.4rem"
+                axisTick: {
+                  show: false,
+                  lineStyle: {
+                    color: '#4e6590'
+                  }
+                },
+                axisLine: {
+                  lineStyle: {
+                    color: '#4e6590',
+                    width: 1,
+                    shadowColor: '#4e6590',
+                    shadowBlur: 10
+                  }
+                }
+              }
+            ],
+            yAxis: [
+              {
+                minInterval:1,
+                type: 'value',
+                boundaryGap: ['0%', '20%'],
+                axisLabel: {
+                  color: '#edf1f4',
+                  fontSize: 10,
+                },
+                splitLine: {
+                  show: true,
+                  lineStyle: {
+                    color: ['#333']
+                  }
+                },
+                axisTick: {
+                  show: true,
+                  lineStyle: {
+                    color: '#ffffff'
+                  }
+                },
+                axisLine: {
+                  lineStyle: {
+                    color: '#4e6590',
+                    width: 1,
+                    shadowColor: '#4e6590',
+                    shadowBlur: 10
+                  }
+                }
+              }
+            ],
+            series: [
+              {
+                //name:'直接访问',
+                type: 'bar',
+                barWidth: '20%',
+                itemStyle: {
+                  color: '#55cdd6',
+                  opacity: 0.28,
+                  borderColor: '#08ceef',
+                  borderWidth: 1
+                },
+                data: [1, 7, 3, 7, 3, 2, 1]
+              },
+              {
+                //name:'直接访问',
+                type: 'bar',
+                barWidth: '20%',
+                itemStyle: {
+                  color: '#2af7fa',
+                  borderColor: '#08ceef',
+                  borderWidth: 1
+                },
+                data: [1, 7, 3, 7, 3, 2, 1]
+              }
+            ]
+          },
+          options:[],
+          value1:0,
+          dialogOption:{
+            textStyle: {
+              fontFamily: 'monospace',
+            },
 
-            }
-        },
+            grid: {
+              x:50,
+              y:20,
+              x2:1,
+              y2:100
+            },
+            xAxis: [
+              {
+                type: 'category',
+                data: [],
+                axisTick: {
+                  alignWithLabel: true
+                },
+                splitLine: {
+                  show: false
+                },
+                axisLabel: {
+                  color: '#edf1f4',
+                  fontSize: 15,
+                  interval: 0,
+                  formatter: function (value) {
+                    //x轴的文字改为竖版显示
+                    var str = value.split("");
+                    return str.join("\n");
+                  }
+                },
+                axisLine: {
+                  lineStyle: {
+                    color: '#fff',
+                    width: 1,
+                    shadowColor: '#4d648f',
+                    shadowBlur: 10
+                  }
+                }
+              }
+            ],
+            yAxis: [
+              {
+                minInterval:1,
+                type: 'value',
+                boundaryGap: ['0%', '20%'],
+                axisLabel: {
+                  color: '#edf1f4',
+                  fontSize: 10,
+                },
+                splitLine: {
+                  show: false,
+                  lineStyle: {
+                    color: ['#333']
+                  }
+                },
+                axisLine: {
+                  lineStyle: {
+                    color: '#fff',
+                    width: 1,
+                    shadowColor: '#4d648f',
+                    shadowBlur: 10
+                  }
+                }
+              }
+            ],
+            series: [
+              {
+                //name: '邮件营销',
+                type: 'bar',
+                barWidth: 10,
+                stack: '总量',
+                label: {
+                  normal: {
+                    show: true,
+                    position: 'left',
+                    color: '#fff',
+
+                  },
+                  //opacity: 1
+                },
+                data: [],
+                itemStyle:{
+                  borderWidth: 1,
+                  color: '#08ceef',
+                  borderColor: '#47cdee',
+                }
+
+              },
+              {
+                //name: '直接访问',
+
+                type: 'bar',
+                stack: '总量1',
+                barWidth: 10,
+                label: {
+                  normal: {
+                    formatter:'{c|{c}}',
+                    rich: {
+                      c:{
+                        color:'#ffffff',
+                        opacity: 1
+                      }
+                    },
+                    show: true,
+                    position: 'top',
+                    textStyle: {
+                      color: '#ffffff',
+                      opacity: 1
+                    }
+
+                  }
+                },
+                data: [],
+                itemStyle:{
+                  color:'#1f4f80',
+                  borderColor:'#0eafd4',
+                  borderWidth: 1,
+                  opacity: 1
+                  //opacity: 0.28
+                },
+              },
+            ]
+          },
+          centerDialogVisible:false,
+          name:'',
+          dialogOptions:[],
+          value2:0,
+
+          autoplay:true,
+          autoplaySpeed:10000,
+          pageNums:5,
+          barWidth:10,
+          barColor:'#fff',
+          barBorderColor:'#fff',
+          secondBarColor:'#fff',
+          secondBarBorderColor:'#fff',
+          factColor:'#fff',
+          factBorderColor:'#fff',
+          shouldColor:'#fff',
+          shouldBorderColor:'#fff'
+        }
+      },
         props: [
             'screenWidth',
         ],
@@ -281,7 +339,7 @@
                 this.autoplay=Boolean(properties.AUTO_PLAY);
                 this.autoplaySpeed=Number(properties.CHANGE_TIME);
                 this.pageNums=Number(properties.PAGE_NUMS)-1;
-                this.barWidth=Number(properties.BAR_WIDTH);
+                //this.barWidth=Number(properties.BAR_WIDTH);
                 this.barColor=properties.BAR_COLOR;
                 this.barBorderColor=properties.BAR_BORDER_COLOR;
                 this.secondBarColor=properties.SECOND_BAR_COLOR;
@@ -535,212 +593,366 @@
                     })
                 }
             },
-            queryData(){
-                this.value1 = 0;
-                this.options= [];
-                this.http.get(this.ports.manage.officeDutyProblem, (res) => {
-                    console.log('res')
-                    console.log(res)
-                    if(res.success){
-                        let data = res.data;
-                        let num = 0;
-                        let pageNum = 0;
-                        this.options.push({
-                            textStyle: {
-                                fontFamily: 'monospace',
-                            },
-                            tooltip: {
-                                trigger: 'axis',
-                                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                                    type: 'line'           // 默认为直线，可选为：'line' | 'shadow'
-                                }
-                            },
-                            grid: {
-                                x:50,
-                                y:20,
-                                x2:1,
-                                y2:50
-                            },
-                            xAxis: [
-                                {
-                                    minInterval:1,
-                                    type: 'category',
-                                    data: [],
-                                    axisTick: {
-                                        alignWithLabel: true
-                                    },
-                                    splitLine: {
-                                        show: false
-                                    },
-                                    axisLabel: {
-                                        color: '#edf1f4',
-                                        fontSize: 10,
-                                        rotate: 45,
-                                    },
-                                    axisLine: {
-                                        lineStyle: {
-                                            color: '#4d648f',
-                                            width: 1,
-                                            shadowColor: '#4d648f',
-                                            shadowBlur: 10
-                                        }
-                                    }
-                                }
-                            ],
-                            yAxis: [
-                                {
-                                    minInterval:1,
-                                    type: 'value',
-                                    boundaryGap: ['0%', '20%'],
-                                    axisLabel: {
-                                        color: '#edf1f4',
-                                        fontSize: 10,
-                                    },
-                                    splitLine: {
-                                        show: true,
-                                        lineStyle: {
-                                            color: ['#333']
-                                        }
-                                    },
-                                    axisLine: {
-                                        lineStyle: {
-                                            color: '#4d648f',
-                                            width: 1,
-                                            shadowColor: '#4d648f',
-                                            shadowBlur: 10
-                                        }
-                                    }
-                                }
-                            ],
-                            series: [
-                                {
-                                    type: 'bar',
-                                    barWidth: this.barWidth,
-                                    itemStyle: {
-                                        color: this.barColor,
-                                        borderColor: this.barBorderColor,
-                                        borderWidth: 1,
-                                        //opacity: 0.28
-                                    },
-                                    data: [],
-                                    label: {
-                                        normal: {
-                                            show: true,
-                                            position: 'top',
-                                            color: '#fff',
-                                        }
-                                    },
-                                }
-                            ]
-                        })
-                        Object.keys(data).forEach(p => {
-                            if(p == 'allCount'){
-//                                return true
-                            }else{
-                                num++;
-                                this.options[pageNum].xAxis[0].data.push(p);
-                                this.options[pageNum].series[0].data.push(data[p]);
-                                if(num>this.pageNums){
-                                    num = 0;
-                                    this.options.push({
-                                        textStyle: {
-                                            fontFamily: 'monospace',
-                                        },
-                                        tooltip: {
-                                            trigger: 'axis',
-                                            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                                                type: 'line'           // 默认为直线，可选为：'line' | 'shadow'
-                                            }
-                                        },
-                                        grid: {
-                                            x:50,
-                                            y:20,
-                                            x2:1,
-                                            y2:50
-                                        },
-                                        xAxis: [
-                                            {
-                                                minInterval:1,
-                                                type: 'category',
-                                                data: [],
-                                                axisTick: {
-                                                    alignWithLabel: true
-                                                },
-                                                splitLine: {
-                                                    show: false
-                                                },
-                                                axisLabel: {
-                                                    color: '#edf1f4',
-                                                    fontSize: 10,
-                                                    rotate: 45,
-                                                },
-                                                axisLine: {
-                                                    lineStyle: {
-                                                        color: '#4d648f',
-                                                        width: 1,
-                                                        shadowColor: '#4d648f',
-                                                        shadowBlur: 10
-                                                    }
-                                                }
-                                            }
-                                        ],
-                                        yAxis: [
-                                            {
-                                                minInterval:1,
-                                                type: 'value',
-                                                boundaryGap: ['0%', '20%'],
-                                                axisLabel: {
-                                                    color: '#edf1f4',
-                                                    fontSize: 10,
-                                                },
-                                                splitLine: {
-                                                    show: true,
-                                                    lineStyle: {
-                                                        color: ['#333']
-                                                    }
-                                                },
-                                                axisLine: {
-                                                    lineStyle: {
-                                                        color: '#4d648f',
-                                                        width: 1,
-                                                        shadowColor: '#4d648f',
-                                                        shadowBlur: 10
-                                                    }
-                                                }
-                                            }
-                                        ],
-                                        series: [
-                                            {
-                                                type: 'bar',
-                                                barWidth: this.barWidth,
-                                                itemStyle: {
-                                                    color: this.barColor,
-                                                    borderColor: this.barBorderColor,
-                                                    borderWidth: 1,
-                                                    //opacity: 0.28
-                                                },
-                                                data: [],
-                                                label: {
-                                                    normal: {
-                                                        show: true,
-                                                        position: 'top',
-                                                        color: '#fff',
-                                                    }
-                                                },
-                                            }
-                                        ]
-                                    })
-                                    pageNum++;
-                                }
-                            }
-//                            this.option.xAxis[0].data.push(p);
-//                            this.option.series[0].data.push(data[p]);
-
-                        });
-                        this.totalNum = data.allCount;
+          queryData(){
+            this.value1=0;
+            this.options=[];
+//                this.http.get(this.ports.manage.insertPerson, (res) => {
+//                    if(res.success){
+//                        let data = res.data;
+            let data = {
+              "1连": {
+                "findPerson": 2,
+                "insertPerson": 3,
+                "third":5,
+                "forth":6,
+              },
+              "2连": {
+                "findPerson": 10,
+                "insertPerson": 7,
+                "third":8,
+                "forth":3,
+              },
+              "3连": {
+                "findPerson": 4,
+                "insertPerson": 6,
+                "third":6,
+                "forth":4,
+              },
+              "4连": {
+                "findPerson": 2,
+                "insertPerson": 3,
+                "third":5,
+                "forth":6,
+              },
+              "5连": {
+                "findPerson": 10,
+                "insertPerson": 7,
+                "third":8,
+                "forth":3,
+              },
+              "insertPersonSum": 16,
+              "sum": 34,
+              "findPersonSum": 18
+            };
+            let num = 0;
+            let pageNum = 0;
+            this.options.push({
+              legend:{
+                data:['思想波动','心理疾病','身体疾病','训练伤'],
+                textStyle:{
+                  color:'#fff'
+                },
+                top:0,
+                right:0
+              },
+              textStyle: {
+                fontFamily: 'Microsoft YaHei',
+              },
+              tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                  type: 'line'           // 默认为直线，可选为：'line' | 'shadow'
+                }
+              },
+              grid: {
+                //type: 'dotted',
+                show:true,
+                top: '20%',
+                bottom:'5%',
+                left:0,
+                right:0,
+                containLabel: true//为ture才会生效以上的设置
+              },
+              xAxis: [
+                {
+                  minInterval:1,
+                  type: 'category',
+                  data: [],
+                  splitLine: {
+                    show: true
+                  },
+                  axisLabel: {
+                    color: '#fff',
+                    fontSize: 10,
+                    rotate: 0,
+                  },
+                  axisTick: {
+                    show: true,
+                    lineStyle: {
+                      color: '#4e6590'
                     }
-                });
+                  },
+                  axisLine: {
+                    lineStyle: {
+                      color: '#4e6590',
+                      width: 1,
+                      shadowColor: '#4e6590',
+                      shadowBlur: 10
+                    }
+                  }
+                }
+              ],
+              yAxis: [
+                {
+                  minInterval:1,
+                  type: 'value',
+                  boundaryGap: ['0%', '20%'],
+                  axisLabel: {
+                    color: '#edf1f4',
+                    fontSize: 10,
+                  },
+                  splitLine: {
+                    show: true,
+                    lineStyle: {
+                      color: ['#333']
+                    }
+                  },
+                  axisTick: {
+                    show: true,
+                    lineStyle: {
+                      color: '#ffffff'
+                    }
+                  },
+                  axisLine: {
+                    lineStyle: {
+                      color: '#4e6590',
+                      width: 1,
+                      shadowColor: '#4e6590',
+                      shadowBlur: 10
+                    }
+                  }
+                }
+              ],
+              series: [
+                {
+                  name:'思想波动',
+                  type: 'bar',
+                  barWidth: this.barWidth,
+                  itemStyle: {
+                    color: '#FF7243',
+                    borderColor: this.factBorderColor,
+                    borderWidth: 1
+                  },
+                  data: [],
+                  label: {
+                    normal: {
+                      show: true,
+                      position: 'top',
+                      color:'#fff'
+                    },
+                    //opacity: 1
+                  },
+                },
+                {
+                  name:'心理疾病',
+                  type: 'bar',
+                  barWidth: this.barWidth,
+                  itemStyle: {
+                    color: '#7ec8fd',
+                    opacity: 1,
+                    borderColor: this.shouldBorderColor,
+                    borderWidth: 1
+                  },
+                  label: {
+                    normal: {
+                      show: true,
+                      position: 'top',
+                      color:'#fff'
+                    },
+                    //opacity: 1
+                  },
+                  data: []
+                },
+                {
+                  name:'身体疾病',
+                  type: 'bar',
+                  barWidth: this.barWidth,
+                  itemStyle: {
+                    color: '#ea2fd5',
+                    opacity: 1,
+                    borderColor: this.shouldBorderColor,
+                    borderWidth: 1
+                  },
+                  label: {
+                    normal: {
+                      show: true,
+                      position: 'top',
+                      color:'#fff'
+                    },
+                    //opacity: 1
+                  },
+                  data: []
+                },
+                {
+                  name:'训练伤',
+                  type: 'bar',
+                  barWidth: this.barWidth,
+                  itemStyle: {
+                    color: '#00e233',
+                    opacity: 1,
+                    borderColor: this.shouldBorderColor,
+                    borderWidth: 1
+                  },
+                  label: {
+                    normal: {
+                      show: true,
+                      position: 'top',
+                      color:'#fff'
+                    },
+                    //opacity: 1
+                  },
+                  data: []
+                }
+              ]
+            });
+            this.totalNum = data.sum;
+            this.laiDuiNum = data.insertPersonSum;
+            this.fangKeNum = data.findPersonSum;
+            Object.keys(data).forEach(p => {
+              if(p == 'sum' || p =='findPersonSum' || p=='insertPersonSum'){
+//                                return true;
+              }else{
+                this.options[pageNum].xAxis[0].data.push(p);
+                this.options[pageNum].series[0].data.push(data[p].findPerson);
+                this.options[pageNum].series[1].data.push(data[p].insertPerson);
+                this.options[pageNum].series[2].data.push(data[p].third);
+                this.options[pageNum].series[3].data.push(data[p].forth);
+                num++;
+                if(num>this.pageNums){
+                  num = 0;
+                  this.options.push({
+                    textStyle: {
+                      fontFamily: 'Microsoft YaHei',
+                    },
+                    tooltip: {
+                      trigger: 'axis',
+                      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'line'           // 默认为直线，可选为：'line' | 'shadow'
+                      }
+                    },
+                    grid: {
+                      //type: 'dotted',
+                      x:30,
+                      y:30,
+                      x2:30,
+                      y2:60
+                    },
+                    xAxis: [
+                      {
+                        minInterval:1,
+                        type: 'category',
+                        data: [],
+                        splitLine: {
+                          show: false
+                        },
+                        axisLabel: {
+                          color: '#edf1f4',
+                          fontSize: 10,
+                          rotate: 45,
+                        },
+                        axisTick: {
+                          show: false,
+                          lineStyle: {
+                            color: '#4e6590'
+                          }
+                        },
+                        axisLine: {
+                          lineStyle: {
+                            color: '#4e6590',
+                            width: 1,
+                            shadowColor: '#4e6590',
+                            shadowBlur: 10
+                          }
+                        }
+                      }
+                    ],
+                    yAxis: [
+                      {
+                        minInterval:1,
+                        type: 'value',
+                        boundaryGap: ['0%', '20%'],
+                        axisLabel: {
+                          color: '#edf1f4',
+                          fontSize: 10,
+                        },
+                        splitLine: {
+                          show: true,
+                          lineStyle: {
+                            color: ['#333']
+                          }
+                        },
+                        axisTick: {
+                          show: true,
+                          lineStyle: {
+                            color: '#ffffff'
+                          }
+                        },
+                        axisLine: {
+                          lineStyle: {
+                            color: '#4e6590',
+                            width: 1,
+                            shadowColor: '#4e6590',
+                            shadowBlur: 10
+                          }
+                        }
+                      }
+                    ],
+                    series: [
+                      {
+                        //name:'直接访问',
+                        type: 'bar',
+                        barWidth: this.barWidth,
+                        itemStyle: {
+                          color: this.factColor,
+                          borderColor: this.factBorderColor,
+                          borderWidth: 1
+                        },
+                        data: [],
+                        label: {
+                          normal: {
+                            show: true,
+                            position: 'top',
+                            color:'#fff'
+                          },
+                          //opacity: 1
+                        },
+                      },
+                      {
+                        //name:'直接访问',
+                        type: 'bar',
+                        barWidth: this.barWidth,
+                        itemStyle: {
+                          color: this.shouldColor,
+                          opacity: 0.28,
+                          borderColor: this.shouldBorderColor,
+                          borderWidth: 1
+                        },
+
+                        data: [],
+                        label: {
+                          normal: {
+                            show: true,
+                            position: 'top',
+                            color:'#fff'
+                          },
+                          //opacity: 1
+                        },
+                      }
+                    ]
+                  })
+                  pageNum++;
+                }
+              }
+
+            })
+            if(this.options[this.options.length-1].xAxis[0].data.length == 0){
+              this.options.pop();
             }
+//                    }
+//                    let newOptions = Object.assign({}, this.option);
+//                    this.option = newOptions;
+//                })
+          }
         },
         computed: {
         }
@@ -756,21 +968,28 @@
     width: 100%;
   }
   .content{
-    height: 82%;
+    height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
+    position: relative;
+    /*display: flex;*/
+    /*justify-content: space-around;*/
+    /*border: 1px red solid;*/
     .content-left{
+      margin-top: 0.1rem;
       width: 26%;
-      height: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0.07rem;
+      /*height: 40%;*/
+      /*display: flex;*/
+      /*justify-content: center;*/
+      /*align-items: center;*/
       /*border: 1px solid grey;*/
     }
     .content-right{
       height: 100%;
-      width: 70%;
+      padding: 0.2rem 0.4rem 0;
+      /*width: 70%;*/
       /*border: 1px solid grey;*/
     }
   }
