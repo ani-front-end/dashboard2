@@ -216,7 +216,7 @@
           {
             grid: {
               //type: 'dotted',
-              show:true,
+              show:false,
               top: '20%',
               bottom:'0%',
               left:'5%',
@@ -1174,7 +1174,7 @@
             .item-left{
               width: 18px;
               height: 10px;
-              background: #faab1b;
+              background: #FF7243;
               border-radius: 1px;
               margin-right: 5px;
             }
