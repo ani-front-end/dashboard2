@@ -27,7 +27,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-        path: '/',
+        path: '/first',
         name: 'first',
         component: First
     },
@@ -53,7 +53,7 @@ export default new Router({
       },
       {
           path: '*',
-          redirect: '/',
+          redirect: '/four',
       },
   ]
 })

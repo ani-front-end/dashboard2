@@ -12,14 +12,14 @@
                 </div>
             </div>
             <div class="app-header-nav">
-                <router-link to="/" class="banner-title-div"><div :class="firstTitle" class="title">首页</div></router-link>
-                <router-link to="/second" class="banner-title-div"><div :class="secondTitle" class="title">环比情况</div></router-link>
-                <router-link to="/third" class="banner-title-div"><div :class="thirdTitle" class="title">重要信息展示</div></router-link>
-                <router-link to="/four" class="banner-title-div"><div :class="firstTitle" class="title">four</div></router-link>
-                <router-link to="/five" class="banner-title-div"><div :class="firstTitle" class="title">five</div></router-link>
+                <router-link to="/four" class="banner-title-div"><div :class="fourTitle" class="title">页面一</div></router-link>
+                <router-link to="/five" class="banner-title-div"><div :class="fiveTitle" class="title">页面二</div></router-link>
+                <!--<router-link to="/third" class="banner-title-div"><div :class="thirdTitle" class="title">重要信息展示</div></router-link>-->
+                <!--<router-link to="/four" class="banner-title-div"><div :class="firstTitle" class="title">页面一</div></router-link>-->
+                <!--<router-link to="/five" class="banner-title-div"><div :class="firstTitle" class="title">页面二</div></router-link>-->
             </div>
             <div class="app-header-right" style="position: relative">
-                <span class="right-title">{{nowTime}}</span> ,,
+                <span class="right-title">{{nowTime}}</span>
                 <el-button type="text" style="position: absolute;right: 10%;" @click="logout()">退出登录</el-button>
                 <el-button type="text" style="position: absolute;right: 50%;top:80%; color: #fff">{{userid}}</el-button>
             </div>
@@ -37,8 +37,8 @@ import BASE_URL from './services/api'
             return {
                 userid:'',
                 nowTime:'',
-                currentRoute: 'first',
-                title: '安全管理问题状态'
+                currentRoute: 'four',
+                title: '问题页面一'
             }
         },
         created() { //这里是测试URL代码
@@ -55,8 +55,12 @@ import BASE_URL from './services/api'
                     this.title= '安全管理问题状态'
                 }else if(val.name == 'second'){
                     this.title= '安全管理趋势分析'
-                }else{
+                }else if(val.name == 'third'){
                     this.title= '安全管理动态'
+                }else if(val.name == 'four'){
+                    this.title= '问题页面一'
+                }else {
+                    this.title= '问题页面二'
                 }
             }
         },
@@ -150,6 +154,12 @@ import BASE_URL from './services/api'
             },
             thirdTitle(){
                 return {title3:this.currentRoute === 'third'}
+            },
+            fourTitle(){
+                return {title4:this.currentRoute === 'four'}
+            },
+            fiveTitle(){
+                return {title5:this.currentRoute === 'five'}
             }
         }
     }
@@ -266,6 +276,18 @@ import BASE_URL from './services/api'
         background-size: 100% 100%;
     }
     .title3{
+        width: 90%;
+        height: 80%;
+        background: url("./assets/images/header-item-bg.png");
+        background-size: 100% 100%;
+    }
+    .title4{
+        width: 90%;
+        height: 80%;
+        background: url("./assets/images/header-item-bg.png");
+        background-size: 100% 100%;
+    }
+    .title5{
         width: 90%;
         height: 80%;
         background: url("./assets/images/header-item-bg.png");
