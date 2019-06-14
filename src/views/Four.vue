@@ -21,15 +21,15 @@
       </div>
       <div class="center-middle">
         <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
-        <FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>
+        <FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>
       </div>
       <div class="center-bottom"  style="position: relative">
         <!--<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>-->
         <div class="center-bottom-content">
-          <!--<div class="center-bottom-left">-->
+          <div class="center-bottom">
             <!--<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>-->
-            <!--<FirstCenterBottomLeft :screenWidth="screenWidth"></FirstCenterBottomLeft>-->
-          <!--</div>-->
+            <FirstCenterBottom :screenWidth="screenWidth"></FirstCenterBottom>
+          </div>
           <!--<div class="center-bottom-center">-->
             <!--<LittleCardHeaderTitle title="安全等级"></LittleCardHeaderTitle>-->
             <!--<FirstCenterBottomCenter :screenWidth="screenWidth"></FirstCenterBottomCenter>-->
@@ -68,9 +68,8 @@
   import FirstLeftMiddle from '../components/four/FirstLeftMiddle'
   import FirstLeftBottom from '../components/four/FirstLeftBottom'
   import FirstCenterTop from '../components/four/FirstCenterTop'
-  import FirstCenterBottomLeft from '../components/four/FirstCenterBottomLeft'
-  import FirstCenterBottomCenter from '../components/four/FirstCenterBottomCenter'
-  import FirstCenterBottomRight from '../components/four/FirstCenterBottomRight'
+  import FirstCenterMiddle from '../components/four/FirstCenterMiddle'
+  import FirstCenterBottom from '../components/four/FirstCenterBottom'
   import FirstRightTop from '../components/four/FirstRightTop'
   import FirstRightMiddle from '../components/four/FirstRightMiddle'
   import FirstRightBottom from '../components/four/FirstRightBottom'
@@ -90,9 +89,8 @@
             'FirstLeftMiddle':FirstLeftMiddle,
             'FirstLeftBottom':FirstLeftBottom,
             'FirstCenterTop':FirstCenterTop,
-            'FirstCenterBottomLeft':FirstCenterBottomLeft,
-            'FirstCenterBottomCenter':FirstCenterBottomCenter,
-            'FirstCenterBottomRight':FirstCenterBottomRight,
+            'FirstCenterMiddle':FirstCenterMiddle,
+            'FirstCenterBottom':FirstCenterBottom,
             'FirstRightTop':FirstRightTop,
             'FirstRightMiddle':FirstRightMiddle,
             'FirstRightBottom':FirstRightBottom,
@@ -181,10 +179,11 @@
           height: 100%;
           display: flex;
           align-items: flex-end;
-          .center-bottom-left{
+          .center-bottom{
+            border: 1px solid pink;
             background:  @centerBottomBgColor;
-            height: 88%;
-            width: 32%;
+            height: 100%;
+            width: 100%;
             /*border: 0.1px solid pink;*/
             margin: 0 0.5% 0.5% 1%;
           }

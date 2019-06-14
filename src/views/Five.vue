@@ -3,34 +3,34 @@
     <div class="left">
       <div class="left-top">
         <!--<CardHeaderTitle title="机关产生问题统计"></CardHeaderTitle>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstLeftTop :screenWidth="screenWidth" ></FirstLeftTop>
       </div>
       <div class="left-middle">
         <!--<CardHeaderTitle title="机关发现问题统计"></CardHeaderTitle>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstLeftMiddle :screenWidth="screenWidth"></FirstLeftMiddle>
       </div>
       <div class="left-bottom">
         <!--<CardHeaderTitle title="机关人员履职情况"></CardHeaderTitle>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstLeftBottom :screenWidth="screenWidth"></FirstLeftBottom>
       </div>
     </div>
     <div class="center">
       <div class="center-top">
         <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>
       </div>
       <div class="center-middle">
         <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>
       </div>
       <div class="center-bottom"  style="position: relative">
         <!--<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <!--<div class="center-bottom-content">-->
           <!--<div class="center-bottom-left">-->
             <!--<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>-->
@@ -53,17 +53,17 @@
     <div class="right">
       <div class="right-top">
         <!--<CardHeaderTitle title="机关检查基层问题统计"></CardHeaderTitle>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstRightTop :screenWidth="screenWidth"></FirstRightTop>
       </div>
       <div class="right-middle">
         <!--<CardHeaderTitle title="基层发现问题统计"></CardHeaderTitle>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstRightMiddle :screenWidth="screenWidth"></FirstRightMiddle>
       </div>
       <div class="right-bottom">
         <!--<CardHeaderTitle title="基层人员履职情况"></CardHeaderTitle>-->
-        <h6>问题管理状态</h6>
+        <!--<h6>问题管理状态</h6>-->
         <FirstRightBottom :screenWidth="screenWidth"></FirstRightBottom>
       </div>
     </div>
@@ -232,7 +232,7 @@
       }
       .right-bottom{
         background-color:@bgColor;
-        height: 43%;
+        height: 40%;
       }
     }
   }

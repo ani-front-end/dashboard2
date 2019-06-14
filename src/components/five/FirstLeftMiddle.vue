@@ -1,86 +1,11 @@
 <template>
   <div class="content">
-      <div class="content-left"  @mouseover="mouseOver()" @mouseout="mouseOut()">
-        <!--<chart  ref="chart1"-->
-                <!--style="height:100%;width: 100%"-->
-                <!--:options="option"-->
-                <!--:autoresize=true-->
-        <!--&gt;</chart>-->
-          <Carousel v-model="value1"
-                    :autoplay=autoplay
-                    :autoplay-speed=autoplaySpeed
-                    arrow="never"
-                    :radius-dot=true
-                    height="1.42rem"
-                    style="height:100%;"
-
-          >
-              <CarouselItem style="" v-for="(item,index) in options" :key="index">
                   <chart  ref="chart1"
                           style="height: 100%;width: 100%"
-                          :options="item"
+                          :options="option"
                           :autoresize=true
                           @click="onClick"
                   ></chart>
-              </CarouselItem>
-          </Carousel>
-      </div>
-      <div class="content-right">
-          <div class="block">
-              <div class="item" v-for="(item,index) in dataList" :key="index">
-                  <div class="item-left" :style="{background:item.colorStyle}"></div>
-                  <div class="item-right">{{item.word}}</div>
-              </div>
-          </div>
-      </div>
-      <el-dialog
-              title="11"
-              :visible.sync="centerDialogVisible"
-              width="60%"
-              center>
-          <div class="dialog-content" style="position: relative">
-              <img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">
-              <img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">
-
-              <div class="dialog-top">
-                  <div class="top-left">
-
-                  </div>
-                  <div class="top-right">
-                      机关发现问题统计
-                  </div>
-              </div>
-              <div class="dialog-bottom">
-                  <div class="bottom-left">
-                      <div class="left1"> {{name}}</div>
-                      <div class="left2">({{seriesName}})</div>
-                  </div>
-                  <div class="bottom-center">
-
-                  </div>
-                  <div class="bottom-right">
-                      <Carousel v-model="value2"
-                                :autoplay=autoplay
-                                :autoplay-speed=autoplaySpeed
-                                arrow="never"
-                                :radius-dot=true
-                                height="1.42rem"
-                                style="height:100%;"
-
-                      >
-                          <CarouselItem class="screen-carousel" v-for="(item,index) in dialogOptions" :key="index">
-                              <chart ref="chart1"
-                                     style="height: 100%;width: 100%"
-                                     :options="item"
-                                     :autoresize=true
-                              ></chart>
-                          </CarouselItem>
-                      </Carousel>
-
-                  </div>
-              </div>
-          </div>
-      </el-dialog>
   </div>
 </template>
 <script>
@@ -105,70 +30,106 @@
                 value1:0,
                 dialogOptions:[],
                 value2:0,
-                option: {
-                    color: ['#c09216','#c80813'],
+                option:{
                     grid: {
-                        left: '3%',
-                        right: '4%',
-                        bottom: '3%',
-                        containLabel: true
+                        x:50,
+                        y:20,
+                        x2:1,
+                        y2:50
                     },
-                    xAxis: {
-                        type: 'value',
-                        boundaryGap: [0, 0.01],
-                        axisLabel: {
-                            color: '#ffffff'
+                    title : {
+                        textStyle: {
+                            color: '#fff',
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            shadowColor: '#fff',
+                            shadowBlur: 50,
                         },
-                        axisLine: {
-                            lineStyle: {
-                                color: '#4e6590',
-                                width: 1,
-                                shadowColor: '#4e6590',
-                                shadowBlur: 10
-                            }
-                        },
-                        splitLine: {
-                            show: true,
-                            lineStyle: {
-                                color: ['#333']
-                            }
-                        },
+                        left: 'center',
+                        top: 'top',
+                        itemGap: 60,
+                        text: '弹药消耗情况',
+//                        subtext: '纯属虚构',
+                        x:'top'
                     },
-                    yAxis: {
-                        minInterval:1,
-                        type: 'category',
-                        axisLabel: {
-                            color: '#ffffff'
-                        },
-                        axisLine: {
-                            lineStyle: {
-                                color: '#4e6590',
-                                width: 1,
-                                shadowColor: '#4e6590',
-                                shadowBlur: 10
-                            }
-                        },
-                        splitLine: {
-                            show: false,
-                            lineStyle: {
-                                color: ['#333']
-                            }
-                        },
-                        data: ['涉案载体管理','枪支管理','车辆管理','人员管理'],
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
-                    series: [
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: ['手枪弹','步枪弹','手榴弹'],
+                        textStyle: {
+                            color: '#fff',
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    series : [
                         {
-                            name: '系统检查',
-                            type: 'bar',
-                            barWidth: '20%',
-                            data: [2, 3, 4, 2]
-                        },
-
-                        {
-                            name: '机关检查',
-                            type: 'bar',
-                            barWidth: '20%',
-                            data: [1, 5, 3, 2]
+                            name: '访问来源',
+                            type: 'pie',
+                            radius : '55%',
+                            center: ['50%', '60%'],
+                            label: {
+                                normal: {
+                                    formatter: "{b|{b}：}{c}({d}%)",
+                                    backgroundColor: {
+//                                        image: 'https://www.baidu.com/favicon.ico'
+                                    },
+//                                    borderColor: '#aaa',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    // shadowBlur:3,
+                                    // shadowOffsetX: 2,
+                                    // shadowOffsetY: 2,
+                                    // shadowColor: '#999',
+                                    // padding: [0, 7],
+                                    rich: {
+                                        a: {
+                                            color: '#999',
+                                            lineHeight: 22,
+                                            align: 'center'
+                                        },
+                                        // abg: {
+                                        //     backgroundColor: '#333',
+                                        //     width: '100%',
+                                        //     align: 'right',
+                                        //     height: 22,
+                                        //     borderRadius: [4, 4, 0, 0]
+                                        // },
+                                        hr: {
+                                            borderColor: '#aaa',
+                                            width: '100%',
+                                            borderWidth: 0.5,
+                                            height: 0
+                                        },
+                                        b: {
+                                            fontSize: 12,
+                                            lineHeight: 33
+                                        },
+                                        per: {
+                                            color: '#eee',
+                                            backgroundColor: '#334455',
+                                            padding: [2, 4],
+                                            borderRadius: 2
+                                        }
+                                    }
+                                }
+                            },
+                            data:[
+                                {value:335, name:'手枪弹'},
+                                {value:310, name:'步枪弹'},
+                                {value:234, name:'手榴弹'},
+                            ],
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
                         }
                     ]
                 },

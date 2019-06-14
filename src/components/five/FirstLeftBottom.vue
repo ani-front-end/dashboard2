@@ -1,107 +1,107 @@
 <template>
   <div class="content">
     <!--<h1>{{ msg }}</h1>-->
-    <div class="content-top">
-      <div class="content-top-left">
+    <!--<div class="content-top">-->
+      <!--<div class="content-top-left">-->
         <chart  ref="chart"
                 style="height: 100%;width: 100%"
                 :options="option"
                 :autoresize=true
         ></chart>
-      </div>
-      <div class="content-top-right">
-        <LittleLegendBlock word1="实检" word2="应检"></LittleLegendBlock>
-      </div>
-    </div>
-    <div class="content-bottom"  @mouseover="mouseOver()" @mouseout="mouseOut()">
+      <!--</div>-->
+      <!--<div class="content-top-right">-->
+        <!--<LittleLegendBlock word1="实检" word2="应检"></LittleLegendBlock>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="content-bottom"  @mouseover="mouseOver()" @mouseout="mouseOut()">-->
 
-      <Carousel v-model="value1"
-                :autoplay=autoplay
-                :autoplay-speed=autoplaySpeed
-                arrow="never"
-                :radius-dot=true
-                height="1.42rem"
-                style="height:100%;"
+      <!--<Carousel v-model="value1"-->
+                <!--:autoplay=autoplay-->
+                <!--:autoplay-speed=autoplaySpeed-->
+                <!--arrow="never"-->
+                <!--:radius-dot=true-->
+                <!--height="1.42rem"-->
+                <!--style="height:100%;"-->
 
-      >
-        <CarouselItem style="" v-for="(item,index) in options" :key="index">
-          <chart  ref="chart1"
-                  style="height:100%;width: 100%"
-                  :options="item"
-                  :autoresize=true
-                  @click="onClick"
+      <!--&gt;-->
+        <!--<CarouselItem style="" v-for="(item,index) in options" :key="index">-->
+          <!--<chart  ref="chart1"-->
+                  <!--style="height:100%;width: 100%"-->
+                  <!--:options="item"-->
+                  <!--:autoresize=true-->
+                  <!--@click="onClick"-->
 
-          ></chart>
-        </CarouselItem>
-      </Carousel>
-    </div>
-    <el-dialog
-            title="11"
-            :visible.sync="centerDialogVisible"
-            width="60%"
-            center>
-      <div class="dialog-content" style="position: relative">
-        <img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">
-        <img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">
+          <!--&gt;</chart>-->
+        <!--</CarouselItem>-->
+      <!--</Carousel>-->
+    <!--</div>-->
+    <!--<el-dialog-->
+            <!--title="11"-->
+            <!--:visible.sync="centerDialogVisible"-->
+            <!--width="60%"-->
+            <!--center>-->
+      <!--<div class="dialog-content" style="position: relative">-->
+        <!--<img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">-->
+        <!--<img @click="centerDialogVisible = false" style="position: absolute;top:15px;right:-2px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">-->
 
-        <div class="dialog-top">
-          <div class="top-left">
+        <!--<div class="dialog-top">-->
+          <!--<div class="top-left">-->
 
-          </div>
-          <div class="top-right">
-            机关人员履职情况
-          </div>
-        </div>
-        <div class="dialog-bottom">
-          <div class="bottom-left">
-            <div class="left1">{{name}}</div>
-            <div class="left2">履职情况</div>
-          </div>
-          <div class="bottom-center">
+          <!--</div>-->
+          <!--<div class="top-right">-->
+            <!--机关人员履职情况-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="dialog-bottom">-->
+          <!--<div class="bottom-left">-->
+            <!--<div class="left1">{{name}}</div>-->
+            <!--<div class="left2">履职情况</div>-->
+          <!--</div>-->
+          <!--<div class="bottom-center">-->
 
-          </div>
-          <div class="bottom-right">
-            <div class="right1">
-              <Carousel v-model="value2"
-                        :autoplay=autoplay
-                        :autoplay-speed=autoplaySpeed
-                        arrow="never"
-                        :radius-dot=true
-                        height="1.42rem"
-                        style="height:100%;"
+          <!--</div>-->
+          <!--<div class="bottom-right">-->
+            <!--<div class="right1">-->
+              <!--<Carousel v-model="value2"-->
+                        <!--:autoplay=autoplay-->
+                        <!--:autoplay-speed=autoplaySpeed-->
+                        <!--arrow="never"-->
+                        <!--:radius-dot=true-->
+                        <!--height="1.42rem"-->
+                        <!--style="height:100%;"-->
 
-              >
-                <CarouselItem class="screen-carousel" v-for="(item,index) in dialogOptions" :key="index">
-                  <chart ref="chart1"
-                         style="height: 100%;width: 100%"
-                         :options="item"
-                         :autoresize=true
-                  ></chart>
-                </CarouselItem>
-              </Carousel>
-            </div>
-            <div class="right2">
-              <div class="right2-top">
-                <LittleLegendBlock word1="实检" word2="应检"></LittleLegendBlock>
-              </div>
-              <div class="right2-middle">
-                <chart  ref="chart"
-                        style="height: 100%;width: 100%"
-                        :options="dialogOptionRound"
-                        :autoresize=true
-                ></chart>
-              </div>
-              <div class="right2-bottom">
-                {{name}}检查完成率
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </el-dialog>
+              <!--&gt;-->
+                <!--<CarouselItem class="screen-carousel" v-for="(item,index) in dialogOptions" :key="index">-->
+                  <!--<chart ref="chart1"-->
+                         <!--style="height: 100%;width: 100%"-->
+                         <!--:options="item"-->
+                         <!--:autoresize=true-->
+                  <!--&gt;</chart>-->
+                <!--</CarouselItem>-->
+              <!--</Carousel>-->
+            <!--</div>-->
+            <!--<div class="right2">-->
+              <!--<div class="right2-top">-->
+                <!--<LittleLegendBlock word1="实检" word2="应检"></LittleLegendBlock>-->
+              <!--</div>-->
+              <!--<div class="right2-middle">-->
+                <!--<chart  ref="chart"-->
+                        <!--style="height: 100%;width: 100%"-->
+                        <!--:options="dialogOptionRound"-->
+                        <!--:autoresize=true-->
+                <!--&gt;</chart>-->
+              <!--</div>-->
+              <!--<div class="right2-bottom">-->
+                <!--{{name}}检查完成率-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</el-dialog>-->
    </div>
 </template>
-<script src="../service/FirstLeftBottom.js"></script>
+<script src="../service/FiveLeftBottom.js"></script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">

@@ -1,28 +1,28 @@
 <template>
   <div class="content">
-    <div class="content-left">
-      <LegendNum :num=totalNum word="总数"></LegendNum>
-    </div>
+    <!--<div class="content-left">-->
+      <!--<LegendNum :num=totalNum word="总数"></LegendNum>-->
+    <!--</div>-->
     <div class="content-right" @mouseover="mouseOver()" @mouseout="mouseOut()">
-      <Carousel v-model="value1"
-                :autoplay=autoplay
-                :autoplay-speed=autoplaySpeed
-                arrow="never"
-                :radius-dot=true
-                height="1.42rem"
-                style="height:100%;"
+      <!--<Carousel v-model="value1"-->
+                <!--:autoplay=autoplay-->
+                <!--:autoplay-speed=autoplaySpeed-->
+                <!--arrow="never"-->
+                <!--:radius-dot=true-->
+                <!--height="1.42rem"-->
+                <!--style="height:100%;"-->
 
-      >
-        <CarouselItem style="" v-for="(item,index) in options" :key="index">
+      <!--&gt;-->
+        <!--<CarouselItem style="" v-for="(item,index) in options" :key="index">-->
           <chart  ref="chart"
                   style="height: 100%;width: 100%"
-                  :options="item"
+                  :options="option"
                   :autoresize=true
                   @click="onClick"
 
           ></chart>
-        </CarouselItem>
-      </Carousel>
+        <!--</CarouselItem>-->
+      <!--</Carousel>-->
     </div>
     <el-dialog
             title="11"
@@ -90,7 +90,65 @@
                 secondBarBorderColor:'#fff',
 
                 totalNum:0,
-                option: {
+                option : {
+                    legend: {
+                        orient: 'vertical',
+                        left: 'center',
+                        data: ['手枪弹'],
+                        textStyle: {
+                            color: '#fff',
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    title: {
+                        text: '教育学习情况',
+                        textStyle: {
+                            color: '#fff',
+                            borderRadius: 3,
+                            padding: [3, 5]
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['1连', '2连', '3连', '4连', '5连', '6连'],
+                        axisLine: {
+                            lineStyle :{
+                                color : '#fff'
+                            }
+                        },
+                        splitLine: {
+                            show: true,
+                            lineStyle: {
+                                color: ['#fff']
+                            }
+                        },
+                    },
+                    yAxis: {
+                        type: 'value',
+                        splitLine: {
+                            show: true,
+                            lineStyle: {
+                                color: ['#fff']
+                            }
+                        },
+                        nameTextStyle:{
+                          color:'#333'
+                        },
+                        axisLine: {
+                            lineStyle :{
+                                color : '#fff'
+                            }
+                        },
+                    },
+                    series: [{
+                        name:'手枪弹',
+                        data: [2, 3, 0, 1, 5, 2],
+                        type: 'line'
+                    }]
+                },
+
+            optionx: {
                     textStyle: {
                         fontFamily: 'monospace',
                     },
@@ -756,21 +814,13 @@
     width: 100%;
   }
   .content{
-    height: 82%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: space-around;
-    .content-left{
-      width: 26%;
-      height: 40%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      /*border: 1px solid grey;*/
-    }
     .content-right{
       height: 100%;
-      width: 70%;
+      width: 80%;
       /*border: 1px solid grey;*/
     }
   }
