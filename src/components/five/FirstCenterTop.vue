@@ -1,23 +1,14 @@
 <template>
     <div class="content" style="position: relative">
         <div class="content-left">
-            <chart ref="chart1"
-                   style="height: 100%;width: 100%"
-                   :options="orgOptions"
-                   :autoresize=true
-                   @click="onClick"
-            ></chart>
+            <h6>今日菜谱</h6>
+            <img src="../../assets/images/u93.png" style="margin-top: 0.1rem">
         </div>
         <div class="content-right">
-            <div class="item" v-for="(item,index) in tempData" :key="index">
-                <div class="item-left">{{item.name}}:</div>
-                <div class="item-left">{{item.value}}</div>
-                <div class="item-center" :style="{background:item.colorStyle}"></div>
-                <div class="item-right">{{item.desc}}</div>
-            </div>
+            <h6>年度油耗</h6>
+            <h3 class="nums">12657L</h3>
         </div>
-        <img style="position: absolute;bottom:0px;left:-2px;" src="../../assets/images/left-bottom.png" alt="">
-        <img style="position: absolute;bottom:0px;right:-2px;" src="../../assets/images/right-bottom.png" alt="">
+
         <el-dialog
                 title="11"
                 :visible.sync="centerDialogVisible"
@@ -296,9 +287,6 @@
         ],
         mounted() {
             this.queryData();
-//            setInterval(() => {
-//                this.queryData();
-//            },properties.QUERY_TIME_SPACE)
         },
         methods: {
             toPercent(num){
@@ -587,24 +575,31 @@
         height: 100% !important;
     }
     .content {
-        height: 91.2%;
+        height: 100%;
         width: 100%;
         position: relative;
         .content-left{
             height: 100%;
-            width: 80%;
+            width: 50%;
+            border-right: 1px solid #5fd8e8;
+            padding-top: 0.1rem;
         }
         .content-right{
             position: absolute;
             right:0;
             top:0;
-            width: 30%;
+            width: 50%;
             height: 100%;
             /*border: 1px solid black;*/
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            padding-top: 0.1rem;
+            .nums{
+                color: #169bd5;
+                margin-top: 0.5rem;
+            }
             .item{
                 width: 100%;
                 display: flex;

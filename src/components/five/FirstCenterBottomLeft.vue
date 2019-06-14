@@ -2,102 +2,83 @@
   <div class="content">
     <!--<h1>{{ msg }}</h1>-->
     <chart  ref="chart1"
-            style="height: 1.5rem;width: 2.3rem"
+            style="height: 100%;width: 100%"
             :options="option"
             :autoresize=true
     ></chart>
   </div>
 </template>
 <script>
-    import properties from '../../services/properties'
     export default {
         data () {
             return {
                 option: {
-                    textStyle: {
-                        fontFamily: 'Microsoft YaHei',
-                        fontSize: 12,
-                        fontWeight: 'bold',
+                  grid: {
+                    show: true,
+                    borderWidth: 1,
+                  },
+                  title : {
+                    text: '卫生防疫',
+                    textStyle:{color:'#fff'},
+                    x:'center'
+                  },
+                  xAxis: {
+                    type: 'category',
+                    data: ['1连', '2连', '3连', '4连', '5连', '6连'],
+                    axisLine: {
+                      lineStyle :{
+                        color : '#fff'
+                      }
                     },
-                    title: {
-                        //formatter: "{a} <br/>{b}: {c} ({d}%)",
-                        text: '0',
-                        textStyle: {
-                            color: '#00d8ff',
-                            fontSize: 25,
-                            fontWeight: 'bold',
-                            shadowColor: '#fff',
-                            shadowBlur: 50,
-                        },
-                        left: 'center',
-                        bottom: 'center',
-                        itemGap: 60,
+                    splitLine: {
+                      show: true,
+                      lineStyle: {
+                        color: ['#fff']
+                      }
                     },
-                    color:['#376d3f', '#6b135d', '#1b77d4', '#9b784c'],
-                    // tooltip: {
-                    //     trigger: 'item',
-                    //     formatter: "{a} <br/>{b}: {c} ({d}%)"
-                    // },
-                    series: [
-                        {
-                            color:['#0493e4', '#1b3667'],
-                            //name:'访问来源',
-                            type:'pie',
-                            radius: ['40%', '52%'],
-                            label: {
-                                normal: {
-                                    show: false,
-                                    position: 'inner'
-                                }
-                            },
-                            labelLine: {
-                                normal: {
-                                    show: false
-                                }
-                            },
-                            data:[
-                                {value:11, name:'已处置', itemStyle: {borderColor:'#01deff', borderWidth: 1}},
-                                {value:10, name:'未处置'}
-
-                            ]
-                        },
-                        {
-                            name:'',
-                            color:['#c5236f', '#376c3e', '#12275c'],
-                            type:'pie',
-                            radius: ['50%', '60%'],
-                            avoidLabelOverlap: false,
-                            itemStyle: {
-                                opacity: 0.7
-                            },
-                            label: {
-                                normal: {
-                                    formatter: '{b}: {c}',
-                                    show: true,
-                                    position: 'outside',
-                                    textStyle: {
-                                        color: '#ffffff'
-                                    }
-                                },
-                                emphasis: {
-                                    show: false,
-                                    textStyle: {
-                                        fontWeight: 'bold'
-                                    }
-                                }
-                            },
-                            labelLine: {
-                                normal: {
-                                    show:false
-                                }
-                            },
-                            data:[
-                                {value:335, name:'真警', itemStyle: {borderColor:'#ff019c', borderWidth: 1}},
-                                {value:310, name:'误报', itemStyle: {borderColor:'#78db5d', borderWidth: 1}},
-                                {value:135, name:'未处置', itemStyle: {borderColor:'#851264', borderWidth: 0}},
-                            ]
-                        }
-                    ]
+                  },
+                  yAxis: {
+                    minInterval:1,
+                    type: 'value',
+                    boundaryGap: ['0%', '20%'],
+                    axisLabel: {
+                      color: '#edf1f4',
+                      fontSize: 10,
+                    },
+                    splitLine: {
+                      show: true,
+                      lineStyle: {
+                        color: ['#fff']
+                      }
+                    },
+                    axisTick: {
+                      show: true,
+                      lineStyle: {
+                        color: '#ffffff'
+                      }
+                    },
+                    axisLine: {
+                      lineStyle: {
+                        color: '#fff',
+                        width: 1,
+                      }
+                    }
+                  },
+                  series: [{
+                    data: [120, 200, 150, 80, 70, 110],
+                    type: 'bar',
+                    itemStyle: {
+                      color: '#a5d2ff',
+                    },
+                    barWidth:30,
+                    label: {
+                      normal: {
+                        show: true,
+                        position: 'top',
+                        color:'#fff'
+                      },
+                    },
+                  }]
                 },
 
 
@@ -107,7 +88,7 @@
             'title',
         ],
         mounted() {
-            this.queryData();
+            //this.queryData();
 //            setInterval(() => {
 //                this.queryData();
 //            },properties.QUERY_TIME_SPACE)
@@ -137,5 +118,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-
+.content{
+  width: 100%;
+  height: 100%;
+  padding-top: 0.1rem;
+}
 </style>

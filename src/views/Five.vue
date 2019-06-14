@@ -26,15 +26,15 @@
       <div class="center-middle">
         <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
         <!--<h6>问题管理状态</h6>-->
-        <FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>
+        <FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>
       </div>
       <div class="center-bottom"  style="position: relative">
         <!--<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>-->
-        <!--<h6>问题管理状态</h6>-->
+        <!--<h6>卫生防疫</h6>-->
         <!--<div class="center-bottom-content">-->
           <!--<div class="center-bottom-left">-->
             <!--<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>-->
-            <!--<FirstCenterBottomLeft :screenWidth="screenWidth"></FirstCenterBottomLeft>-->
+            <FirstCenterBottomLeft :screenWidth="screenWidth"></FirstCenterBottomLeft>
           <!--</div>-->
           <!--<div class="center-bottom-center">-->
             <!--<LittleCardHeaderTitle title="安全等级"></LittleCardHeaderTitle>-->
@@ -45,8 +45,6 @@
             <!--<FirstCenterBottomRight :screenWidth="screenWidth"></FirstCenterBottomRight>-->
           <!--</div>-->
         <!--</div>-->
-        <img style="position: absolute;bottom:-2px;left:-2px;" src="../assets/images/left-bottom.png" alt="">
-        <img style="position: absolute;bottom:-2px;right:-2px;" src="../assets/images/right-bottom.png" alt="">
 
       </div>
     </div>
@@ -83,6 +81,7 @@
   import FirstRightTop from '../components/five/FirstRightTop'
   import FirstRightMiddle from '../components/five/FirstRightMiddle'
   import FirstRightBottom from '../components/five/FirstRightBottom'
+  import FirstCenterMiddle from '../components/five/FirstCenterMiddle'
     export default {
         name: 'hello',
         data () {
@@ -105,6 +104,7 @@
             'FirstRightTop':FirstRightTop,
             'FirstRightMiddle':FirstRightMiddle,
             'FirstRightBottom':FirstRightBottom,
+            'FirstCenterMiddle':FirstCenterMiddle
 
 
         },
@@ -122,7 +122,7 @@
 <style scoped lang="less">
   @bgColor:rgba(9,60,118,0.23);
   @centerBottomBgColor:none;
-  @centerBorder:1px solid rgba(0,131,179,0.23);
+  @centerBorder:1px solid #5fd8e8;
   .first{
     width: 100%;
     height: 90%;
@@ -185,10 +185,10 @@
         //box-shadow: 1px 1px 5px #0e3367 inset,
         //            -1px -1px 5px #0e3367 inset;
         border: @centerBorder;
-        height: 33%;
+        height: 31%;
         display: flex;
         flex-direction: column;
-        /*padding-top: 0.2rem;*/
+        /*padding-top: 0.1rem;*/
         .center-bottom-content{
           height: 100%;
           display: flex;
