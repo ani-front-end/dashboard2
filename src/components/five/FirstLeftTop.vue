@@ -102,7 +102,7 @@
                         }
                     },
                     title: {
-                        text: '教育学习情况',
+                        text: '公差勤务情况',
                         textStyle: {
                             color: '#fff',
                             borderRadius: 3,
