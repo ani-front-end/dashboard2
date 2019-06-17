@@ -35,7 +35,7 @@
           },
           series : [
             {
-              name:'面积模式',
+              name:'人员不在位原因及数量',
               type:'pie',
               radius : [20, 70],
               center: ['50%', '60%'],

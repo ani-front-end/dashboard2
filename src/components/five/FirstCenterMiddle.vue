@@ -35,7 +35,7 @@
                     },
                     series : [
                         {
-                            name:'面积模式',
+                            name:'营房报修',
                             type:'pie',
                             radius : [10, 70],
                             roseType : 'area',
