@@ -18,7 +18,6 @@
                   style="height: 100%;width: 100%"
                   :options="item"
                   :autoresize=true
-                  @click="onClick"
 
           ></chart>
         </CarouselItem>
@@ -334,6 +333,7 @@
             'LegendNum':LegendNum,
         },
         mounted() {
+          this.queryData();
 //            setTimeout(() => {
                 //进行一级页面颜色动态配置
 //                this.autoplay=Boolean(properties.AUTO_PLAY);
@@ -344,7 +344,7 @@
 //                this.barBorderColor=properties.BAR_BORDER_COLOR;
 //                this.secondBarColor=properties.SECOND_BAR_COLOR;
 //                this.secondBarBorderColor=properties.SECOND_BAR_BORDER_COLOR;
-                this.queryData();
+//                 this.queryData();
 //                setInterval(() => {
 //                    this.queryData();
 //                },properties.QUERY_TIME_SPACE)
@@ -596,39 +596,40 @@
             queryData(){
                 this.value1=0;
                 this.options=[];
-//                this.http.get(this.ports.manage.insertPerson, (res) => {
-//                    if(res.success){
-//                        let data = res.data;
-                let data = {
-                    "1连": {
-                        "findPerson": 2,
-                        "insertPerson": 3,
-                        "third":5,
-                    },
-                    "2连": {
-                        "findPerson": 10,
-                        "insertPerson": 7,
-                        "third":8,
-                    },
-                    "3连": {
-                        "findPerson": 4,
-                        "insertPerson": 6,
-                        "third":6,
-                    },
-                    "4连": {
-                        "findPerson": 2,
-                        "insertPerson": 3,
-                        "third":5,
-                    },
-                    "5连": {
-                        "findPerson": 10,
-                        "insertPerson": 7,
-                        "third":8,
-                    },
-                    "insertPersonSum": 16,
-                    "sum": 34,
-                    "findPersonSum": 18
-                };
+               this.http.get(this.ports.five.rightBottom, (res) => {
+                 console.log('fiverightBottom:',res);
+                 if (res.error_msg == '成功') {
+                       let data = res.data;
+                // let data = {
+                //     "1连": {
+                //         "findPerson": 2,
+                //         "insertPerson": 3,
+                //         "third":5,
+                //     },
+                //     "2连": {
+                //         "findPerson": 10,
+                //         "insertPerson": 7,
+                //         "third":8,
+                //     },
+                //     "3连": {
+                //         "findPerson": 4,
+                //         "insertPerson": 6,
+                //         "third":6,
+                //     },
+                //     "4连": {
+                //         "findPerson": 2,
+                //         "insertPerson": 3,
+                //         "third":5,
+                //     },
+                //     "5连": {
+                //         "findPerson": 10,
+                //         "insertPerson": 7,
+                //         "third":8,
+                //     },
+                //     "insertPersonSum": 16,
+                //     "sum": 34,
+                //     "findPersonSum": 18
+                // };
                 let num = 0;
                 let pageNum = 0;
                 this.options.push({
@@ -788,9 +789,9 @@
 //                                return true;
                     }else{
                         this.options[pageNum].xAxis[0].data.push(p);
-                        this.options[pageNum].series[0].data.push(data[p].findPerson);
-                        this.options[pageNum].series[1].data.push(data[p].insertPerson);
-                        this.options[pageNum].series[2].data.push(data[p].third);
+                        this.options[pageNum].series[0].data.push(data[p].会议次数);
+                        this.options[pageNum].series[1].data.push(data[p].上级检查);
+                        this.options[pageNum].series[2].data.push(data[p].下达文件);
                         num++;
                         if(num>this.pageNums){
                             num = 0;
@@ -922,10 +923,10 @@
                 if(this.options[this.options.length-1].xAxis[0].data.length == 0){
                     this.options.pop();
                 }
-//                    }
-//                    let newOptions = Object.assign({}, this.option);
-//                    this.option = newOptions;
-//                })
+                   }
+                   let newOptions = Object.assign({}, this.option);
+                   this.option = newOptions;
+               })
             }
         },
         computed: {

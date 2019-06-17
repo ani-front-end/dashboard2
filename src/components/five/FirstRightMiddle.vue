@@ -45,7 +45,7 @@
                         {
                             minInterval:1,
                             type: 'category',
-                            data: ['1连', '2连', '3连', '4连', '5连', '6连'],
+                            data: [],
                             axisTick: {
                                 alignWithLabel: true
                             },
@@ -108,7 +108,7 @@
                                 fontSize: 12,
                                 fontWeight: 'bold'
                             },
-                            data: [1, 7, 3, 7, 3, 2]
+                            data: []
                         },
 
                     ]
@@ -122,24 +122,16 @@
         },
         methods:{
             queryData(){
-                this.http.get(this.ports.manage.ammConsumption, (res) => {
-                    if(res.success){
-                        let data = res.data;
-                        let num = 0;
-                        this.option.title.text=data.sum;
-                        Object.keys(data).forEach(p => {
-                            if(p == 'sum'){
-//                                return true;
-                            }else{
-                                this.option.series[0].data.push({value:data[p], name:p, itemStyle: {borderColor:this.option.color[num], opacity: 0.7}})
-                                num++;
-                            }
-
+                this.http.get(this.ports.five.rightMiddle, (res) => {
+                    console.log('fiverightMiddle:',res);
+                    if (res.error_msg == '成功') {
+                        let data=res.data;
+                        Object.keys(data).forEach(p=>{
+                            this.option.xAxis[0].data.unshift(p);
+                            this.option.series[0].data.unshift(data[p])
                         })
                     }
-//                    let newOptions = Object.assign({}, this.option);
-//                    this.option = newOptions;
-                })
+                });
             }
         },
         computed: {

@@ -30,14 +30,14 @@
                     legend: {
                         x : 'center',
                         y : 'bottom',
-                        data:['门墙破损','道路损坏','灯泡更换','墙皮维修'],
+                        data:['门窗破损','道路损坏','灯泡更换','墙皮维护'],
                         textStyle:{color:'#fff'}
                     },
                     series : [
                         {
                             name:'面积模式',
                             type:'pie',
-                            radius : [30, 110],
+                            radius : [10, 70],
                             roseType : 'area',
                             label: {
                                 normal: {
@@ -84,17 +84,31 @@
                                     }
                                 }
                             },
-                            data:[
-                                {value:9, name:'门墙破损'},
-                                {value:5, name:'道路损坏'},
-                                {value:8, name:'灯泡更换'},
-                                {value:7, name:'墙皮维修'},
-                            ]
+                            data:[]
                         }
                     ]
                 },
             }
+        },
+        created() {
+            this.queryData()
+        },
+        methods:{
+            queryData(){
+                this.http.get(this.ports.five.centerMiddle, (res) => {
+                    console.log('fivecenterMIddle:',res);
+                    if (res.error_msg == '成功') {
+                        let data=res.data;
+                        Object.keys(data).forEach(p=>{
+                            this.option.legend.data.push(p);
+                            this.option.series[0].data.push({value:data[p], name:p})
+                        })
+
+                    }
+                });
+            }
         }
+
     }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->

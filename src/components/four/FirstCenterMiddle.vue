@@ -53,7 +53,7 @@
                         {
                             minInterval:1,
                             type: 'category',
-                            data: ['1连', '2连', '3连', '4连', '5连', '6连'],
+                            data: [],
                             axisTick: {
                                 alignWithLabel: true
                             },
@@ -61,11 +61,12 @@
                                 show: false
                             },
                             axisLabel: {
-                                show: true
+                                show: true,
+                                interval:0
                             },
                             axisLine: {
                                 lineStyle: {
-                                    color: '#4e6590',
+                                    color: '#fff',
                                     width: 1,
                                     shadowColor: '#4e6590',
                                     shadowBlur: 10
@@ -103,12 +104,6 @@
                             name:'参训率',
                             type: 'bar',
                             barWidth: '20%',
-                            itemStyle: {
-                                color: '#b58531',
-                                borderColor: '#feba01',
-                                //opacity: 0.7,
-                                borderWidth: 1
-                            },
                             label: {
                                 show: true,
                                 position: 'top',
@@ -116,7 +111,26 @@
                                 fontSize: 12,
                                 fontWeight: 'bold'
                             },
-                            data: [1, 7, 3, 7, 3, 2]
+                            data: [],
+                            itemStyle: {
+                                color: '#b58531',
+                                borderColor: '#feba01',
+                                //opacity: 0.7,
+                                borderWidth: 1,
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                },
+                                normal:{
+                                    color:function(params) {
+                                        var colorList = [
+                                            '#7fc8fd'
+                                        ];
+                                        return colorList[params.dataIndex]
+                                    }
+                                }
+                            }
                         },
 
                     ]
@@ -130,8 +144,9 @@
         },
         methods:{
             queryData(){
-                this.http.get(this.ports.manage.ammConsumption, (res) => {
-                    if(res.success){
+                this.http.get(this.ports.four.centerMiddle, (res) => {
+                    console.log('centerMiddle:',res);
+                    if(res.error_msg=='成功'){
                         let data = res.data;
                         let num = 0;
                         this.option.title.text=data.sum;
@@ -139,7 +154,8 @@
                             if(p == 'sum'){
 //                                return true;
                             }else{
-                                this.option.series[0].data.push({value:data[p], name:p, itemStyle: {borderColor:this.option.color[num], opacity: 0.7}})
+                                this.option.series[0].data.push(data[p]);
+                                this.option.xAxis[0].data.push(p);
                                 num++;
                             }
 

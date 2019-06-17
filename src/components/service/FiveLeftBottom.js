@@ -1,13 +1,14 @@
 import LittleLegendBlock from '../LittleLegendBlock.vue'
 import properties from '../../services/properties'
+
 export default {
-    data () {
+    data() {
         return {
             option: {
-                tooltip : {
+                tooltip: {
                     trigger: 'axis',
-                    axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                        type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                     }
                 },
                 title: {
@@ -19,20 +20,22 @@ export default {
                     }
                 },
                 legend: {
-                    data: ['手枪弹', '步枪弹'],
+                    data: ['手枪子弹', '步枪子弹'],
                     textStyle: {
                         color: '#fff',
                         borderRadius: 3,
                         padding: [3, 5]
-                    }
+                    },
+                    top: '10%'
                 },
                 grid: {
                     left: '3%',
-                    right: '4%',
-                    bottom: '3%',
+                    right: '3%',
+                    bottom: '0%',
+                    top: '25%',
                     containLabel: true
                 },
-                xAxis:  {
+                xAxis: {
                     type: 'value',
                     splitLine: {
                         show: true,
@@ -41,14 +44,14 @@ export default {
                         }
                     },
                     axisLine: {
-                        lineStyle :{
-                            color : '#fff'
+                        lineStyle: {
+                            color: '#fff'
                         }
                     },
                 },
                 yAxis: {
                     type: 'category',
-                    data: ['2营','1营'],
+                    data: [],
                     splitLine: {
                         show: true,
                         lineStyle: {
@@ -56,14 +59,14 @@ export default {
                         }
                     },
                     axisLine: {
-                        lineStyle :{
-                            color : '#fff'
+                        lineStyle: {
+                            color: '#fff'
                         }
                     },
                 },
                 series: [
                     {
-                        name: '手枪弹',
+                        name: '手枪子弹',
                         type: 'bar',
                         stack: '总量',
                         label: {
@@ -72,10 +75,13 @@ export default {
                                 position: 'insideRight'
                             }
                         },
-                        data: [320, 302]
+                        data: [],
+                        itemStyle: {
+                            color: '#f68050',
+                        },
                     },
                     {
-                        name: '步枪弹',
+                        name: '步枪子弹',
                         type: 'bar',
                         stack: '总量',
                         label: {
@@ -84,7 +90,10 @@ export default {
                                 position: 'insideRight'
                             }
                         },
-                        data: [120, 132]
+                        data: [],
+                        itemStyle: {
+                            color: '#87cdfa'
+                        },
                     },
                 ]
             },
@@ -103,14 +112,14 @@ export default {
                     bottom: '3%',
                     containLabel: true
                 },
-                xAxis:  {
+                xAxis: {
                     show: false,
                     type: 'value',
                     borderWidth: 0,
 
                 },
                 yAxis: {
-                    minInterval:1,
+                    minInterval: 1,
                     type: 'category',
                     axisLabel: {
                         color: '#ffffff'
@@ -132,10 +141,10 @@ export default {
                         barWidth: '30%',
                         label: {
                             normal: {
-                                formatter:'{c|{c}}',
+                                formatter: '{c|{c}}',
                                 rich: {
-                                    c:{
-                                        color:'#ffffff',
+                                    c: {
+                                        color: '#ffffff',
                                         //fontSize: 30,
                                         opacity: 1
                                     }
@@ -150,9 +159,9 @@ export default {
                             }
                         },
                         data: [128, 136, 301, 334, 404],
-                        itemStyle:{
-                            borderColor:'#08ceef',
-                            borderWidth:1
+                        itemStyle: {
+                            borderColor: '#08ceef',
+                            borderWidth: 1
                         }
                     },
                     {
@@ -167,27 +176,27 @@ export default {
                             //opacity: 1
                         },
                         data: [132, 140, 101, 134, 90],
-                        itemStyle:{
-                            color:'#1f4f80',
-                            borderColor:'3#0eafd4',
-                            borderWidth:1,
+                        itemStyle: {
+                            color: '#1f4f80',
+                            borderColor: '3#0eafd4',
+                            borderWidth: 1,
                             //opacity: 0.28
                         },
                     },
                 ]
             },
-            options:[],
-            value1:0,
-            dialogOption:{
+            options: [],
+            value1: 0,
+            dialogOption: {
                 textStyle: {
                     fontFamily: 'monospace',
                 },
 
                 grid: {
-                    x:50,
-                    y:20,
-                    x2:1,
-                    y2:100
+                    x: 50,
+                    y: 20,
+                    x2: 1,
+                    y2: 100
                 },
                 xAxis: [
                     {
@@ -221,7 +230,7 @@ export default {
                 ],
                 yAxis: [
                     {
-                        minInterval:1,
+                        minInterval: 1,
                         type: 'value',
                         boundaryGap: ['0%', '20%'],
                         axisLabel: {
@@ -259,7 +268,7 @@ export default {
                             //opacity: 1
                         },
                         data: [],
-                        itemStyle:{
+                        itemStyle: {
                             borderWidth: 1,
                             color: '#08ceef',
                             borderColor: '#47cdee',
@@ -274,10 +283,10 @@ export default {
                         barWidth: 10,
                         label: {
                             normal: {
-                                formatter:'{c|{c}}',
+                                formatter: '{c|{c}}',
                                 rich: {
-                                    c:{
-                                        color:'#ffffff',
+                                    c: {
+                                        color: '#ffffff',
                                         opacity: 1
                                     }
                                 },
@@ -291,9 +300,9 @@ export default {
                             }
                         },
                         data: [],
-                        itemStyle:{
-                            color:'#1f4f80',
-                            borderColor:'#0eafd4',
+                        itemStyle: {
+                            color: '#1f4f80',
+                            borderColor: '#0eafd4',
                             borderWidth: 1,
                             opacity: 1
                             //opacity: 0.28
@@ -322,9 +331,9 @@ export default {
                 },
                 series: [
                     {
-                        color:['#ad7319'],
-                        name:'访问来源',
-                        type:'pie',
+                        color: ['#ad7319'],
+                        name: '访问来源',
+                        type: 'pie',
                         selectedMode: 'single',
                         radius: ['62%', '63%'],
                         label: {
@@ -342,14 +351,14 @@ export default {
                             // borderColor:'#ad7319'
 
                         },
-                        data:[
-                            {value:645, name:''},
+                        data: [
+                            {value: 645, name: ''},
                         ]
                     },
                     {
-                        name:'',
-                        color:['#ad7319'],
-                        type:'pie',
+                        name: '',
+                        color: ['#ad7319'],
+                        type: 'pie',
                         radius: ['60%', '73%'],
                         avoidLabelOverlap: false,
                         label: {
@@ -370,10 +379,11 @@ export default {
                             opacity: 0.5
                         },
 
-                        data:[
-                            {value:1209, name:'已完成'},
-                            {value:1310,
-                                name:'未完成',
+                        data: [
+                            {value: 1209, name: '已完成'},
+                            {
+                                value: 1310,
+                                name: '未完成',
                                 itemStyle: {
                                     opacity: 0
                                 }
@@ -382,93 +392,94 @@ export default {
                     }
                 ]
             },
-            name:'',
-            centerDialogVisible:false,
-            dialogOptions:[],
-            value2:0,
+            name: '',
+            centerDialogVisible: false,
+            dialogOptions: [],
+            value2: 0,
 
 
-            autoplay:true,
-            autoplaySpeed:10000,
-            pageNums:5,
-            barWidth:40,
-            barColor:'#fff',
-            barBorderColor:'#fff',
-            secondBarColor:'#fff',
-            secondBarBorderColor:'#fff',
-            factColor:'#fff',
-            factBorderColor:'#fff',
-            shouldColor:'#fff',
-            shouldBorderColor:'#fff'
+            autoplay: true,
+            autoplaySpeed: 10000,
+            pageNums: 5,
+            barWidth: 40,
+            barColor: '#fff',
+            barBorderColor: '#fff',
+            secondBarColor: '#fff',
+            secondBarBorderColor: '#fff',
+            factColor: '#fff',
+            factBorderColor: '#fff',
+            shouldColor: '#fff',
+            shouldBorderColor: '#fff'
         }
     },
-    components:{
-        'LittleLegendBlock':LittleLegendBlock
+    components: {
+        'LittleLegendBlock': LittleLegendBlock
     },
     props: [
         'title',
     ],
     mounted() {
+        this.queryData();
         setTimeout(() => {
             //进行一级页面颜色动态配置
-            this.autoplay=Boolean(properties.OFFICE_PERSON_AUTO_PLAY);
-            this.autoplaySpeed=Number(properties.OFFICE_PERSON_CHANGE_TIMES);
-            this.pageNums=Number(properties.OFFICE_PERSON_NUMS)-1;
-            this.barWidth=Number(properties.OFFICE_PERSON_BAR_WIDTH);
-            this.barColor=properties.BAR_COLOR;
-            this.barBorderColor=properties.BAR_BORDER_COLOR;
-            this.secondBarColor=properties.SECOND_BAR_COLOR;
-            this.secondBarBorderColor=properties.SECOND_BAR_BORDER_COLOR;
-            this.secondPageNums=properties.SECOND_PAGE_NUMS;
+            this.autoplay = Boolean(properties.OFFICE_PERSON_AUTO_PLAY);
+            this.autoplaySpeed = Number(properties.OFFICE_PERSON_CHANGE_TIMES);
+            this.pageNums = Number(properties.OFFICE_PERSON_NUMS) - 1;
+            this.barWidth = Number(properties.OFFICE_PERSON_BAR_WIDTH);
+            this.barColor = properties.BAR_COLOR;
+            this.barBorderColor = properties.BAR_BORDER_COLOR;
+            this.secondBarColor = properties.SECOND_BAR_COLOR;
+            this.secondBarBorderColor = properties.SECOND_BAR_BORDER_COLOR;
+            this.secondPageNums = properties.SECOND_PAGE_NUMS;
 
             this.factColor = properties.FACT_COLOR;
             this.factBorderColor = properties.FACT_BORDER_COLOR;
             this.shouldColor = properties.SHOULD_COLOR;
             this.shouldBorderColor = properties.SHOULD_BORDER_COLOR;
-            this.queryData();
+            //this.queryData();
             // setInterval(() => {
             //     this.queryData();
             // },properties.QUERY_TIME_SPACE)
-        },properties.LOOP_WAIT_TIME)
+        }, properties.LOOP_WAIT_TIME)
 
     },
     methods: {
-        mouseOver(){
-            this.autoplay=false;
+        mouseOver() {
+            this.autoplay = false;
         },
-        mouseOut(){
-            this.autoplay=true;
+        mouseOut() {
+            this.autoplay = true;
         },
-        openDialog(){
+        openDialog() {
             this.centerDialogVisible = true
         },
         onClick(event) {
             let name = event.name;
-            if(name){
+            if (name) {
                 this.name = name;
                 this.openDialog()
                 this.http.get(`${this.ports.second.officePatrolSecond}/${name}`, (res) => {
                     console.log('firstLeftBottom2')
                     console.log(res)
-                    if(res.success){
+                    if (res.success) {
                         let data = res.data;
                         let pageNum = 0;
                         let num = 0;
-                        this.dialogOptions=[];
+                        this.dialogOptions = [];
                         this.dialogOptions.push({
                             textStyle: {
                                 fontFamily: 'monospace',
                             },
 
                             grid: {
-                                x:50,
-                                y:20,
-                                x2:1,
-                                y2:100
+                                x: 50,
+                                y: 20,
+                                x2: 1,
+                                y2: 100
                             },
                             xAxis: [
                                 {
-                                    minInterval:1,
+                                    minInterval: 1,
                                     type: 'category',
                                     data: [],
                                     axisTick: {
@@ -499,7 +510,7 @@ export default {
                             ],
                             yAxis: [
                                 {
-                                    minInterval:1,
+                                    minInterval: 1,
                                     type: 'value',
                                     boundaryGap: ['0%', '20%'],
                                     axisLabel: {
@@ -537,7 +548,7 @@ export default {
                                         //opacity: 1
                                     },
                                     data: [],
-                                    itemStyle:{
+                                    itemStyle: {
                                         borderWidth: 1,
                                         color: this.factColor,
                                         borderColor: this.factBorderColor,
@@ -552,10 +563,10 @@ export default {
                                     barWidth: this.barWidth,
                                     label: {
                                         normal: {
-                                            formatter:'{c|{c}}',
+                                            formatter: '{c|{c}}',
                                             rich: {
-                                                c:{
-                                                    color:'#ffffff',
+                                                c: {
+                                                    color: '#ffffff',
                                                     opacity: 1
                                                 }
                                             },
@@ -569,7 +580,7 @@ export default {
                                         }
                                     },
                                     data: [],
-                                    itemStyle:{
+                                    itemStyle: {
                                         color: this.shouldColor,
                                         borderColor: this.shouldBorderColor,
                                         borderWidth: 1,
@@ -585,14 +596,14 @@ export default {
                         // this.dialogOption.series[1].data=[];
 //
                         Object.keys(data).forEach(p => {
-                            if(p == 'factAll' || p == 'shouldAll' || p == 'division'){
+                            if (p == 'factAll' || p == 'shouldAll' || p == 'division') {
                                 // return true;
-                            }else{
+                            } else {
                                 this.dialogOptions[pageNum].xAxis[0].data.push(p)
                                 this.dialogOptions[pageNum].series[0].data.push(data[p].factAll)
                                 this.dialogOptions[pageNum].series[1].data.push(data[p].shouldAll - data[p].factAll)
                                 num++;
-                                if(num > this.secondPageNums) {
+                                if (num > this.secondPageNums) {
                                     num = 0;
                                     this.dialogOptions.push({
                                         textStyle: {
@@ -600,14 +611,14 @@ export default {
                                         },
 
                                         grid: {
-                                            x:50,
-                                            y:20,
-                                            x2:1,
-                                            y2:100
+                                            x: 50,
+                                            y: 20,
+                                            x2: 1,
+                                            y2: 100
                                         },
                                         xAxis: [
                                             {
-                                                minInterval:1,
+                                                minInterval: 1,
                                                 type: 'category',
                                                 data: [],
                                                 axisTick: {
@@ -638,7 +649,7 @@ export default {
                                         ],
                                         yAxis: [
                                             {
-                                                minInterval:1,
+                                                minInterval: 1,
                                                 type: 'value',
                                                 boundaryGap: ['0%', '20%'],
                                                 axisLabel: {
@@ -676,7 +687,7 @@ export default {
                                                     //opacity: 1
                                                 },
                                                 data: [],
-                                                itemStyle:{
+                                                itemStyle: {
                                                     borderWidth: 1,
                                                     color: this.factColor,
                                                     borderColor: this.factBorderColor,
@@ -691,10 +702,10 @@ export default {
                                                 barWidth: this.barWidth,
                                                 label: {
                                                     normal: {
-                                                        formatter:'{c|{c}}',
+                                                        formatter: '{c|{c}}',
                                                         rich: {
-                                                            c:{
-                                                                color:'#ffffff',
+                                                            c: {
+                                                                color: '#ffffff',
                                                                 opacity: 1
                                                             }
                                                         },
@@ -708,7 +719,7 @@ export default {
                                                     }
                                                 },
                                                 data: [],
-                                                itemStyle:{
+                                                itemStyle: {
                                                     color: this.shouldColor,
                                                     borderColor: this.shouldBorderColor,
                                                     borderWidth: 1,
@@ -733,7 +744,7 @@ export default {
                         // color:'#1f4f80',  应检
                         //     borderColor:'#0eafd4',
 
-                        if(this.dialogOptions[this.dialogOptions.length-1].xAxis[0].data.length == 0){
+                        if (this.dialogOptions[this.dialogOptions.length - 1].xAxis[0].data.length == 0) {
                             this.dialogOptions.pop();
                         }
                         this.dialogOptionRound.title.text = data.division;
@@ -745,225 +756,20 @@ export default {
                 })
             }
         },
-        queryData(){
-            this.value1 = 0;
-            this.options= [];
-            this.http.get(this.ports.manage.officePatrol, (res) => {
-                console.log('firstLeftBottom1')
-                console.log(res)
-                if(res.success){
+        queryData() {
+            this.http.get(this.ports.five.leftBottom, (res) => {
+                console.log('fiveLeftBottom:', res);
+                if (res.error_msg == '成功') {
                     let data = res.data;
-                    let pages = Math.ceil(Object.keys(data).length/6)
-                    this.pages = pages;
-                    let num = 0;
-                    let pageNum = 0;
-                    this.options.push({
-                        textStyle: {
-                            fontFamily: 'Microsoft YaHei',
-                            fontSize: 12,
-                            fontWeight: 'bold',
-                        },
-                        color: ['#53d3d9', '#1f5081'],
-                        grid: {
-                            top: '2%',
-                            left: '5%',
-                            right: '4%',
-                            bottom: '3%',
-                            containLabel: true
-                        },
-                        xAxis:  {
-                            minInterval:1,
-                            show: false,
-                            type: 'value',
-                            borderWidth: 0,
-
-                        },
-                        yAxis: {
-                            minInterval:1,
-                            type: 'category',
-                            axisLabel: {
-                                color: '#ffffff'
-                            },
-                            axisTick: {
-                                show: false
-                            },
-                            axisLine: {
-                                show: false
-                            },
-                            data: []
-                        },
-                        series: [
-                            {
-                                //name: '邮件营销',
-                                type: 'bar',
-                                stack: '总量',
-                                label: {
-                                    normal: {
-                                        show: true,
-                                        position: 'insideRight',
-                                        color: '#fff',
-
-                                    },
-                                    //opacity: 1
-                                },
-                                data: [],
-                                itemStyle:{
-                                    borderColor:'#08ceef',
-                                    borderWidth:1
-                                }
-
-                            },
-                            {
-                                //name: '直接访问',
-
-                                type: 'bar',
-                                stack: '总量',
-                                barWidth: 10,
-                                label: {
-                                    normal: {
-                                        formatter:'{c|{c}}',
-                                        rich: {
-                                            c:{
-                                                color:'#ffffff',
-                                                //fontSize: 30,
-                                                opacity: 1
-                                            }
-                                        },
-                                        show: true,
-                                        position: 'right',
-                                        textStyle: {
-                                            color: '#ffffff',
-                                            opacity: 1
-                                        }
-
-                                    }
-                                },
-                                data: [],
-
-                                itemStyle:{
-                                    color:'#1f4f80',
-                                    borderColor:'#0eafd4',
-                                    borderWidth:1,
-                                    //opacity: 0.28
-                                },
-                            },
-
-
-                        ]
-                    })
                     Object.keys(data).forEach(p => {
-                        if(p == 'division' || p == 'factAll' || p == 'shouldAll'){
-                            // return true
-                        }else{
-                            num++;
-                            this.options[pageNum].yAxis.data.push(p);
-                            this.options[pageNum].series[0].data.push(data[p].factAll);
-                            this.options[pageNum].series[1].data.push((data[p].shouldAll));
-                            if(num>this.pageNums){
-                                num = 0;
-                                this.options.push({
-                                    textStyle: {
-                                        fontFamily: 'Microsoft YaHei',
-                                        fontSize: 12,
-                                        fontWeight: 'bold',
-                                    },
-                                    color: ['#53d3d9', '#1f5081'],
-                                    grid: {
-                                        top: '2%',
-                                        left: '5%',
-                                        right: '4%',
-                                        bottom: '3%',
-                                        containLabel: true
-                                    },
-                                    xAxis:  {
-                                        minInterval:1,
-                                        show: false,
-                                        type: 'value',
-                                        borderWidth: 0,
+                        if (p !== 'unitList') {
+                            this.option.yAxis.data.push(p);
+                            this.option.series[0].data.push(data[p]['手枪子弹']);
+                            this.option.series[1].data.push(data[p]['步枪子弹']);
 
-                                    },
-                                    yAxis: {
-                                        minInterval:1,
-                                        type: 'category',
-                                        axisLabel: {
-                                            color: '#ffffff'
-                                        },
-                                        axisTick: {
-                                            show: false
-                                        },
-                                        axisLine: {
-                                            show: false
-                                        },
-                                        data: []
-                                    },
-                                    series: [
-                                        {
-                                            //name: '邮件营销',
-                                            type: 'bar',
-                                            stack: '总量',
-                                            label: {
-                                                normal: {
-                                                    show: true,
-                                                    position: 'insideRight',
-                                                    color: '#fff',
-
-                                                },
-                                                //opacity: 1
-                                            },
-                                            data: [],
-                                            itemStyle:{
-                                                color:this.factColor,
-                                                borderColor:this.factBorderColor,
-                                                borderWidth:1
-                                            }
-
-                                        },
-                                        {
-                                            //name: '直接访问',
-
-                                            type: 'bar',
-                                            stack: '总量',
-                                            barWidth: this.barWidth,
-                                            label: {
-                                                normal: {
-                                                    formatter:'{c|{c}}',
-                                                    rich: {
-                                                        c:{
-                                                            color:'#ffffff',
-                                                            //fontSize: 30,
-                                                            opacity: 1
-                                                        }
-                                                    },
-                                                    show: true,
-                                                    position: 'right',
-                                                    textStyle: {
-                                                        color: '#ffffff',
-                                                        opacity: 1
-                                                    }
-
-                                                }
-                                            },
-                                            data: [],
-
-                                            itemStyle:{
-                                                color:this.shouldColor,
-                                                borderColor:this.shouldBorderColor,
-                                                borderWidth:1,
-                                                //opacity: 0.28
-                                            },
-                                        },
-
-
-                                    ]
-                                })
-                                pageNum++;
-                            }
                         }
 
-                    });
-                    this.option.title.text = data.division;
-                    this.option.series[1].data[0].value=data.factAll;
-                    this.option.series[1].data[1].value=data.shouldAll - data.factAll;
+                    })
                 }
             });
         }

@@ -59,7 +59,7 @@
                     legend: {
                         orient: 'vertical',
                         left: 'left',
-                        data: ['手枪弹','步枪弹','手榴弹'],
+                        data: [],
                         textStyle: {
                             color: '#fff',
                             borderRadius: 3,
@@ -118,18 +118,22 @@
                                     }
                                 }
                             },
-                            data:[
-                                {value:335, name:'手枪弹'},
-                                {value:310, name:'步枪弹'},
-                                {value:234, name:'手榴弹'},
-                            ],
+                            data:[],
                             itemStyle: {
                                 emphasis: {
                                     shadowBlur: 10,
                                     shadowOffsetX: 0,
                                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                },
+                                normal:{
+                                    color:function(params) {
+                                        var colorList = [
+                                            '#ff7f50','#87cefa','#da70d6','#32cd32','#6495ed'
+                                        ];
+                                        return colorList[params.dataIndex]
+                                    }
                                 }
-                            }
+                            },
                         }
                     ]
                 },
@@ -239,6 +243,7 @@
             'title',
         ],
         mounted() {
+            this.queryData();
             setTimeout(() => {
                 //进行一级页面颜色动态配置
 
@@ -252,7 +257,7 @@
                 this.barBorderColor=properties.BAR_BORDER_COLOR;
                 this.secondBarColor=properties.SECOND_BAR_COLOR;
                 this.secondBarBorderColor=properties.SECOND_BAR_BORDER_COLOR;
-                this.queryData();
+                // this.queryData();
 //                setInterval(() => {
 //                    this.queryData();
 //                },properties.QUERY_TIME_SPACE)
@@ -491,215 +496,17 @@
                 }
             },
             queryData(){
-                this.value1 = 0;
-                this.options=[];
-                this.http.get(this.ports.manage.officeFind, (res) => {
-                    console.log('firstLeftMiddle');
-                    console.log(res);
-                    if(res.success){
-                        let data = res.data;
-                        let num = 0;
-                        let pageNum = 0;
-                        this.options.push({
-                            color: ['#c09216','#c80813'],
-                            grid: {
-                                left: '3%',
-                                right: '4%',
-                                bottom: '3%',
-                                containLabel: true
-                            },
-                            xAxis: {
-                                minInterval:1,
-                                type: 'value',
-                                boundaryGap: [0, 0.01],
-                                axisLabel: {
-                                    color: '#ffffff'
-                                },
-                                axisLine: {
-                                    lineStyle: {
-                                        color: '#4e6590',
-                                        width: 1,
-                                        shadowColor: '#4e6590',
-                                        shadowBlur: 10
-                                    }
-                                },
-                                splitLine: {
-                                    show: true,
-                                    lineStyle: {
-                                        color: ['#333']
-                                    }
-                                },
-                            },
-                            yAxis: {
-                                minInterval:1,
-                                type: 'category',
-                                axisLabel: {
-                                    color: '#ffffff'
-                                },
-                                axisLine: {
-                                    lineStyle: {
-                                        color: '#4e6590',
-                                        width: 1,
-                                        shadowColor: '#4e6590',
-                                        shadowBlur: 10
-                                    }
-                                },
-                                splitLine: {
-                                    show: false,
-                                    lineStyle: {
-                                        color: ['#333']
-                                    }
-                                },
-                                data: [],
-
-                            },
-                            series: [
-                                {
-                                    name: '系统检查',
-                                    type: 'bar',
-                                    barWidth: this.barWidth/2,
-                                    data: [],
-                                    label: {
-                                        normal: {
-                                            show: true,
-                                            position: 'right',
-                                            color: '#fff',
-                                            fontSize: 10
-                                        }
-                                    },
-                                    barMinHeight:3
-
-                                },
-
-                                {
-                                    name: '机关检查',
-                                    type: 'bar',
-                                    barWidth: this.barWidth/2,
-                                    data: [],
-                                    label: {
-                                        normal: {
-                                            show: true,
-                                            position: 'right',
-                                            color: '#fff',
-                                            fontSize: 10
-                                        }
-                                    },
-                                    barMinHeight:3
-
-                                }
-                            ]
-                        });
-
-                        Object.keys(data.system).forEach(p => {
-                            if(p == 'allCount'){
-//                                return true;
-                            }else{
-                                this.options[pageNum].yAxis.data.push(p)    ;
-                                this.options[pageNum].series[0].data.push(data.system[p]);
-                                this.options[pageNum].series[1].data.push(data.office[p]);
-                                num++;
-                                if(num>this.pageNums){
-                                    num = 0;
-                                    this.options.push({
-                                        color: ['#c09216','#c80813'],
-                                        grid: {
-                                            left: '3%',
-                                            right: '4%',
-                                            bottom: '3%',
-                                            containLabel: true
-                                        },
-                                        xAxis: {
-                                            minInterval:1,
-                                            type: 'value',
-                                            boundaryGap: [0, 0.01],
-                                            axisLabel: {
-                                                color: '#ffffff'
-                                            },
-                                            axisLine: {
-                                                lineStyle: {
-                                                    color: '#4e6590',
-                                                    width: 1,
-                                                    shadowColor: '#4e6590',
-                                                    shadowBlur: 10
-                                                }
-                                            },
-                                            splitLine: {
-                                                show: true,
-                                                lineStyle: {
-                                                    color: ['#333']
-                                                }
-                                            },
-                                        },
-                                        yAxis: {
-                                            minInterval:5,
-                                            type: 'category',
-                                            axisLabel: {
-                                                color: '#ffffff'
-                                            },
-                                            axisLine: {
-                                                lineStyle: {
-                                                    color: '#4e6590',
-                                                    width: 1,
-                                                    shadowColor: '#4e6590',
-                                                    shadowBlur: 10
-                                                }
-                                            },
-                                            splitLine: {
-                                                show: false,
-                                                lineStyle: {
-                                                    color: ['#333']
-                                                }
-                                            },
-                                            data: [],
-                                        },
-                                        series: [
-                                            {
-                                                name: '系统检查',
-                                                type: 'bar',
-                                                barWidth: this.barWidth/2,
-                                                data: [],
-                                                label: {
-                                                    normal: {
-                                                        show: true,
-                                                        position: 'right',
-                                                        color: '#fff',
-                                                        fontSize: 10
-                                                    }
-                                                },
-                                                barMinHeight:3
-                                            },
-
-                                            {
-                                                name: '机关检查',
-                                                type: 'bar',
-                                                barWidth: this.barWidth/2,
-                                                data: [],
-                                                label: {
-                                                    normal: {
-                                                        show: true,
-                                                        position: 'right',
-                                                        color: '#fff',
-                                                        fontSize: 10
-                                                    }
-                                                },
-                                                barMinHeight:3
-                                            },
-
-                                        ]
-                                    })
-                                    pageNum++;
-                                }
+                this.http.get(this.ports.five.leftMiddle, (res) => {
+                    console.log('fiveLeftMiddle:',res);
+                    if (res.error_msg == '成功'){
+                        let data=res.data;
+                        Object.keys(data).forEach(p=>{
+                            if(p!=='all'){
+                                this.option.legend.data.push(p);
+                                this.option.series[0].data.push({value:data[p], name:p})
                             }
-
                         })
-                        console.log('this.options')
-                        console.log(this.options)
-                        if(this.options[this.options.length-1].series[0].data.length == 0){
-                            this.options.pop();
-                        }
                     }
-//                    let newOptions = Object.assign({}, this.option);
-//                    this.option = newOptions;
                 })
             },
         },

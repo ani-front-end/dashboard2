@@ -24,7 +24,7 @@
                   },
                   xAxis: {
                     type: 'category',
-                    data: ['1连', '2连', '3连', '4连', '5连', '6连'],
+                    data: [],
                     axisLine: {
                       lineStyle :{
                         color : '#fff'
@@ -65,7 +65,7 @@
                     }
                   },
                   series: [{
-                    data: [120, 200, 150, 80, 70, 110],
+                    data: [],
                     type: 'bar',
                     itemStyle: {
                       color: '#a5d2ff',
@@ -88,27 +88,24 @@
             'title',
         ],
         mounted() {
-            //this.queryData();
+            this.queryData();
 //            setInterval(() => {
 //                this.queryData();
 //            },properties.QUERY_TIME_SPACE)
         },
         methods:{
             queryData(){
-                this.http.get(this.ports.manage.findAlarmStatic, (res) => {
-                    if(res.success){
-                        let data = res.data;
-                        this.option.series[1].data[0].value=data.AlarmCount;
-                        this.option.series[1].data[1].value=data.Alarmdispose;
-                        this.option.series[1].data[2].value=data.unAlarmdispose;
+              this.http.get(this.ports.five.centerBottom, (res) => {
+                console.log('fivecenterBottom:',res);
+                if (res.error_msg == '成功') {
+                  let data=res.data;
+                  Object.keys(data).forEach(p=>{
+                    this.option.xAxis.data.unshift(p);
+                    this.option.series[0].data.unshift(data[p])
+                  })
 
-                        this.option.series[0].data[0].value=data.AlarmCount + data.Alarmdispose;
-                        this.option.series[0].data[1].value=data.unAlarmdispose;
-                        this.option.title.text = data.AlarmSum;
-                    }
-//                    let newOptions = Object.assign({}, this.option);
-//                    this.option = newOptions;
-                })
+                }
+              });
             }
         },
         computed: {

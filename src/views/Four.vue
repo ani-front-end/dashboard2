@@ -26,7 +26,7 @@
       <div class="center-bottom"  style="position: relative">
         <!--<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>-->
         <div class="center-bottom-content">
-          <div class="center-bottom">
+          <div class="center-bottom-left">
             <!--<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>-->
             <FirstCenterBottom :screenWidth="screenWidth"></FirstCenterBottom>
           </div>
@@ -39,8 +39,8 @@
             <!--<FirstCenterBottomRight :screenWidth="screenWidth"></FirstCenterBottomRight>-->
           <!--</div>-->
         </div>
-        <img style="position: absolute;bottom:-2px;left:-2px;" src="../assets/images/left-bottom.png" alt="">
-        <img style="position: absolute;bottom:-2px;right:-2px;" src="../assets/images/right-bottom.png" alt="">
+        <!--<img style="position: absolute;bottom:-2px;left:-2px;" src="../assets/images/left-bottom.png" alt="">-->
+        <!--<img style="position: absolute;bottom:-2px;right:-2px;" src="../assets/images/right-bottom.png" alt="">-->
 
       </div>
     </div>
@@ -170,12 +170,12 @@
         /*//            -1px -1px 5px #0e3367 inset;*/
       }
       .center-bottom{
-        background-image: url("../assets/images/first-center-top.png");
-        background-size: 100% 100%;
+        /*background-image: url("../assets/images/first-center-top.png");*/
+        /*background-size: 100% 100%;*/
         //box-shadow: 1px 1px 5px #0e3367 inset,
         //            -1px -1px 5px #0e3367 inset;
         border: @centerBorder;
-        height: 33%;
+        height: 31%;
         display: flex;
         flex-direction: column;
         /*padding-top: 0.2rem;*/
@@ -183,13 +183,12 @@
           height: 100%;
           display: flex;
           align-items: flex-end;
-          .center-bottom{
-            border: 1px solid pink;
+          width: 100%;
+          .center-bottom-left{
             background:  @centerBottomBgColor;
             height: 100%;
             width: 100%;
-            /*border: 0.1px solid pink;*/
-            margin: 0 0.5% 0.5% 1%;
+            padding: 0.1rem;
           }
           .center-bottom-center{
             background:  @centerBottomBgColor;
