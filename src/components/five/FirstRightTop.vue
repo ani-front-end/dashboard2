@@ -286,16 +286,35 @@
                         let data=res.data;
                         Object.keys(data).forEach(p=>{
                             this.option.xAxis[0].data.unshift(p);
-                            this.option.series[0].data.unshift(data[p]['军官']['非党员']);
-                            this.option.series[1].data.unshift(data[p]['军官']['党员']);
-                            this.option.series[2].data.unshift(data[p]['士官']['非党员']);
-                            this.option.series[3].data.unshift(data[p]['士官']['党员']);
-                            this.option.series[4].data.unshift(data[p]['文职']['非党员']);
-                            this.option.series[5].data.unshift(data[p]['文职']['党员']);
-                            this.option.series[6].data.unshift(data[p]['义务兵']['非党员']);
-                            this.option.series[7].data.unshift(data[p]['义务兵']['党员']);
-
-                        })
+                            if(data[p]['军官']!==undefined){
+                                this.option.series[0].data.unshift(data[p]['军官']['非党员']);
+                                this.option.series[1].data.unshift(data[p]['军官']['党员']);
+                            }else {
+                                this.option.series[0].data.unshift(0);
+                                this.option.series[1].data.unshift(0);
+                            }
+                            if(data[p]['士官']!==undefined){
+                                this.option.series[2].data.unshift(data[p]['士官']['非党员']);
+                                this.option.series[3].data.unshift(data[p]['士官']['党员']);
+                            }else {
+                                this.option.series[2].data.unshift(0);
+                                this.option.series[3].data.unshift(0);
+                            }
+                            if(data[p]['文职']!==undefined){
+                                this.option.series[4].data.unshift(data[p]['文职']['非党员']);
+                                this.option.series[5].data.unshift(data[p]['文职']['党员']);
+                            }else{
+                                this.option.series[4].data.unshift(0);
+                                this.option.series[5].data.unshift(0);
+                            }
+                            if(data[p]['义务兵']!==undefined){
+                                this.option.series[6].data.unshift(data[p]['义务兵']['非党员']);
+                                this.option.series[7].data.unshift(data[p]['义务兵']['党员']);
+                            }else {
+                                this.option.series[6].data.unshift(0);
+                                this.option.series[7].data.unshift(0);
+                            }
+                        });
 
                     }
                 });
