@@ -20,7 +20,7 @@
             </div>
             <div class="app-header-right" style="position: relative">
                 <span class="right-title">{{nowTime}}</span>
-                <el-button type="text" style="position: absolute;right: 10%;" @click="logout()">退出登录</el-button>
+                <!--<el-button type="text" style="position: absolute;right: 10%;" @click="logout()">退出登录</el-button>-->
                 <el-button type="text" style="position: absolute;right: 50%;top:80%; color: #fff">{{userid}}</el-button>
             </div>
         </div>
