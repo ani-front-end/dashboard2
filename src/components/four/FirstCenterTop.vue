@@ -20,7 +20,7 @@
 
                     </div>
                     <div class="top-right">
-                        训练伤情况
+                        训练情况
                     </div>
                 </div>
                 <div class="dialog-bottom">
@@ -78,7 +78,7 @@
                         left: 'center',
                         top: 'top',
                         itemGap: 60,
-                        text: '训练伤情况',
+                        text: '训练情况',
 //                        subtext: '纯属虚构',
                         x:'top'
                     },
@@ -98,7 +98,7 @@
                     },
                     series : [
                         {
-                            name: '训练伤情况',
+                            name: '训练情况',
                             type: 'pie',
                             radius : '55%',
                             center: ['50%', '60%'],
@@ -195,7 +195,7 @@
                         left: 'center',
                         top: 'top',
                         itemGap: 60,
-                        text: '训练伤情况',
+                        text: '训练情况',
 //                        subtext: '纯属虚构',
                         x:'top'
                     },
@@ -215,7 +215,7 @@
                     },
                     series : [
                         {
-                            name: '训练伤情况',
+                            name: '训练情况',
                             type: 'pie',
                             radius : '55%',
                             center: ['50%', '60%'],
@@ -318,7 +318,7 @@
                     this.dialogOption.legend.data=[];
                     this.dialogOption.series[0].data=[];
                     this.http.get(this.ports.four.centerTopSecond+'/'+checkType, (res) => {
-                        console.log('训练伤情况:',res);
+                        console.log('训练情况:',res);
                         if(res.error_msg=='成功') {
                             let data = res.data;
                             Object.keys(data).forEach(p=>{

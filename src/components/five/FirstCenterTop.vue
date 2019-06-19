@@ -353,7 +353,7 @@
             queryData() {
                 this.http.get(this.ports.five.centerTopLeft, (res) => {
                     console.log('fivecenterTopleft:',res);
-                    this.imgSrc=res;
+                    this.imgSrc="http://192.168.12.240/1.png";
                     if (res.error_msg == '成功') {
 
                     }

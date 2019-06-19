@@ -64,7 +64,11 @@
                             <!--<CarouselItem class="screen-carousel" v-for="(item,index) in dialogOptions" :key="index">-->
                                 <!--<i-table :columns="columns1" :data="data1"></i-table>-->
 
-                        <el-table :data="data1" style="width: 100%">
+                        <el-table :data="data1"
+                                  style="width: 100%"
+                                  height="2.5rem"
+                                  highlight-current-row
+                            >
                             <el-table-column prop="name" label="姓名"></el-table-column>
                             <el-table-column prop="reason" label="原因"></el-table-column>
                             <el-table-column prop="startTime" label="开始时间"></el-table-column>
@@ -87,6 +91,7 @@
     export default {
         data() {
             return {
+                highLight:false,
                 columns1: [
                     {
                         title: '姓名',
@@ -659,6 +664,5 @@
     .content-right :hover {
 
     }
-
 
 </style>
