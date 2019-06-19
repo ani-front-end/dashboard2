@@ -74,7 +74,7 @@
                             center: ['50%', '60%'],
                             label: {
                                 normal: {
-                                    formatter: "{b|{b}：}{c}({d}%)",
+                                    formatter: "{b|{b}：}{c}",
                                     backgroundColor: {
 //                                        image: 'https://www.baidu.com/favicon.ico'
                                     },
