@@ -67,7 +67,13 @@
                             barWidth: '100%',
                             label: {
                                 normal: {
-                                    formatter:'{c|{c}}',
+                                    formatter: function(params) {
+                                        if (params.value > 0) {
+                                            return params.value;
+                                        } else {
+                                            return '';
+                                        }
+                                    },
                                     rich: {
                                         c:{
                                             color:'#ffffff',
@@ -96,6 +102,13 @@
                             stack: '总量',
                             label: {
                                 normal: {
+                                    formatter: function(params) {
+                                        if (params.value > 0) {
+                                            return params.value;
+                                        } else {
+                                            return '';
+                                        }
+                                    },
                                     show: true,
                                     position: 'bottom',
                                     color:'#fff'

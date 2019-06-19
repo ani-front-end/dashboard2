@@ -14,6 +14,7 @@
     export default {
         data() {
             return {
+                maxNum:1,
                 option: {
                     title: {
                         text: '教育学习情况',
@@ -52,10 +53,10 @@
                             }
                         },
                         indicator: [
-                            {name: '军事理论学习'},
-                            {name: '思想政治教育'},
-                            {name: '安全常识学习'},
-                            {name: '法规制度学习'},
+                            {name: '军事理论学习',max:this.maxNum},
+                            {name: '思想政治教育',max:this.maxNum},
+                            {name: '安全常识学习',max:this.maxNum},
+                            {name: '法规制度学习',max:this.maxNum},
                         ]
                     },
                     series: [{
@@ -63,10 +64,14 @@
                         type: 'radar',
                         // areaStyle: {normal: {}},
                         data : [
-                            // {
-                            //     value : [4300, 10000, 28000, 35000],
-                            //     name : '1营'
-                            // },
+//                             {
+//                                 value : [1, 1, 1, 3],
+//                                 name : '1营'
+//                             },
+//                            {
+//                                value : [1, 0, 0, 0],
+//                                name : '2营'
+//                            },
                         ]
                     }]
                 },
@@ -93,6 +98,9 @@
                             this.option.legend.data.push(p);
                             this.option.series[0].data.push({value: [0,0,0,0], name: p});
                             Object.keys(data[p]).forEach(k => {
+                                if(data[p][k] > this.maxNum){
+                                    this.maxNum = data[p][k];
+                                }
                                 if(k=='军事理论学习'){
                                     this.option.series[0].data[this.option.series[0].data.length-1].value[0]=data[p][k];
                                 }else if(k=='思想政治教育'){
@@ -106,6 +114,10 @@
                             })
                         })
                     }
+                    this.option.radar.indicator[0].max = this.maxNum;
+                    this.option.radar.indicator[1].max = this.maxNum;
+                    this.option.radar.indicator[2].max = this.maxNum;
+                    this.option.radar.indicator[3].max = this.maxNum;
 //                    let newOptions = Object.assign({}, this.option);
 //                    this.option = newOptions;
                 })

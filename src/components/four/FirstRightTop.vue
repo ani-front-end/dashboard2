@@ -148,36 +148,44 @@
                     console.log('righttop:', res);
                     if (res.error_msg == '成功') {
                         let data = res.data;
-                        // let data = {
-                        //   "合成一营": {
-                        //     "sum": 800,
-                        //     "out": 720
-                        //   },
-                        //   "合成二营": {
-                        //     "sum": 870,
-                        //     "out": 710
-                        //   },
-                        //   "合成三营": {
-                        //     "sum": 880,
-                        //     "out": 700
-                        //   },
-                        //   "合成四营": {
-                        //     "sum": 850,
-                        //     "out": 700
-                        //   },
-                        //   "炮营": {
-                        //     "sum": 800,
-                        //     "out": 750
-                        //   },
-                        //   "侦察营": {
-                        //     "sum": 800,
-                        //     "out": 720
-                        //   },
-                        //
-                        //   "sum": 50,
-                        //   "out": 5200,
-                        //   "pointSum": 4320
-                        // };
+//                         let data = {
+//                           "合成一营": {
+//                             "equipmentIn": 800,
+//                             "equipmentOut": 720
+//                           },
+//                           "合成二营": {
+//                             "equipmentIn": 870,
+//                             "equipmentOut": 710
+//                           },
+//                           "合成三营": {
+//                             "equipmentIn": 880,
+//                             "equipmentOut": 700
+//                           },
+//                           "合成四营": {
+//                             "equipmentIn": 850,
+//                             "equipmentOut": 700
+//                           },
+//                           "炮营": {
+//                             "equipmentIn": 800,
+//                             "equipmentOut": 750
+//                           },
+//                           "侦察营": {
+//                             "equipmentIn": 800,
+//                             "equipmentOut": 720
+//                           },
+//                             "合成四营1": {
+//                                 "equipmentIn": 850,
+//                                 "equipmentOut": 700
+//                             },
+//                             "炮营2": {
+//                                 "equipmentIn": 800,
+//                                 "equipmentOut": 750
+//                             },
+//                             "侦察营3": {
+//                                 "equipmentIn": 800,
+//                                 "equipmentOut": 720
+//                             },
+//                         };
                         let num = 0;
                         let arr = [];
                         let pageNum = 0;
