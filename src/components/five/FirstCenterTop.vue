@@ -351,20 +351,26 @@
 
             },
             queryData() {
-                this.http.get(this.ports.five.centerTopLeft, (res) => {
-                    console.log('fivecenterTopleft:',res);
-                    this.imgSrc="http://192.168.12.240/1.png";
-                    if (res.error_msg == '成功') {
+                //静态数据
 
-                    }
-                });
-                this.http.get(this.ports.five.centerTopRight, (res) => {
-                    console.log('fivecenterTopRight:',res);
-                    this.nums=res;
-                    if (res.error_msg == '成功') {
 
-                    }
-                });
+                this.imgSrc=properties.static1;
+                this.nums=properties.static2;
+
+//                this.http.get(this.ports.five.centerTopLeft, (res) => {
+//                    console.log('fivecenterTopleft:',res);
+//                    this.imgSrc="http://192.168.12.240/1.png";
+//                    if (res.error_msg == '成功') {
+//
+//                    }
+//                });
+//                this.http.get(this.ports.five.centerTopRight, (res) => {
+//                    console.log('fivecenterTopRight:',res);
+//                    this.nums=res;
+//                    if (res.error_msg == '成功') {
+//
+//                    }
+//                });
             }
         },
         computed: {}

@@ -110,7 +110,7 @@
                                         }
                                     },
                                     show: true,
-                                    position: 'bottom',
+                                    position: 'right',
                                     color:'#fff'
                                 },
                                 //opacity: 1

@@ -1,4 +1,43 @@
 export default {
+
+    static1:'http://192.168.12.240/1.png', //今日菜谱
+    static2:1942,                           //年度油耗
+    static3:{                                 //营房报修
+        "道路损坏": 7,
+        "灯泡更换": 15,
+        "门窗破损": 10,
+        "墙皮维护": 8
+    },
+    static4:{                               //卫生防疫
+        "6连": 2,
+        "5连": 1,
+        "4连": 3,
+        "3连": 2,
+        "2连": 1,
+        "1连": 4
+    },
+    static5:{                                   //风气建设
+        "6连": 1,
+        "5连": 1,
+        "4连": 1,
+        "3连": 2,
+        "2连": 2,
+        "1连": 1
+    },
+    static6:{                                   //本月上级活动数
+        "1连": {
+            "上级检查": 2,
+            "下达文件": 2,
+            "会议次数": 0
+        }
+    },
+
+    pageTitle1:'问题页面一',
+    pageTitle2:'问题页面二',
+    title1:'页面一',
+    title2:'页面二',
+
+
     LOOP_WAIT_TIME:2000,
     QUERY_TIME_SPACE:10000,
     QUERY_TIME_SPACE_MORE:60000,
@@ -27,110 +66,4 @@ export default {
 //通用多颜色列表
     COLORS_LIST: ['#aaaaaa', '#bbbbbb'],
 
-//重点关注人员情况
-//柱宽
-    KEY_NOTE_PERSON_BAR_WIDTH: 10,
-    //页面柱的数量
-    KEY_NOTE_PERSON_NUMS: 2,
-    //颜色列表
-    KEY_NOTE_PERSON_COLOR_LIST: ['#aaaaaa', '#bbbbbb', '#cccccc'],
-//是否自动切换
-    KEY_NOTE_PERSON_AUTO_PLAY: true,
-    //自动切换时间
-    KEY_NOTE_PERSON_CHANGE_TIMES: 5000,
-
-//机关发现问题统计
-//柱宽
-    OFFICE_FIND_BAR_WIDTH: 10,
-    //页面柱的数量
-    OFFICE_FIND_NUMS: 2,
-    //是否自动切换
-    OFFICE_FIND_AUTO_PLAY: true,
-    //自动切换时间
-    OFFICE_FIND_CHANGE_TIMES: 5000,
-
-//机关人员履职情况
-//柱宽
-    OFFICE_PERSON_BAR_WIDTH: 10,
-    //页面柱的数量
-    OFFICE_PERSON_NUMS: 6,
-    //是否自动切换
-    OFFICE_PERSON_AUTO_PLAY: true,
-    //自动切换时间
-    OFFICE_PERSON_CHANGE_TIMES: 5000,
-
-//基层发现问题统计
-//柱宽
-    BASIC_FIND_BAR_WIDTH: 10,
-    //页面柱的数量
-    BASIC_FIND_NUMS: 6,
-    //是否自动切换
-    BASIC_FIND_AUTO_PLAY: true,
-    //自动切换时间
-    BASIC_FIND_CHANGE_TIMES: 5000,
-
-//基层人员履职情况
-//柱宽
-    BASIC_PERSON_BAR_WIDTH: 10,
-    //页面柱的数量
-    BASIC_PERSON_NUMS: 6,
-    //是否自动切换
-    BASIC_PERSON_AUTO_PLAY: true,
-    //自动切换时间
-    BASIC_PERSON_CHANGE_TIMES: 5000,
-
-//勤务车辆情况
-//颜色
-    SERVICE_CAR_COLOR: '#aaa',
-    //边框颜色
-    SERVICE_CAR_BORDER_COLOR: '#bbb',
-    setBaseUrl(val){
-        this.SECOND_PAGE_NUMS = val.secondPageNums;
-        this.BAR_COLOR = val.barColor;
-        this.BAR_BORDER_COLOR = val.barBorderColor;
-        this.BASE_URL = val.baseUrl;
-        this.BAR_WIDTH = val.secondBarWidth;
-        this.SECOND_BAR_COLOR = val.secondBarColor;
-        this.SECOND_BAR_BORDER_COLOR = val.secondBarBorderColor;
-        this.CHANGE_TIME = val.changeTime;
-        this.FACT_COLOR = val.factColor;
-        this.FACT_BORDER_COLOR = val.factBorderColor;
-        this.SHOULD_COLOR = val.shouldColor;
-        this.SHOULD_BORDER_COLOR = val.shouldBorderColor;
-        this.AUTO_PLAY = val.autoPlay;
-        this.PAGE_NUMS = val.pageNums;
-        this.COLORS_LIST = val.colorsList;
-
-        this.KEY_NOTE_PERSON_BAR_WIDTH = val.keyNotePersonBarWidth;
-        this.KEY_NOTE_PERSON_NUMS = val.keyNotePersonNums;
-        this.KEY_NOTE_PERSON_COLOR_LIST = val.keyNotePersonColorList;
-        this.KEY_NOTE_PERSON_AUTO_PLAY = val.keyNotePersonAutoPlay;
-        this.KEY_NOTE_PERSON_CHANGE_TIMES = val.keyNotePersonChangeTimes;
-
-
-
-        this.OFFICE_FIND_BAR_WIDTH = val.officeFindBarWidth;
-        this.OFFICE_FIND_NUMS = val.officeFindNums;
-        this.OFFICE_FIND_AUTO_PLAY = val.officeFindAutoPlay;
-        this.OFFICE_FIND_CHANGE_TIMES = val.officeFindChangeTimes;
-
-        this.OFFICE_PERSON_BAR_WIDTH = val.officePersonBarWidth;
-        this.OFFICE_PERSON_NUMS = val.officePersonNums;
-        this.OFFICE_PERSON_AUTO_PLAY = val.officePersonAutoPlay;
-        this.OFFICE_PERSON_CHANGE_TIMES = val.officePersonChangeTimes;
-
-        this.BASIC_FIND_BAR_WIDTH = val.basicFindBarWidth;
-        this.BASIC_FIND_NUMS = val.basicFindNums;
-        this.BASIC_FIND_AUTO_PLAY = val.basicFindAutoPlay;
-        this.BASIC_FIND_CHANGE_TIMES = val.basicFindChangeTimes;
-
-        this.BASIC_PERSON_BAR_WIDTH = val.basicPersonBarWidth;
-        this.BASIC_PERSON_NUMS = val.basicPersonNums;
-        this.BASIC_PERSON_AUTO_PLAY = val.basicPersonAutoPlay;
-        this.BASIC_PERSON_CHANGE_TIMES = val.basicPersonChangeTimes;
-
-        this.SERVICE_CAR_COLOR = val.serviceCarColor;
-        this.SERVICE_CAR_BORDER_COLOR = val.serviceCarBorderColor;
-
-    }
 }

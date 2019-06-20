@@ -12,8 +12,8 @@
                 </div>
             </div>
             <div class="app-header-nav">
-                <router-link to="/four" class="banner-title-div"><div :class="fourTitle" class="title">页面一</div></router-link>
-                <router-link to="/five" class="banner-title-div"><div :class="fiveTitle" class="title">页面二</div></router-link>
+                <router-link to="/four" class="banner-title-div"><div :class="fourTitle" class="title">{{title1}}</div></router-link>
+                <router-link to="/five" class="banner-title-div"><div :class="fiveTitle" class="title">{{title2}}</div></router-link>
                 <!--<router-link to="/third" class="banner-title-div"><div :class="thirdTitle" class="title">重要信息展示</div></router-link>-->
                 <!--<router-link to="/four" class="banner-title-div"><div :class="firstTitle" class="title">页面一</div></router-link>-->
                 <!--<router-link to="/five" class="banner-title-div"><div :class="firstTitle" class="title">页面二</div></router-link>-->
@@ -35,18 +35,25 @@ import BASE_URL from './services/api'
     export default {
         data(){
             return {
+                pageTitle1:properties.pageTitle1,
+                pageTitle2:properties.pageTitle2,
+                title1:properties.title1,
+                title2:properties.title2,
                 userid:'',
                 nowTime:'',
                 currentRoute: 'four',
-                title: '问题页面一'
+                title: properties.pageTitle1
             }
         },
         created() { //这里是测试URL代码
 //            this.getLogin();
-            this.getProperties();
+//            this.getProperties();
         },
         mounted(){
             this.getTimeInterval();
+            if(window.location.href.indexOf('five') > 0){
+                this.title= this.pageTitle2
+            }
         },
         watch:{
             $route(val){
@@ -58,9 +65,9 @@ import BASE_URL from './services/api'
                 }else if(val.name == 'third'){
                     this.title= '安全管理动态'
                 }else if(val.name == 'four'){
-                    this.title= '问题页面一'
+                    this.title= this.pageTitle1
                 }else {
-                    this.title= '问题页面二'
+                    this.title= this.pageTitle2
                 }
             }
         },

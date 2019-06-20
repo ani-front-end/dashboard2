@@ -51,7 +51,7 @@ function handleResults (response) {
 function handleUrl (url) {
     url = BASE_URL + url
 // BASE_URL是接口的ip前缀，比如http:10.100.1.1:8989/
-    console.log('url:',url);
+//     console.log('url:',url);
     return url
 }
 
@@ -123,8 +123,8 @@ export default {
                 if (exception) {
                     exception(error)
                 } else {
-                    console.log('error')
-                    console.log(error)
+                    console.log('error',error)
+                    console.log('url',url)
                 }
             }
         )

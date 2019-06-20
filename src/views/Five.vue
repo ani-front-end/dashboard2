@@ -76,8 +76,6 @@
   import FirstLeftBottom from '../components/five/FirstLeftBottom'
   import FirstCenterTop from '../components/five/FirstCenterTop'
   import FirstCenterBottomLeft from '../components/five/FirstCenterBottomLeft'
-  import FirstCenterBottomCenter from '../components/five/FirstCenterBottomCenter'
-  import FirstCenterBottomRight from '../components/five/FirstCenterBottomRight'
   import FirstRightTop from '../components/five/FirstRightTop'
   import FirstRightMiddle from '../components/five/FirstRightMiddle'
   import FirstRightBottom from '../components/five/FirstRightBottom'
@@ -99,8 +97,6 @@
             'FirstLeftBottom':FirstLeftBottom,
             'FirstCenterTop':FirstCenterTop,
             'FirstCenterBottomLeft':FirstCenterBottomLeft,
-            'FirstCenterBottomCenter':FirstCenterBottomCenter,
-            'FirstCenterBottomRight':FirstCenterBottomRight,
             'FirstRightTop':FirstRightTop,
             'FirstRightMiddle':FirstRightMiddle,
             'FirstRightBottom':FirstRightBottom,

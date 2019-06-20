@@ -33,7 +33,7 @@ export default {
         leftTopSecond:'/five/leftTopSecond/'
     },
     manage: {
-        properties1: '/properties/queryProperties', //获取配置接口
+        // properties1: '/properties/queryProperties', //获取配置接口
         test: '/posts', // 测试接口
         allProblem: '/patrolApi/allProblem', //firstCenterTop 问题管理状态
         officeFind: '/patrolApi/officeFind', //firstLeftMiddle 机关发现问题统计

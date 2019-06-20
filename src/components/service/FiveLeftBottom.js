@@ -66,6 +66,7 @@ export default {
                 },
                 series: [
                     {
+                        barWidth: 12,
                         name: '手枪子弹',
                         type: 'bar',
                         stack: '总量',
@@ -81,6 +82,7 @@ export default {
                         },
                     },
                     {
+                        barWidth: 12,
                         name: '步枪子弹',
                         type: 'bar',
                         stack: '总量',

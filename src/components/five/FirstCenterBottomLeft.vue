@@ -9,6 +9,7 @@
   </div>
 </template>
 <script>
+    import properties from "../../services/properties";
     export default {
         data () {
             return {
@@ -98,7 +99,9 @@
               this.http.get(this.ports.five.centerBottom, (res) => {
                 console.log('fivecenterBottom:',res);
                 if (res.error_msg == '成功') {
-                  let data=res.data;
+//                  let data=res.data;
+                    //静态数据
+                  let data = properties.static4;
                   Object.keys(data).forEach(p=>{
                     this.option.xAxis.data.unshift(p);
                     this.option.series[0].data.unshift(data[p])

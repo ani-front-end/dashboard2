@@ -14,6 +14,7 @@
 </template>
 <!--<script src="../service/FirstLeftBottom.js"></script>-->
 <script>
+    import properties from "../../services/properties";
     export default{
         data(){
             return {
@@ -98,7 +99,9 @@
                 this.http.get(this.ports.five.centerMiddle, (res) => {
                     console.log('fivecenterMIddle:',res);
                     if (res.error_msg == '成功') {
-                        let data=res.data;
+//                        let data=res.data;
+                        //静态数据
+                        let data = properties.static3;
                         Object.keys(data).forEach(p=>{
                             this.option.legend.data.push(p);
                             this.option.series[0].data.push({value:data[p], name:p})
