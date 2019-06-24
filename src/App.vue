@@ -12,9 +12,15 @@
                 </div>
             </div>
             <div class="app-header-nav">
-                <router-link to="/four" class="banner-title-div"><div :class="fourTitle" class="title">{{title1}}</div></router-link>
-                <router-link to="/five" class="banner-title-div"><div :class="fiveTitle" class="title">{{title2}}</div></router-link>
-                <!--<router-link to="/third" class="banner-title-div"><div :class="thirdTitle" class="title">重要信息展示</div></router-link>-->
+                <router-link to="/four" class="banner-title-div">
+                    <div :class="fourTitle" class="title">{{title1}}</div>
+                </router-link>
+                <router-link to="/five" class="banner-title-div">
+                    <div :class="fiveTitle" class="title">{{title2}}</div>
+                </router-link>
+                <router-link to="/six" class="banner-title-div">
+                    <div :class="sixTitle" class="title">{{title3}}</div>
+                </router-link>
                 <!--<router-link to="/four" class="banner-title-div"><div :class="firstTitle" class="title">页面一</div></router-link>-->
                 <!--<router-link to="/five" class="banner-title-div"><div :class="firstTitle" class="title">页面二</div></router-link>-->
             </div>
@@ -29,18 +35,21 @@
     </div>
 </template>
 <script>
-//    import axios from 'axios'
+    //    import axios from 'axios'
     import properties from './services/properties'
-import BASE_URL from './services/api'
+    import BASE_URL from './services/api'
+
     export default {
-        data(){
+        data() {
             return {
-                pageTitle1:properties.pageTitle1,
-                pageTitle2:properties.pageTitle2,
-                title1:properties.title1,
-                title2:properties.title2,
-                userid:'',
-                nowTime:'',
+                pageTitle1: properties.pageTitle1,
+                pageTitle2: properties.pageTitle2,
+                pageTitle3: properties.pageTitle3,
+                title1: properties.title1,
+                title2: properties.title2,
+                title3: properties.title3,
+                userid: '',
+                nowTime: '',
                 currentRoute: 'four',
                 title: properties.pageTitle1
             }
@@ -49,89 +58,91 @@ import BASE_URL from './services/api'
 //            this.getLogin();
 //            this.getProperties();
         },
-        mounted(){
+        mounted() {
             this.getTimeInterval();
-            if(window.location.href.indexOf('five') > 0){
-                this.title= this.pageTitle2
+            if (window.location.href.indexOf('five') > 0) {
+                this.title = this.pageTitle2
             }
         },
-        watch:{
-            $route(val){
+        watch: {
+            $route(val) {
                 this.currentRoute = val.name;
-                if(val.name == 'first'){
-                    this.title= '安全管理问题状态'
-                }else if(val.name == 'second'){
-                    this.title= '安全管理趋势分析'
-                }else if(val.name == 'third'){
-                    this.title= '安全管理动态'
-                }else if(val.name == 'four'){
-                    this.title= this.pageTitle1
-                }else {
-                    this.title= this.pageTitle2
+                if (val.name == 'first') {
+                    this.title = '安全管理问题状态'
+                } else if (val.name == 'second') {
+                    this.title = '安全管理趋势分析'
+                } else if (val.name == 'third') {
+                    this.title = '安全管理动态'
+                } else if (val.name == 'four') {
+                    this.title = this.pageTitle1
+                } else if (val.name == 'five') {
+                    this.title = this.pageTitle2
+                } else {
+                    this.title = this.pageTitle3
                 }
             }
         },
-        methods:{
+        methods: {
 
-            getProperties(){
+            getProperties() {
 
                 this.http.get(this.ports.manage.properties1, (res) => {
-                    if(res){
+                    if (res) {
                         properties.setBaseUrl(res)
                         console.log('properties')
                         console.log(properties)
                     }
                 });
             },
-            getTimeInterval(){
+            getTimeInterval() {
                 setInterval(() => {
                     let date = new Date();
-                    var reg = new RegExp( '/' , "g" )
-                    this.nowTime=date.toLocaleString('chinese',{hour12:false}).replace(reg,'.');
-                },1000)
+                    var reg = new RegExp('/', "g")
+                    this.nowTime = date.toLocaleString('chinese', {hour12: false}).replace(reg, '.');
+                }, 1000)
             },
-            logout(){
+            logout() {
 //                this.http.get(this.ports.auth.SsOauthDestory,(res) => {
 //                    console.log('logout返回值')
 //                    console.log(res)
 //                    window.location.href = 'http://192.168.15.164:9083'
-                    window.location.href = BASE_URL+this.ports.auth.SsOauthDestory
+                window.location.href = BASE_URL + this.ports.auth.SsOauthDestory
 //                })
             },
-            getLogin(){
+            getLogin() {
                 let state = this.$route.query.state;
                 let userid = this.$route.query.userid;
                 console.log('this.$route')
                 console.log(this.$route)
                 console.log('state')
                 console.log(state)
-                if(userid){
-                    this.userid=userid;
+                if (userid) {
+                    this.userid = userid;
                 }
-                if(state == 0){
+                if (state == 0) {
 
-                }else if(state == 1){
+                } else if (state == 1) {
                     this.open2();
-                }else{
-                    this.http.get(`${this.ports.auth.isCheckOauth}/null`,(res) => {
+                } else {
+                    this.http.get(`${this.ports.auth.isCheckOauth}/null`, (res) => {
                         console.log('oauth返回值')
                         console.log(res)
-                        if(res.success){
-                            if(res.data == 1){
+                        if (res.success) {
+                            if (res.data == 1) {
                                 window.location.href = 'http://192.168.15.164:9083/sso/verify/login?client_id=d78d2fb9d9bb53e5&redirect_uri=http%3A%2F%2F192.168.12.131%3A8085%2Fpatrol%2Fnotice%2FcheckOauthOne&state=sjuujnnfjjckksju'
-                            }else if(res.data == 2){
+                            } else if (res.data == 2) {
 
-                            }else{
+                            } else {
                                 this.open2();
                             }
                         }
                     })
                 }
                 setInterval(() => {
-                    this.http.get(this.ports.auth.checkOauthFresh,(res) => {
+                    this.http.get(this.ports.auth.checkOauthFresh, (res) => {
                         console.log(res)
                     })
-                },1000*600)
+                }, 1000 * 600)
             },
             open2() {
                 this.$confirm('跳转登录, 是否继续?', '提示', {
@@ -152,21 +163,24 @@ import BASE_URL from './services/api'
                 });
             }
         },
-        computed:{
-            firstTitle(){
-                return {title1:this.currentRoute === 'first'}
+        computed: {
+            firstTitle() {
+                return {title1: this.currentRoute === 'first'}
             },
-            secondTitle(){
-                return {title2:this.currentRoute === 'second'}
+            secondTitle() {
+                return {title2: this.currentRoute === 'second'}
             },
-            thirdTitle(){
-                return {title3:this.currentRoute === 'third'}
+            thirdTitle() {
+                return {title3: this.currentRoute === 'third'}
             },
-            fourTitle(){
-                return {title4:this.currentRoute === 'four'}
+            fourTitle() {
+                return {title4: this.currentRoute === 'four'}
             },
-            fiveTitle(){
-                return {title5:this.currentRoute === 'five'}
+            fiveTitle() {
+                return {title5: this.currentRoute === 'five'}
+            },
+            sixTitle() {
+                return {title6: this.currentRoute === 'six'}
             }
         }
     }
@@ -178,11 +192,12 @@ import BASE_URL from './services/api'
         text-align: center;
         color: #ffffff !important;
         width: 99%;
-        height:100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
+
     .app-header {
         width: 100%;
         height: 0.7rem;
@@ -191,22 +206,26 @@ import BASE_URL from './services/api'
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
-        .app-header-left{
+
+        .app-header-left {
             height: 0.65rem;
-            width: 23.5%;
+            /*width: 23.5%;*/
             /*border:1px solid red;*/
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
             align-items: center;
-            padding-top:0.5%;
-            .left-title-div{
-                width: 2.65rem;
+            padding-top: 0.5%;
+
+            .left-title-div {
+                width: 3.5rem;
                 height: 0.37rem;
+                margin-left: 1rem;
                 /*border: 1px solid black;*/
                 background-image: url("./assets/images/title-left-border.png");
                 background-size: 100% 100%;
-                .left-title{
+
+                .left-title {
                     font-size: 0.2rem;
                     font-weight: bold;
                     color: #02eeff;
@@ -214,6 +233,7 @@ import BASE_URL from './services/api'
                 }
             }
         }
+
         .app-header-nav {
             height: 100%;
             width: 30%;
@@ -223,18 +243,21 @@ import BASE_URL from './services/api'
             /*border:1px solid red;*/
 
             /*padding: 30px;*/
+
             a {
                 font-size: 0.15rem;
                 font-weight: normal;
                 text-decoration: none;
                 color: #fff;
+
                 &.router-link-exact-active {
                     font-weight: bold;
                     color: #5fd8e8;
                 }
             }
         }
-        .app-header-right{
+
+        .app-header-right {
             height: 100%;
             width: 23%;
             display: flex;
@@ -243,7 +266,7 @@ import BASE_URL from './services/api'
             align-items: center;
             /*border:1px solid red;*/
 
-            .right-title{
+            .right-title {
                 font-size: 0.15rem;
                 color: #5fd8e8;
                 font-family: 'DigifaceWide';
@@ -264,37 +287,43 @@ import BASE_URL from './services/api'
         align-items: center;
         flex-direction: row;
     }
-    .title{
+
+    .title {
         font-size: 0.12rem;
         display: flex;
         align-items: center;
         justify-content: center;
     }
-    .title1{
+
+    .title1 {
         width: 65%;
         height: 80%;
         background: url("./assets/images/header-item-bg.png");
         background-size: 100% 100%;
     }
-    .title2{
+
+    .title2 {
         width: 65%;
         height: 80%;
         background: url("./assets/images/header-item-bg.png");
         background-size: 100% 100%;
     }
-    .title3{
+
+    .title3 {
         width: 90%;
         height: 80%;
         background: url("./assets/images/header-item-bg.png");
         background-size: 100% 100%;
     }
-    .title4{
+
+    .title4 {
         width: 90%;
         height: 80%;
         background: url("./assets/images/header-item-bg.png");
         background-size: 100% 100%;
     }
-    .title5{
+
+    .title5 {
         width: 90%;
         height: 80%;
         background: url("./assets/images/header-item-bg.png");

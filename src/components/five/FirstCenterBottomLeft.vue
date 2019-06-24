@@ -88,7 +88,7 @@
         props: [
             'title',
         ],
-        mounted() {
+        created() {
             this.queryData();
 //            setInterval(() => {
 //                this.queryData();
@@ -97,7 +97,7 @@
         methods:{
             queryData(){
               this.http.get(this.ports.five.centerBottom, (res) => {
-                console.log('fivecenterBottom:',res);
+                console.log('卫生防疫:',res);
                 if (res.error_msg == '成功') {
 //                  let data=res.data;
                     //静态数据

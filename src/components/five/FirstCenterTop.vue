@@ -1,12 +1,12 @@
 <template>
     <div class="content" style="position: relative">
         <div class="content-left">
-            <h6>今日菜谱</h6>
+            <h6>本周菜谱</h6>
             <img :src=imgSrc style="margin-top: 0.1rem;width: 70%;height: 70%;" @click="onClick()">
             <!--<img src="../../assets/images/u93.png" alt="" @click="onClick()">-->
         </div>
         <div class="content-right">
-            <h6>年度油耗</h6>
+            <h6>油料消耗</h6>
             <h3 class="nums">{{nums}}L</h3>
         </div>
 

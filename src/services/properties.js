@@ -32,10 +32,12 @@ export default {
         }
     },
 
-    pageTitle1:'问题页面一',
-    pageTitle2:'问题页面二',
-    title1:'页面一',
-    title2:'页面二',
+    pageTitle1:'部队安全管理信息统计分析系统',
+    pageTitle2:'部队安全管理信息统计分析系统',
+    pageTitle3:'部队安全管理信息统计分析系统',
+    title1:'军事训练情况',
+    title2:'政治工作情况',
+    title3:'后装保障情况',
 
 
     LOOP_WAIT_TIME:2000,

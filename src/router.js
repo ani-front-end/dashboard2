@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // import Home from './views/Home.vue'
 import Four from './views/Four.vue'
 import Five from './views/Five.vue'
+import Six from './views/Six'
 
 Vue.use(Router)
 
@@ -32,6 +33,11 @@ export default new Router({
           path: '/five',
           name: 'five',
           component: Five
+      },
+      {
+          path: '/six',
+          name: 'six',
+          component: Six
       },
       {
           path: '*',

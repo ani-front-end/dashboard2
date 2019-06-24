@@ -17,37 +17,37 @@
         <FirstLeftBottom :screenWidth="screenWidth"></FirstLeftBottom>
       </div>
     </div>
-    <div class="center">
-      <div class="center-top">
-        <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
-        <!--<h6>问题管理状态</h6>-->
-        <FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>
-      </div>
-      <div class="center-middle">
-        <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
-        <!--<h6>问题管理状态</h6>-->
-        <FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>
-      </div>
-      <div class="center-bottom"  style="position: relative">
-        <!--<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>-->
-        <!--<h6>卫生防疫</h6>-->
-        <!--<div class="center-bottom-content">-->
-          <!--<div class="center-bottom-left">-->
-            <!--<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>-->
-            <FirstCenterBottomLeft :screenWidth="screenWidth"></FirstCenterBottomLeft>
-          <!--</div>-->
-          <!--<div class="center-bottom-center">-->
-            <!--<LittleCardHeaderTitle title="安全等级"></LittleCardHeaderTitle>-->
-            <!--<FirstCenterBottomCenter :screenWidth="screenWidth"></FirstCenterBottomCenter>-->
-          <!--</div>-->
-          <!--<div class="center-bottom-right">-->
-            <!--<LittleCardHeaderTitle title="安防设备故障"></LittleCardHeaderTitle>-->
-            <!--<FirstCenterBottomRight :screenWidth="screenWidth"></FirstCenterBottomRight>-->
-          <!--</div>-->
-        <!--</div>-->
+    <!--<div class="center">-->
+      <!--<div class="center-top">-->
+        <!--&lt;!&ndash;<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h6>问题管理状态</h6>&ndash;&gt;-->
+        <!--<FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>-->
+      <!--</div>-->
+      <!--<div class="center-middle">-->
+        <!--&lt;!&ndash;<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h6>问题管理状态</h6>&ndash;&gt;-->
+        <!--<FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>-->
+      <!--</div>-->
+      <!--<div class="center-bottom"  style="position: relative">-->
+        <!--&lt;!&ndash;<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h6>卫生防疫</h6>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="center-bottom-content">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="center-bottom-left">&ndash;&gt;-->
+            <!--&lt;!&ndash;<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>&ndash;&gt;-->
+            <!--<FirstCenterBottomLeft :screenWidth="screenWidth"></FirstCenterBottomLeft>-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="center-bottom-center">&ndash;&gt;-->
+            <!--&lt;!&ndash;<LittleCardHeaderTitle title="安全等级"></LittleCardHeaderTitle>&ndash;&gt;-->
+            <!--&lt;!&ndash;<FirstCenterBottomCenter :screenWidth="screenWidth"></FirstCenterBottomCenter>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="center-bottom-right">&ndash;&gt;-->
+            <!--&lt;!&ndash;<LittleCardHeaderTitle title="安防设备故障"></LittleCardHeaderTitle>&ndash;&gt;-->
+            <!--&lt;!&ndash;<FirstCenterBottomRight :screenWidth="screenWidth"></FirstCenterBottomRight>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
 
-      </div>
-    </div>
+      <!--</div>-->
+    <!--</div>-->
     <div class="right">
       <div class="right-top">
         <!--<CardHeaderTitle title="机关检查基层问题统计"></CardHeaderTitle>-->
@@ -71,15 +71,12 @@
   import CardHeaderTitle from '../components/CardHeaderTitle'
   import CardHeaderSlant from '../components/CardHeaderSlant'
   import LittleCardHeaderTitle from '../components/LittleCardHeaderTitle'
-  import FirstLeftTop from '../components/five/FirstLeftTop'
-  import FirstLeftMiddle from '../components/five/FirstLeftMiddle'
-  import FirstLeftBottom from '../components/five/FirstLeftBottom'
-  import FirstCenterTop from '../components/five/FirstCenterTop'
-  import FirstCenterBottomLeft from '../components/five/FirstCenterBottomLeft'
+  import FirstLeftTop from '../components/four/FirstLeftTop'
+  import FirstLeftMiddle from '../components/four/FirstLeftMiddle'
+  import FirstLeftBottom from '../components/four/FirstLeftBottom'
   import FirstRightTop from '../components/five/FirstRightTop'
   import FirstRightMiddle from '../components/five/FirstRightMiddle'
-  import FirstRightBottom from '../components/five/FirstRightBottom'
-  import FirstCenterMiddle from '../components/five/FirstCenterMiddle'
+  import FirstRightBottom from '../components/four/FirstCenterBottom'
     export default {
         name: 'hello',
         data () {
@@ -95,12 +92,9 @@
             'FirstLeftTop':FirstLeftTop,
             'FirstLeftMiddle':FirstLeftMiddle,
             'FirstLeftBottom':FirstLeftBottom,
-            'FirstCenterTop':FirstCenterTop,
-            'FirstCenterBottomLeft':FirstCenterBottomLeft,
             'FirstRightTop':FirstRightTop,
             'FirstRightMiddle':FirstRightMiddle,
             'FirstRightBottom':FirstRightBottom,
-            'FirstCenterMiddle':FirstCenterMiddle
 
 
         },
@@ -130,23 +124,24 @@
       /*div{*/
         /*border: 1px solid #08ceef;*/
       /*}*/
-      width: 33%;
-      padding: 0.2rem 0 0.1rem 0.1rem;
+      width: 50%;
+      padding: 0.2rem;
       /*height: 98%;*/
       .left-top{
-        margin: 0 0 0.1rem 0;
-        height: 28%;
+        height: 33%;
         /*background:#093c76;*/
         background-color:@bgColor; //#093c76 23%
+        border: @centerBorder;
       }
       .left-middle{
-        margin: 0 0 0.1rem 0;
         background-color:@bgColor;
-        height: 28%;
+        height: 33%;
+        border: @centerBorder;
       }
       .left-bottom{
         background-color:@bgColor;
-        height: 43%;
+        height: 33%;
+        border: @centerBorder;
       }
     }
     .center{
@@ -214,21 +209,22 @@
       }
     }
     .right{
-      width: 33%;
-      padding: 0.2rem 0 0.1rem 0;
+      width: 50%;
+      padding: 0.2rem;
       .right-top{
-        margin: 0 0 0.1rem 0;
         background-color:@bgColor;
-        height: 28%;
+        height: 33%;
+        border: @centerBorder;
       }
       .right-middle{
-        margin: 0 0 0.1rem 0;
         background-color:@bgColor;
-        height: 28%;
+        height: 33%;
+        border: @centerBorder;
       }
       .right-bottom{
         background-color:@bgColor;
-        height: 40%;
+        height: 33%;
+        border: @centerBorder;
       }
     }
   }
