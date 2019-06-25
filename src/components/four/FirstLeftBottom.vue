@@ -38,7 +38,7 @@
               name:'人员不在位原因及数量',
               type:'pie',
               radius : [20, 70],
-              center: ['50%', '60%'],
+              center: ['50%', '50%'],
               roseType : 'area',
               label: {
                 normal: {

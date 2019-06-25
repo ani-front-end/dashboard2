@@ -38,7 +38,8 @@
                         {
                             name:'营房报修',
                             type:'pie',
-                            radius : [10, 70],
+                            radius : [20, 70],
+                            center: ['50%', '50%'],
                             roseType : 'area',
                             label: {
                                 normal: {
