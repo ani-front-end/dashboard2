@@ -199,7 +199,7 @@
                                     num1: data[p].equipmentIn,
                                     num2: data[p].equipmentOut
                                 }
-                                this.dataLists[pageNum].push(item);
+                                this.dataLists[pageNum].unshift(item);
                                 num++;
                                 if (num > 5) {
                                     arr = [];
@@ -623,7 +623,7 @@
                     .useSquare {
                         width: 20px;
                         height: 10px;
-                        background: #1f5081;
+                        background: #FF7243;
                         border: 1px solid #0eafd4;
                     }
 

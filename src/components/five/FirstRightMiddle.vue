@@ -15,7 +15,7 @@
                 option: {
                     title: {
                         text: '风气建设',
-                        left: 10,
+                        left: 0,
                         textStyle: {
                             color: '#fff',
                             backgroundColor: '#999',
@@ -93,7 +93,7 @@
                     ],
                     series: [
                         {
-                            name:'参训率',
+                            name:'风气建设',
                             type: 'bar',
                             barWidth: '30%',
                             itemStyle: {

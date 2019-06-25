@@ -27,7 +27,7 @@
                             fontSize: 12,
                         }
                     },
-                    color: ['#53d3d9', '#1f5081'],
+                    color: ['#53d3d9', '#FF7243'],
                     grid: {
                         show: false,
 //                         left: '5%',
@@ -117,7 +117,7 @@
                             },
                             data: [this.num2],
                             itemStyle:{
-                                color:'#1f4f80',
+                                color:'#FF7243',
                                 borderColor:'#0eafd4',
                                 borderWidth:1,
                                 //opacity: 0.28

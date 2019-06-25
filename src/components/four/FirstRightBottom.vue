@@ -762,8 +762,8 @@
                             if (p == 'sum' || p == 'findPersonSum' || p == 'insertPersonSum') {
 //                                return true;
                             } else {
-                                this.options[pageNum].xAxis.data.push(p);
-                                this.options[pageNum].series[0].data.push(data[p].equipmentOut);
+                                this.options[pageNum].xAxis.data.unshift(p);
+                                this.options[pageNum].series[0].data.unshift(data[p].equipmentOut);
                                 // this.options[pageNum].series[1].data.push(data[p].insertPerson);
                                 num++;
                                 if (num > this.pageNums) {

@@ -816,11 +816,11 @@
                             if (p == 'sum' || p == 'findPersonSum' || p == 'insertPersonSum') {
 //                                return true;
                             } else {
-                                this.options[pageNum].xAxis[0].data.push(p);
-                                this.options[pageNum].series[0].data.push(data[p].思想波动);
-                                this.options[pageNum].series[1].data.push(data[p].心理疾病);
-                                this.options[pageNum].series[2].data.push(data[p].身体疾病);
-                                this.options[pageNum].series[3].data.push(data[p].训练伤);
+                                this.options[pageNum].xAxis[0].data.unshift(p);
+                                this.options[pageNum].series[0].data.unshift(data[p].思想波动);
+                                this.options[pageNum].series[1].data.unshift(data[p].心理疾病);
+                                this.options[pageNum].series[2].data.unshift(data[p].身体疾病);
+                                this.options[pageNum].series[3].data.unshift(data[p].训练伤);
                                 num++;
                                 if (num > this.pageNums) {
                                     num = 0;

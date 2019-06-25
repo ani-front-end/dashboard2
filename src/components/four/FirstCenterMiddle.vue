@@ -154,8 +154,8 @@
                             if(p == 'sum'){
 //                                return true;
                             }else{
-                                this.option.series[0].data.push(data[p]);
-                                this.option.xAxis[0].data.push(p);
+                                this.option.series[0].data.unshift(data[p]);
+                                this.option.xAxis[0].data.unshift(p);
                                 num++;
                             }
 

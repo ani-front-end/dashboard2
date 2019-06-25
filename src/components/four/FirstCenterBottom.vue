@@ -24,6 +24,7 @@
                             padding: [3, 5]
                         }
                     },
+                    color:['#FF7243','#00e233','#ea2fd5','#7ec8fd','#c9a2c9','#4ddfdf'],
                     tooltip: {},
                     legend: {
                         data: [],
@@ -95,7 +96,7 @@
                     if (res.error_msg == '成功') {
                         let data = res.data;
                         Object.keys(data).forEach(p => {
-                            this.option.legend.data.push(p);
+                            this.option.legend.data.unshift(p);
                             this.option.series[0].data.push({value: [0,0,0,0], name: p});
                             Object.keys(data[p]).forEach(k => {
                                 if(data[p][k] > this.maxNum){
