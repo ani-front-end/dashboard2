@@ -9,7 +9,7 @@
                       :autoplay-speed=autoplaySpeed
                       arrow="never"
                       :radius-dot=true
-                      height="1.9rem"
+                      height="3rem"
                       style="height:100%;"
 
             >
@@ -96,7 +96,7 @@
                         x: 30,
                         y: 30,
                         x2: 30,
-                        y2: 60
+                        y2: 30
                     },
                     xAxis: [
                         {

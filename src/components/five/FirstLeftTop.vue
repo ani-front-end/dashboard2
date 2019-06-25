@@ -126,62 +126,141 @@
                 secondBarBorderColor: '#fff',
 
                 totalNum: 0,
-                option: {
+                // option: {
+                //     legend: {
+                //         orient: 'vertical',
+                //         left: 'center',
+                //         data: ['公差勤务'],
+                //         textStyle: {
+                //             color: '#fff',
+                //             borderRadius: 3,
+                //             padding: [3, 5]
+                //         }
+                //     },
+                //     title: {
+                //         text: '公差勤务情况',
+                //         textStyle: {
+                //             color: '#fff',
+                //             borderRadius: 3,
+                //             padding: [3, 5]
+                //         }
+                //     },
+                //     xAxis: {
+                //         type: 'category',
+                //         data: [],
+                //         axisLine: {
+                //             lineStyle: {
+                //                 color: '#fff'
+                //             }
+                //         },
+                //         splitLine: {
+                //             show: true,
+                //             lineStyle: {
+                //                 color: ['#fff']
+                //             }
+                //         },
+                //     },
+                //     yAxis: {
+                //         type: 'value',
+                //         splitLine: {
+                //             show: true,
+                //             lineStyle: {
+                //                 color: ['#fff']
+                //             }
+                //         },
+                //         nameTextStyle: {
+                //             color: '#333'
+                //         },
+                //         axisLine: {
+                //             lineStyle: {
+                //                 color: '#fff'
+                //             }
+                //         },
+                //     },
+                //     series: [{
+                //         name: '公差勤务',
+                //         data: [],
+                //         type: 'line'
+                //     }]
+                // },
+
+                option : {
+                    title : {
+                        text: '公差勤务情况',
+                        textStyle:{color:'#fff'},
+                        x:'center'
+                    },
+                    tooltip : {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    grid: {
+                        x: 10,
+                        y: 20,
+                        x2: 1,
+                        y2: 50
+                    },
                     legend: {
                         orient: 'vertical',
-                        left: 'center',
-                        data: ['公差勤务'],
-                        textStyle: {
-                            color: '#fff',
-                            borderRadius: 3,
-                            padding: [3, 5]
+                        left: 'left',
+                        data:[],
+                        textStyle:{color:'#fff'}
+                    },
+                    series : [
+                        {
+                            name:'公差勤务情况',
+                            type:'pie',
+                            radius : [20, '60%'],
+                            center: ['50%', '60%'],
+                            roseType : 'area',
+                            label: {
+                                normal: {
+                                    formatter: '{b|{b}：}{c}',
+                                    borderWidth: 1,
+                                    borderRadius: 4,
+                                    rich: {
+                                        a: {
+                                            color: '#999',
+                                            lineHeight: 22,
+                                            align: 'center'
+                                        },
+                                        hr: {
+                                            borderColor: '#aaa',
+                                            width: '100%',
+                                            borderWidth: 0.5,
+                                            height: 0
+                                        },
+                                        b: {
+                                            fontSize: 12,
+                                            lineHeight: 33
+                                        },
+                                        per: {
+                                            color: '#eee',
+                                            backgroundColor: '#334455',
+                                            padding: [2, 4],
+                                            borderRadius: 2
+                                        }
+                                    }
+                                }
+                            },
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                },
+                                normal:{
+                                    color:function(params) {
+                                        var colorList = [
+                                            '#ff7f50','#87cefa','#da70d6','#32cd32','#6495ed'
+                                        ];
+                                        return colorList[params.dataIndex]
+                                    }
+                                }
+                            },
+                            data:[]
                         }
-                    },
-                    title: {
-                        text: '公差勤务情况',
-                        textStyle: {
-                            color: '#fff',
-                            borderRadius: 3,
-                            padding: [3, 5]
-                        }
-                    },
-                    xAxis: {
-                        type: 'category',
-                        data: [],
-                        axisLine: {
-                            lineStyle: {
-                                color: '#fff'
-                            }
-                        },
-                        splitLine: {
-                            show: true,
-                            lineStyle: {
-                                color: ['#fff']
-                            }
-                        },
-                    },
-                    yAxis: {
-                        type: 'value',
-                        splitLine: {
-                            show: true,
-                            lineStyle: {
-                                color: ['#fff']
-                            }
-                        },
-                        nameTextStyle: {
-                            color: '#333'
-                        },
-                        axisLine: {
-                            lineStyle: {
-                                color: '#fff'
-                            }
-                        },
-                    },
-                    series: [{
-                        name: '公差勤务',
-                        data: [],
-                        type: 'line'
-                    }]
+                    ]
                 },
 
                 optionx: {
@@ -195,7 +274,7 @@
                         }
                     },
                     grid: {
-                        x: 50,
+                        x: 10,
                         y: 20,
                         x2: 1,
                         y2: 50
@@ -423,11 +502,19 @@
                 this.http.get(this.ports.five.leftTop, (res) => {
                     console.log('公差勤务-fourRightBottom:', res);
                     if (res.error_msg == '成功') {
-                        let data = res.data;
+                        // let data = res.data;
+                        let data={
+                            '一营': 13,
+                            '二营': 26,
+                            '三营': 13,
+                            'sum': 39
+                        };
                         Object.keys(data).forEach(p => {
                             if (p !== 'sum') {
-                                this.option.xAxis.data.unshift(p);
-                                this.option.series[0].data.unshift(data[p])
+                                // this.option.xAxis.data.unshift(p);
+                                // this.option.series[0].data.unshift(data[p])
+                                this.option.legend.data.push(p);
+                                this.option.series[0].data.push({value:data[p], name:p})
                             }
                         })
 
@@ -652,7 +739,7 @@
 
         .content-right {
             height: 100%;
-            width: 80%;
+            width: 100%;
             /*border: 1px solid grey;*/
         }
     }
