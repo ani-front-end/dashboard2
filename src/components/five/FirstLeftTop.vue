@@ -198,7 +198,7 @@
                         x: 10,
                         y: 20,
                         x2: 1,
-                        y2: 50
+                        y2: 10
                     },
                     legend: {
                         orient: 'vertical',
@@ -210,8 +210,8 @@
                         {
                             name:'公差勤务情况',
                             type:'pie',
-                            radius : [20, '60%'],
-                            center: ['50%', '60%'],
+                            radius : [20, '65%'],
+                            center: ['50%', '50%'],
                             roseType : 'area',
                             label: {
                                 normal: {
