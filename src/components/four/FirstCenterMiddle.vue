@@ -145,7 +145,7 @@
         methods:{
             queryData(){
                 this.http.get(this.ports.four.centerMiddle, (res) => {
-                    console.log('centerMiddle:',res);
+                    console.log('各单位参训率-FourLeftTop:',res);
                     if(res.error_msg=='成功'){
                         let data = res.data;
                         let num = 0;

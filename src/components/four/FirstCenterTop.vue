@@ -334,7 +334,7 @@
             },
             queryData(){
                 this.http.get(this.ports.four.centerTop, (res) => {
-                    console.log('centerTop:',res);
+                    console.log('训练伤情况-fourLeftBottom:',res);
                     if(res.error_msg=='成功') {
                         this.option.series[0].data[0].value=res.data.基础课目训练;
                         this.option.series[0].data[1].value=res.data.专项课目训练;

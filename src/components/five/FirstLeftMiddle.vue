@@ -497,7 +497,7 @@
             },
             queryData(){
                 this.http.get(this.ports.five.leftMiddle, (res) => {
-                    console.log('fiveLeftMiddle:',res);
+                    console.log('弹药消耗情况-sixLeftTop:',res);
                     if (res.error_msg == '成功'){
                         let data=res.data;
                         Object.keys(data).forEach(p=>{

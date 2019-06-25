@@ -421,7 +421,7 @@
                 this.value1 = 0;
                 this.options = [];
                 this.http.get(this.ports.five.leftTop, (res) => {
-                    console.log('fiveLeftTop:', res);
+                    console.log('公差勤务-fourRightBottom:', res);
                     if (res.error_msg == '成功') {
                         let data = res.data;
                         Object.keys(data).forEach(p => {

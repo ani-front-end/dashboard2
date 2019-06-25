@@ -98,7 +98,7 @@
     methods:{
       queryData(){
         this.http.get(this.ports.four.leftBottom, (res) => {
-          console.log('LeftBottom:',res);
+          console.log('人员不在位原因及数量-fiveLeftBottom:',res);
           if(res.error_msg=='成功') {
             let data=res.data;
             Object.keys(data).forEach(p=>{

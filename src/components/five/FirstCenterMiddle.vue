@@ -96,19 +96,20 @@
         },
         methods:{
             queryData(){
-                this.http.get(this.ports.five.centerMiddle, (res) => {
-                    console.log('fivecenterMIddle:',res);
-                    if (res.error_msg == '成功') {
+//                this.http.get(this.ports.five.centerMiddle, (res) => {
+//                    console.log('营房报修-sixCenterMiddle:',res);
+//                    if (res.error_msg == '成功') {
 //                        let data=res.data;
                         //静态数据
                         let data = properties.static3;
+                        console.log('营房报修-static-sixCenterMiddle:',data);
                         Object.keys(data).forEach(p=>{
                             this.option.legend.data.push(p);
                             this.option.series[0].data.push({value:data[p], name:p})
                         })
 
-                    }
-                });
+//                    }
+//                });
             }
         }
 

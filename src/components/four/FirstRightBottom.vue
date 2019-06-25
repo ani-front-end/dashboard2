@@ -749,7 +749,7 @@
             queryData() {
                 this.value1 = 0;
                 this.http.get(this.ports.four.rightBottom, (res) => {
-                    console.log('rightBottom:', res);
+                    console.log('勤务车辆情况-sixRightBottom:', res);
                     if (res.error_msg == '成功') {
                         let data = res.data;
 

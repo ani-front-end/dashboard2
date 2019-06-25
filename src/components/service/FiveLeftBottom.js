@@ -760,7 +760,7 @@ export default {
         },
         queryData() {
             this.http.get(this.ports.five.leftBottom, (res) => {
-                console.log('fiveLeftBottom:', res);
+                console.log('sixLeftBottom-人均弹药消耗情况:', res);
                 if (res.error_msg == '成功') {
                     let data = res.data;
                     Object.keys(data).forEach(p => {

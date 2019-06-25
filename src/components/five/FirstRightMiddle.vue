@@ -123,18 +123,19 @@
         },
         methods:{
             queryData(){
-                this.http.get(this.ports.five.rightMiddle, (res) => {
-                    console.log('fiverightMiddle:',res);
-                    if (res.error_msg == '成功') {
+//                this.http.get(this.ports.five.rightMiddle, (res) => {
+//                    console.log('风气建设-fiveRIghtMiddle:',res);
+//                    if (res.error_msg == '成功') {
 //                        let data=res.data
                         //静态数据
                         let data = properties.static5;
+                console.log('风气建设-static-fiveRIghtMiddle:',data);
                         Object.keys(data).forEach(p=>{
                             this.option.xAxis[0].data.unshift(p);
                             this.option.series[0].data.unshift(data[p])
                         })
-                    }
-                });
+//                    }
+//                });
             }
         },
         computed: {

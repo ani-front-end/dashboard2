@@ -91,7 +91,7 @@
         methods: {
             queryData() {
                 this.http.get(this.ports.four.centerBottom, (res) => {
-                    console.log('centerbottom:', res);
+                    console.log('教育学习情况-fiveRightBottom:', res);
                     if (res.error_msg == '成功') {
                         let data = res.data;
                         Object.keys(data).forEach(p => {

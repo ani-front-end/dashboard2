@@ -145,7 +145,7 @@
             queryData() {
                 this.dataLists = [];
                 this.http.get(this.ports.four.rightTop, (res) => {
-                    console.log('righttop:', res);
+                    console.log('枪支情况-sixRightTop:', res);
                     if (res.error_msg == '成功') {
                         let data = res.data;
 //                         let data = {

@@ -352,10 +352,11 @@
             },
             queryData() {
                 //静态数据
-
-
                 this.imgSrc=properties.static1;
                 this.nums=properties.static2;
+                    console.log('本周菜谱-sixCenterTop:',this.imgSrc);
+                    console.log('油料消耗-sixCenterTop:',this.nums);
+
 
 //                this.http.get(this.ports.five.centerTopLeft, (res) => {
 //                    console.log('fivecenterTopleft:',res);

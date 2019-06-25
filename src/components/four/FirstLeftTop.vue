@@ -600,7 +600,7 @@
                 this.value1 = 0;
                 this.options = [];
                 this.http.get(this.ports.four.leftTop, (res) => {
-                    console.log('lefttop:', res);
+                    console.log('官兵情况-fiveLeftTop:', res);
                     if (res.error_msg == '成功') {
                         let data = res.data;
                         // let data = {

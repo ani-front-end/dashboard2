@@ -407,7 +407,7 @@
                 this.value1 = 0;
                 this.options=[];
                 this.http.get(this.ports.four.leftMiddle, (res) => {
-                    console.log('firstLeftMiddle:',res);
+                    console.log('人员在位情况-fiveLeftMiddle:',res);
                     if(res.error_msg=='成功') {
                         let data = res.data;
                         this.option.series[0].data[0].value=data.不在位;

@@ -96,19 +96,20 @@
         },
         methods:{
             queryData(){
-              this.http.get(this.ports.five.centerBottom, (res) => {
-                console.log('卫生防疫:',res);
-                if (res.error_msg == '成功') {
+//              this.http.get(this.ports.five.centerBottom, (res) => {
+//                console.log('卫生防疫-sixCenterBottom:',res);
+//                if (res.error_msg == '成功') {
 //                  let data=res.data;
                     //静态数据
                   let data = properties.static4;
+                console.log('卫生防疫-static-sixCenterBottom:',data);
                   Object.keys(data).forEach(p=>{
                     this.option.xAxis.data.unshift(p);
                     this.option.series[0].data.unshift(data[p])
                   })
 
-                }
-              });
+//                }
+//              });
             }
         },
         computed: {

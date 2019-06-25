@@ -281,7 +281,7 @@
             },
             queryData(){
                 this.http.get(this.ports.five.rightTop, (res) => {
-                    console.log('fiverightTop:',res);
+                    console.log('组织建设情况-fiveRightTop:',res);
                     if (res.error_msg == '成功') {
                         let data=res.data;
                         Object.keys(data).forEach(p=>{

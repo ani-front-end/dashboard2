@@ -598,12 +598,13 @@
             queryData(){
                 this.value1 = 0;
                 this.options = [];
-                this.http.get(this.ports.five.rightBottom, (res) => {
-                    console.log('fiverightBottom:', res);
-                    if (res.error_msg == '成功') {
+//                this.http.get(this.ports.five.rightBottom, (res) => {
+//                    console.log('本月上级活动数-fourRightTop:', res);
+//                    if (res.error_msg == '成功') {
 //                       let data = res.data;
-                        //静态数据
+                        //
                         let data = properties.static6;
+                console.log('本月上级活动数-static-fourRightTop:', data);
                         // let data = {
                         //     "1连": {
                         //         "findPerson": 2,
@@ -921,9 +922,9 @@
                                     })
                                     pageNum++;
                                 }
-                            }
+//                            }
 
-                        })
+//                        })
                         if (this.options[this.options.length - 1].xAxis[0].data.length == 0) {
                             this.options.pop();
                         }
