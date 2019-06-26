@@ -1,6 +1,9 @@
 <template>
-    <div class="content">
-        <!--<h1>{{ msg }}</h1>-->
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary"
+                   style="position: absolute;top: 0.1rem;right:0.1rem;z-index: 999"
+                   @click="openScreenDialog()">全屏
+        </el-button>
         <div class="content-top">
             <div class="content-top-left">
                 <chart  ref="chart"
@@ -29,8 +32,8 @@
                         formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
                     legend: {
-                        x : 'center',
-                        y : 'bottom',
+                        orient: 'vertical',
+                        left: 'left',
                         data:['门窗破损','道路损坏','灯泡更换','墙皮维护'],
                         textStyle:{color:'#fff'}
                     },
@@ -38,7 +41,7 @@
                         {
                             name:'营房报修',
                             type:'pie',
-                            radius : [20, 70],
+                            radius : [20, '65%'],
                             center: ['50%', '50%'],
                             roseType : 'area',
                             label: {
@@ -96,6 +99,9 @@
             this.queryData()
         },
         methods:{
+            openScreenDialog() {
+                this.$emit('getChildOption', this.option)
+            },
             queryData(){
 //                this.http.get(this.ports.five.centerMiddle, (res) => {
 //                    console.log('营房报修-sixCenterMiddle:',res);

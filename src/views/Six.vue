@@ -1,67 +1,70 @@
 <template>
     <div class="first">
         <div class="left">
-            <!--<div class="left-top">-->
-                <!--&lt;!&ndash;<CardHeaderTitle title="机关产生问题统计"></CardHeaderTitle>&ndash;&gt;-->
-                <!--&lt;!&ndash;<h6>问题管理状态</h6>&ndash;&gt;-->
-                <!--<FirstLeftTop :screenWidth="screenWidth" ></FirstLeftTop>-->
-            <!--</div>-->
             <div class="left-middle">
-                <!--<CardHeaderTitle title="机关发现问题统计"></CardHeaderTitle>-->
-                <!--<h6>问题管理状态</h6>-->
-                <FirstLeftMiddle :screenWidth="screenWidth"></FirstLeftMiddle>
+                <FirstLeftMiddle :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftMiddle>
             </div>
             <div class="left-bottom">
-                <!--<CardHeaderTitle title="机关人员履职情况"></CardHeaderTitle>-->
-                <!--<h6>问题管理状态</h6>-->
-                <FirstLeftBottom :screenWidth="screenWidth"></FirstLeftBottom>
+                <FirstLeftBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftBottom>
             </div>
         </div>
         <div class="center">
             <div class="center-top">
-                <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
-                <!--<h6>问题管理状态</h6>-->
                 <FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>
             </div>
             <div class="center-middle">
-                <!--<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>-->
-                <!--<h6>问题管理状态</h6>-->
-                <FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>
+                <FirstCenterMiddle :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstCenterMiddle>
             </div>
             <div class="center-bottom"  style="position: relative">
-                <!--<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>-->
-                <!--<h6>卫生防疫</h6>-->
-                <!--<div class="center-bottom-content">-->
-                <!--<div class="center-bottom-left">-->
-                <!--<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>-->
-                <FiveCenterBottomLeft :screenWidth="screenWidth"></FiveCenterBottomLeft>
-                <!--</div>-->
-                <!--<div class="center-bottom-center">-->
-                <!--<LittleCardHeaderTitle title="安全等级"></LittleCardHeaderTitle>-->
-                <!--<FirstCenterBottomCenter :screenWidth="screenWidth"></FirstCenterBottomCenter>-->
-                <!--</div>-->
-                <!--<div class="center-bottom-right">-->
-                <!--<LittleCardHeaderTitle title="安防设备故障"></LittleCardHeaderTitle>-->
-                <!--<FirstCenterBottomRight :screenWidth="screenWidth"></FirstCenterBottomRight>-->
-                <!--</div>-->
-                <!--</div>-->
-
+                <FiveCenterBottomLeft :screenWidth="screenWidth" @getChildOption="getChildOption"></FiveCenterBottomLeft>
             </div>
         </div>
         <div class="right">
             <div class="right-top">
-                <!--<CardHeaderTitle title="机关检查基层问题统计"></CardHeaderTitle>-->
-                <FirstRightTop :screenWidth="screenWidth"></FirstRightTop>
+                <FirstRightTop :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightTop>
             </div>
-            <!--<div class="right-middle">-->
-            <!--<CardHeaderTitle title="基层发现问题统计"></CardHeaderTitle>-->
-            <!--<FirstRightMiddle :screenWidth="screenWidth"></FirstRightMiddle>-->
-            <!--</div>-->
             <div class="right-bottom">
-                <!--<CardHeaderTitle title="基层人员履职情况"></CardHeaderTitle>-->
-                <FirstRightBottom :screenWidth="screenWidth"></FirstRightBottom>
+                <FirstRightBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightBottom>
             </div>
         </div>
+        <el-dialog
+                fullscreen="true"
+                title="11"
+                :visible.sync="screenDialogVisible"
+                center>
+            <div class="dialog-content2" style="position: relative; " :style="{height:screenHeight+'px'}">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close2" width="40" src="../assets/images/close2.png" alt="">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close1" width="40" src="../assets/images/close1.png" alt="">
+                <chart  v-if="option.series"
+                        ref="chart"
+                        :options="option"
+                        style="height: 100%;width: 100%"
+                        :autoresize=true
+                ></chart>
+                <div class="content-right"  v-else @mouseover="mouseOver()" @mouseout="mouseOut()">
+                    <Carousel
+                            v-model="value1"
+                            :autoplay=autoplay
+                            :autoplay-speed=5000
+                            arrow="never"
+                            :radius-dot=true
+                            :height=screenHeight-30
+
+                    >
+                        <CarouselItem style="" v-for="(item,index) in option" :key="index">
+                            <chart ref="chart"
+                                   style="height: 100%;width: 100%"
+                                   :options="item"
+                                   :autoresize=true
+
+                            ></chart>
+                        </CarouselItem>
+                    </Carousel>
+                </div>
+            </div>
+
+
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -83,8 +86,13 @@
         name: 'Six',
         data () {
             return {
+                value1: 0,
                 msg: 'Welcome to Your Vue.js App',
                 screenWidth: document.body.clientWidth, // 屏幕宽度
+                screenHeight: document.body.clientHeight, // 屏幕宽度
+                screenDialogVisible:false,
+                option:{},
+                autoplay:true
             }
         },
         components:{
@@ -108,11 +116,23 @@
         mounted(){
             window.onresize = () => {
                 return (() => {
-                    this.screenWidth = document.body.clientWidth
+                    this.screenWidth = document.body.clientWidth;
+                    this.screenHeight = document.body.clientHeight
                 })()
             }
         },
         methods: {
+            getChildOption(option){
+                console.log('option',option)
+                this.screenDialogVisible=true
+                this.option=option;
+            },
+            mouseOver(){
+                this.autoplay = false;
+            },
+            mouseOut(){
+                this.autoplay = true;
+            },
         }
     }
 </script>
@@ -121,6 +141,10 @@
     @centerBottomBgColor:none;
     /*@centerBorder:1px solid rgba(0,131,179,0.23);*/
     @centerBorder:1px solid #5fd8e8;
+    .content-right {
+        height: 100%;
+        padding: 0.2rem 0.4rem 0;
+    }
     .first{
         width: 100%;
         height: 90%;

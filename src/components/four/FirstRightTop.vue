@@ -1,10 +1,11 @@
 <template>
-    <div class="content">
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary"
+                   style="position: absolute;top: 0.1rem;right:0.1rem;z-index: 999"
+                   @click="openScreenDialog()">全屏
+        </el-button>
         <h6>枪支情况</h6>
         <div class="content-top">
-            <!--<div class="conTxt">-->
-            <!--<LegendNum :num=bingqiTotal word="兵器室总数"></LegendNum>-->
-            <!--</div>-->
             <div class="conTxt">
                 <LegendNum :num=qiangzhiTotal word="枪支总数"></LegendNum>
             </div>
@@ -142,6 +143,9 @@
 //            },properties.QUERY_TIME_SPACE)
         },
         methods: {
+            openScreenDialog() {
+                this.$emit('getChildOption', this.option)
+            },
             queryData() {
                 this.dataLists = [];
                 this.http.get(this.ports.four.rightTop, (res) => {

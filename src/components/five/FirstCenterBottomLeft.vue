@@ -1,6 +1,9 @@
 <template>
-  <div class="content">
-    <!--<h1>{{ msg }}</h1>-->
+  <div class="content" style="position: relative">
+    <el-button size="mini" type="primary"
+               style="position: absolute;top: 0.1rem;right:0.1rem;z-index: 999"
+               @click="openScreenDialog()">全屏
+    </el-button>
     <chart  ref="chart1"
             style="height: 100%;width: 100%"
             :options="option"
@@ -95,6 +98,9 @@
 //            },properties.QUERY_TIME_SPACE)
         },
         methods:{
+          openScreenDialog() {
+            this.$emit('getChildOption', this.option)
+          },
             queryData(){
 //              this.http.get(this.ports.five.centerBottom, (res) => {
 //                console.log('卫生防疫-sixCenterBottom:',res);
