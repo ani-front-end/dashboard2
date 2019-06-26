@@ -21,7 +21,7 @@
         </div>
         <div class="right">
             <div class="right-top">
-                <FirstRightTop :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightTop>
+                <FirstRightTop :screenHeight="screenHeight"></FirstRightTop>
             </div>
             <div class="right-bottom">
                 <FirstRightBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightBottom>

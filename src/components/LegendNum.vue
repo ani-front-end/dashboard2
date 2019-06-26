@@ -39,6 +39,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         .legend-left-top{
             height: 0.32rem;
             width: 0.35rem;
@@ -55,9 +56,9 @@
 
         .legend-left-bottom{
             margin-top: 0.04rem;
-            width: 0.75rem;
+            width: 100px;
             font-size: 0.1rem;
-            /*text-align: left;*/
+            text-align: center;
         }
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="content" style="position: relative">
-        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+        <el-button size="mini" type="primary" style="position: absolute;top: 0.1rem;right:0.1rem;z-index: 999" @click="openScreenDialog()">全屏</el-button>
 
         <div class="content-left">
             <h6>官兵情况</h6>
@@ -651,8 +651,8 @@
                                 textStyle: {
                                     color: '#fff'
                                 },
-                                top: 0,
-                                right: 0
+//                                top: 0,
+//                                right: 0
                             },
                             textStyle: {
                                 fontFamily: 'Microsoft YaHei',

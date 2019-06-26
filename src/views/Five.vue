@@ -2,66 +2,23 @@
   <div class="first">
     <div class="left">
       <div class="left-top">
-        <!--<CardHeaderTitle title="机关产生问题统计"></CardHeaderTitle>-->
-        <!--<h6>问题管理状态</h6>-->
         <FirstLeftTop :screenWidth="screenWidth" @getChildOption="getChildOption" ></FirstLeftTop>
       </div>
       <div class="left-middle">
-        <!--<CardHeaderTitle title="机关发现问题统计"></CardHeaderTitle>-->
-        <!--<h6>问题管理状态</h6>-->
         <FirstLeftMiddle :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftMiddle>
       </div>
       <div class="left-bottom">
-        <!--<CardHeaderTitle title="机关人员履职情况"></CardHeaderTitle>-->
-        <!--<h6>问题管理状态</h6>-->
         <FirstLeftBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftBottom>
       </div>
     </div>
-    <!--<div class="center">-->
-      <!--<div class="center-top">-->
-        <!--&lt;!&ndash;<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>&ndash;&gt;-->
-        <!--&lt;!&ndash;<h6>问题管理状态</h6>&ndash;&gt;-->
-        <!--<FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>-->
-      <!--</div>-->
-      <!--<div class="center-middle">-->
-        <!--&lt;!&ndash;<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>&ndash;&gt;-->
-        <!--&lt;!&ndash;<h6>问题管理状态</h6>&ndash;&gt;-->
-        <!--<FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>-->
-      <!--</div>-->
-      <!--<div class="center-bottom"  style="position: relative">-->
-        <!--&lt;!&ndash;<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>&ndash;&gt;-->
-        <!--&lt;!&ndash;<h6>卫生防疫</h6>&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="center-bottom-content">&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="center-bottom-left">&ndash;&gt;-->
-            <!--&lt;!&ndash;<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>&ndash;&gt;-->
-            <!--<FirstCenterBottomLeft :screenWidth="screenWidth"></FirstCenterBottomLeft>-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="center-bottom-center">&ndash;&gt;-->
-            <!--&lt;!&ndash;<LittleCardHeaderTitle title="安全等级"></LittleCardHeaderTitle>&ndash;&gt;-->
-            <!--&lt;!&ndash;<FirstCenterBottomCenter :screenWidth="screenWidth"></FirstCenterBottomCenter>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="center-bottom-right">&ndash;&gt;-->
-            <!--&lt;!&ndash;<LittleCardHeaderTitle title="安防设备故障"></LittleCardHeaderTitle>&ndash;&gt;-->
-            <!--&lt;!&ndash;<FirstCenterBottomRight :screenWidth="screenWidth"></FirstCenterBottomRight>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-      <!--</div>-->
-    <!--</div>-->
     <div class="right">
       <div class="right-top">
-        <!--<CardHeaderTitle title="机关检查基层问题统计"></CardHeaderTitle>-->
-        <!--<h6>问题管理状态</h6>-->
         <FirstRightTop :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightTop>
       </div>
       <div class="right-middle">
-        <!--<CardHeaderTitle title="基层发现问题统计"></CardHeaderTitle>-->
-        <!--<h6>问题管理状态</h6>-->
         <FirstRightMiddle :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightMiddle>
       </div>
       <div class="right-bottom">
-        <!--<CardHeaderTitle title="基层人员履职情况"></CardHeaderTitle>-->
-        <!--<h6>问题管理状态</h6>-->
         <FirstRightBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightBottom>
       </div>
     </div>

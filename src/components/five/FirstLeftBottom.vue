@@ -46,8 +46,8 @@
                     grid: {
                         left: '3%',
                         right: '3%',
-                        bottom: '0%',
-                        top: '25%',
+                        bottom: '10%',
+                        top: '20%',
                         containLabel: true
                     },
                     xAxis: {
@@ -631,10 +631,11 @@
                                             },
 
                                             grid: {
-                                                x: 50,
-                                                y: 20,
-                                                x2: 1,
-                                                y2: 100
+                                                bottom:'20%'
+//                                                x: 200,
+//                                                y: 200,
+//                                                x2: 200,
+//                                                y2: 500
                                             },
                                             xAxis: [
                                                 {
@@ -849,7 +850,7 @@
   }
   .content{
     width: 100%;
-    height: 82%;
+    height: 99%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -874,7 +875,7 @@
     }
     .content-bottom{
       height: 60%;
-      /*border: 1px solid grey;*/
+      border: 1px solid grey;
       width: 90%;
     }
   }

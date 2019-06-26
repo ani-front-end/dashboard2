@@ -1,6 +1,6 @@
 <template>
     <div class="content" style="position: relative">
-        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+        <el-button size="mini" type="primary" style="position: absolute;top: 0.1rem;right:0.1rem;z-index: 999" @click="openScreenDialog()">全屏</el-button>
 
         <chart  ref="chart"
                 style="height: 100%;width: 100%"
@@ -136,7 +136,7 @@
                         let data = properties.static5;
                 console.log('风气建设-static-fiveRIghtMiddle:',data);
                         Object.keys(data).forEach(p=>{
-                            this.option.xAxis[0].data.unshift(p);
+                            this.option.xAxis[0].data.push(p);
                             this.option.series[0].data.push(data[p])
                         })
 //                    }

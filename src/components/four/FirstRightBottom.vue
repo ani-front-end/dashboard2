@@ -30,7 +30,7 @@
                       :autoplay-speed=autoplaySpeed
                       arrow="never"
                       :radius-dot=true
-                      height="2rem"
+                      height="2.4rem"
                       style="height:100%;"
             >
                 <CarouselItem style="" v-for="(item,index) in options" :key="index">
@@ -77,8 +77,6 @@
                                       :autoplay-speed=autoplaySpeed
                                       arrow="never"
                                       :radius-dot=true
-                                      height="1.42rem"
-                                      style="height:100%;"
 
                             >
                                 <CarouselItem class="screen-carousel" v-for="(item,index) in dialogOptions"
@@ -229,7 +227,7 @@
                             //type: 'dotted',
                             show: false,
                             top: '20%',
-                            bottom: '0%',
+                            bottom: '5%',
                             left: '5%',
                             right: '5%',
                             containLabel: true//为ture才会生效以上的设置

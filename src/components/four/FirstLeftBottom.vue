@@ -1,6 +1,6 @@
 <template>
   <div class="content" style="position: relative">
-    <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+    <el-button size="mini" type="primary" style="position: absolute;top: 0.1rem;right:0.1rem;z-index: 999" @click="openScreenDialog()">全屏</el-button>
 
     <!--<h1>{{ msg }}</h1>-->
     <div class="content-top">
@@ -24,7 +24,7 @@
                 x:50,
                 y:20,
                 x2:1,
-                y2:50
+                y2:0
             },
           title : {
             text: '人员不在位原因及数量',
@@ -36,8 +36,8 @@
             formatter: "{a} <br/>{b} : {c} ({d}%)"
           },
           legend: {
-            x : 'center',
-            y : 'bottom',
+              orient: 'vertical',
+              left: 'left',
             data:[],
             textStyle:{color:'#fff'}
           },
@@ -45,8 +45,8 @@
             {
               name:'人员不在位原因及数量',
               type:'pie',
-              radius : [20, '75%'],
-              center: ['50%', '50%'],
+              radius : [20, '80%'],
+              center: ['50%', '60%'],
               roseType : 'area',
               label: {
                 normal: {

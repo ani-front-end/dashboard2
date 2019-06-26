@@ -105,6 +105,57 @@
                 </div>
             </div>
         </el-dialog>
+        <el-dialog
+                fullscreen="true"
+                title="11"
+                :visible.sync="screenDialogVisible"
+                center>
+            <div class="dialog-content2" style="position: relative;color:#fff " :style="{height:screenHeight+'px'}">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">
+                <h1 style="position: absolute;left:2%">枪支情况</h1>
+                <div class="content-top">
+                    <div class="conTxt">
+                        <LegendNum :num=qiangzhiTotal word="枪支总数"></LegendNum>
+                    </div>
+                    <div class="conTxt">
+                        <LegendNum :num=useTotal word="枪支动用总数"></LegendNum>
+                    </div>
+                </div>
+                <div class="content-bottom">
+                    <Carousel v-model="value1"
+                              :autoplay=true
+                              :autoplay-speed=8000
+                              arrow="never"
+                              :radius-dot=true
+                              height="2.2rem"
+                              style="height:100%;"
+                    >
+                        <CarouselItem style="" class="bottom-carousel" v-for="(dataList,index) in dataLists" :key="index">
+                            <div class="chart" v-for="(item,index) in dataList" :key="index">
+                        <span >
+                            <ThirdTopRightLeftSon :message=item.name :num1=item.num1 :num2=item.num2>
+                            </ThirdTopRightLeftSon>
+                        </span>
+
+                            </div>
+                        </CarouselItem>
+                    </Carousel>
+                    <div class="footer">
+                        <div class="onNum">
+                            <div class="onSquare"></div>
+                            <div class="ontxt">在位数</div>
+                        </div>
+                        <div class="useNum">
+                            <div class="useSquare"></div>
+                            <div class="usetxt">动用数</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </el-dialog>
     </div>
 </template>
 <script>
@@ -128,6 +179,7 @@
                 autoplay: true,
                 autoplaySpeed: 10000,
                 centerDialogVisible: false,
+                screenDialogVisible: false,
             }
         },
         components: {
@@ -135,7 +187,9 @@
             'LegendNum': LegendNum,
             'LittleLegendBlock': LittleLegendBlock,
         },
-        props: [],
+        props: [
+            'screenHeight'
+        ],
         mounted() {
             this.queryData();
 //            setInterval(() => {
@@ -144,7 +198,7 @@
         },
         methods: {
             openScreenDialog() {
-                this.$emit('getChildOption', this.option)
+                this.screenDialogVisible=true;
             },
             queryData() {
                 this.dataLists = [];
