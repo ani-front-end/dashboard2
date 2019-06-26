@@ -1,5 +1,7 @@
 <template>
-    <div class="content">
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+
         <!--<h1>{{ msg }}</h1>-->
         <chart ref="chart1"
                style="height: 100%;width: 100%"
@@ -90,6 +92,9 @@
 //            },properties.QUERY_TIME_SPACE)
         },
         methods: {
+            openScreenDialog(){
+                this.$emit('getChildOption',this.option)
+            },
             queryData() {
                 this.http.get(this.ports.four.centerBottom, (res) => {
                     console.log('教育学习情况-fiveRightBottom:', res);

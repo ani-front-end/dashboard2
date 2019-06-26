@@ -1,5 +1,7 @@
 <template>
-    <div class="content">
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+
         <chart  ref="chart"
                 style="height: 100%;width: 100%"
                 :options="option"
@@ -122,6 +124,9 @@
             this.queryData();
         },
         methods:{
+            openScreenDialog(){
+                this.$emit('getChildOption',this.option)
+            },
             queryData(){
 //                this.http.get(this.ports.five.rightMiddle, (res) => {
 //                    console.log('风气建设-fiveRIghtMiddle:',res);

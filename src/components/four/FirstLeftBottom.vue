@@ -1,5 +1,7 @@
 <template>
-  <div class="content">
+  <div class="content" style="position: relative">
+    <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+
     <!--<h1>{{ msg }}</h1>-->
     <div class="content-top">
       <div class="content-top-left">
@@ -18,6 +20,12 @@
     data(){
       return {
         option : {
+            grid: {
+                x:50,
+                y:20,
+                x2:1,
+                y2:50
+            },
           title : {
             text: '人员不在位原因及数量',
             textStyle:{color:'#fff'},
@@ -37,7 +45,7 @@
             {
               name:'人员不在位原因及数量',
               type:'pie',
-              radius : [20, 70],
+              radius : [20, '75%'],
               center: ['50%', '50%'],
               roseType : 'area',
               label: {
@@ -96,6 +104,9 @@
 
     },
     methods:{
+        openScreenDialog(){
+            this.$emit('getChildOption',this.option)
+        },
       queryData(){
         this.http.get(this.ports.four.leftBottom, (res) => {
           console.log('人员不在位原因及数量-fiveLeftBottom:',res);

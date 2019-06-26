@@ -4,17 +4,17 @@
       <div class="left-top">
         <!--<CardHeaderTitle title="机关产生问题统计"></CardHeaderTitle>-->
         <!--<h6>问题管理状态</h6>-->
-        <FirstLeftTop :screenWidth="screenWidth" ></FirstLeftTop>
+        <FirstLeftTop :screenWidth="screenWidth" @getChildOption="getChildOption" ></FirstLeftTop>
       </div>
       <div class="left-middle">
         <!--<CardHeaderTitle title="机关发现问题统计"></CardHeaderTitle>-->
         <!--<h6>问题管理状态</h6>-->
-        <FirstLeftMiddle :screenWidth="screenWidth"></FirstLeftMiddle>
+        <FirstLeftMiddle :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftMiddle>
       </div>
       <div class="left-bottom">
         <!--<CardHeaderTitle title="机关人员履职情况"></CardHeaderTitle>-->
         <!--<h6>问题管理状态</h6>-->
-        <FirstLeftBottom :screenWidth="screenWidth"></FirstLeftBottom>
+        <FirstLeftBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftBottom>
       </div>
     </div>
     <!--<div class="center">-->
@@ -52,19 +52,57 @@
       <div class="right-top">
         <!--<CardHeaderTitle title="机关检查基层问题统计"></CardHeaderTitle>-->
         <!--<h6>问题管理状态</h6>-->
-        <FirstRightTop :screenWidth="screenWidth"></FirstRightTop>
+        <FirstRightTop :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightTop>
       </div>
       <div class="right-middle">
         <!--<CardHeaderTitle title="基层发现问题统计"></CardHeaderTitle>-->
         <!--<h6>问题管理状态</h6>-->
-        <FirstRightMiddle :screenWidth="screenWidth"></FirstRightMiddle>
+        <FirstRightMiddle :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightMiddle>
       </div>
       <div class="right-bottom">
         <!--<CardHeaderTitle title="基层人员履职情况"></CardHeaderTitle>-->
         <!--<h6>问题管理状态</h6>-->
-        <FirstRightBottom :screenWidth="screenWidth"></FirstRightBottom>
+        <FirstRightBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightBottom>
       </div>
     </div>
+    <el-dialog
+            fullscreen="true"
+            title="11"
+            :visible.sync="screenDialogVisible"
+            center>
+      <div class="dialog-content2" style="position: relative; " :style="{height:screenHeight+'px'}">
+        <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close2" width="40" src="../assets/images/close2.png" alt="">
+        <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close1" width="40" src="../assets/images/close1.png" alt="">
+        <chart  v-if="option.series"
+                ref="chart"
+                :options="option"
+                style="height: 100%;width: 100%"
+                :autoresize=true
+        ></chart>
+        <div class="content-right"  v-else @mouseover="mouseOver()" @mouseout="mouseOut()">
+          <Carousel
+                  v-model="value1"
+                  :autoplay=autoplay
+                  :autoplay-speed=5000
+                  arrow="never"
+                  :radius-dot=true
+                  :height=screenHeight-30
+
+          >
+            <CarouselItem style="" v-for="(item,index) in option" :key="index">
+              <chart ref="chart"
+                     style="height: 100%;width: 100%"
+                     :options="item"
+                     :autoresize=true
+
+              ></chart>
+            </CarouselItem>
+          </Carousel>
+        </div>
+      </div>
+
+
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -107,6 +145,7 @@
             window.onresize = () => {
                 return (() => {
                     this.screenWidth = document.body.clientWidth
+                    this.screenHeight = document.body.clientHeight
                 })()
             }
         },
@@ -123,6 +162,12 @@
   @bgColor:rgba(9,60,118,0.23);
   @centerBottomBgColor:none;
   @centerBorder:1px solid #5fd8e8;
+  .content-right {
+    height: 100%;
+    padding: 0.2rem 0.4rem 0;
+    /*width: 70%;*/
+    /*border: 1px solid grey;*/
+  }
   .first{
     width: 100%;
     height: 90%;

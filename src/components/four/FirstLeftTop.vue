@@ -1,5 +1,7 @@
 <template>
-    <div class="content">
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+
         <div class="content-left">
             <h6>官兵情况</h6>
         </div>
@@ -355,6 +357,9 @@
 
         },
         methods: {
+            openScreenDialog(){
+                this.$emit('getChildOption',this.options)
+            },
             openDialog() {
                 this.centerDialogVisible = true
             },
