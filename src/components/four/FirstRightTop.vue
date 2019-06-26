@@ -93,7 +93,7 @@
                         </div>
                         <div class="right2">
                             <div class="right2-top">
-                                <LittleLegendBlock word1="在外数" word2="在库数"></LittleLegendBlock>
+                                <LittleLegendBlock word1="在库数" word2="在外数"></LittleLegendBlock>
                             </div>
                             <div class="right2-middle">
                             </div>
@@ -133,7 +133,7 @@
                     >
                         <CarouselItem style="" class="bottom-carousel" v-for="(dataList,index) in dataLists" :key="index">
                             <div class="chart" v-for="(item,index) in dataList" :key="index">
-                        <span >
+                        <span  @click="onClick(item.name)">
                             <ThirdTopRightLeftSon :message=item.name :num1=item.num1 :num2=item.num2>
                             </ThirdTopRightLeftSon>
                         </span>
@@ -188,7 +188,7 @@
             'LittleLegendBlock': LittleLegendBlock,
         },
         props: [
-            'screenHeight'
+            'screenHeight',
         ],
         mounted() {
             this.queryData();
@@ -413,7 +413,7 @@
                                         },
                                         data: [],
                                         itemStyle: {
-                                            color: '26508a',
+                                            color: '#26508a',
                                             borderColor: this.shouldBorderColor,
                                             borderWidth: 1,
                                             opacity: 1

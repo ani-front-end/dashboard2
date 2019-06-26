@@ -21,10 +21,15 @@
         </div>
         <div class="right">
             <div class="right-top">
-                <FirstRightTop :screenHeight="screenHeight"></FirstRightTop>
+                <FirstRightTop :screenHeight="screenHeight"
+                ></FirstRightTop>
             </div>
             <div class="right-bottom">
-                <FirstRightBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstRightBottom>
+                <FirstRightBottom :screenWidth="screenWidth"
+                                  @getChildOption="getChildOption"
+                                  :openSecondEventBottom="eventBottom"
+
+                ></FirstRightBottom>
             </div>
         </div>
         <el-dialog
@@ -56,6 +61,7 @@
                                    style="height: 100%;width: 100%"
                                    :options="item"
                                    :autoresize=true
+                                   @click="onClick"
 
                             ></chart>
                         </CarouselItem>
@@ -92,7 +98,8 @@
                 screenHeight: document.body.clientHeight, // 屏幕宽度
                 screenDialogVisible:false,
                 option:{},
-                autoplay:true
+                autoplay:true,
+                eventBottom:{}
             }
         },
         components:{
@@ -122,8 +129,14 @@
             }
         },
         methods: {
+            onClick(event){
+                let item = {
+                    seriesName:event.seriesName,
+                    name:event.name
+                }
+                this.eventBottom=item;
+            },
             getChildOption(option){
-                console.log('option',option)
                 this.screenDialogVisible=true
                 this.option=option;
             },

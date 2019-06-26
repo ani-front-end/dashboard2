@@ -446,9 +446,19 @@
         },
         props: [
             'screenWidth',
+            'openSecondEventRight'
         ],
         components: {
             'LegendNum': LegendNum,
+        },
+        watch:{
+            'openSecondEventRight':{
+                handler: function (val, oldVal) {
+                    console.log('new c: %s, old: %s', val, oldVal)
+                    this.onClick(val);
+                },
+                deep: true
+            }
         },
         mounted() {
             this.queryData();

@@ -2,7 +2,7 @@
     <div class="content" style="position: relative">
         <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
         <chart  ref="chart"
-                style="height: 100%;width: 100%"
+                style="height: 100%;width: 100%;"
                 :options="option"
                 :autoresize=true
                 @click="onClick"
@@ -55,21 +55,21 @@
                 </div>
             </div>
         </el-dialog>
-        <el-dialog
-                fullscreen="true"
-                title="11"
-                :visible.sync="screenDialogVisible"
-                center>
-            <div class="dialog-content2" style="position: relative; " :style="{height:screenHeight+'px'}">
-                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">
-                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">
-                <chart  ref="chart"
-                        :options="option"
-                        style="height: 100%;width: 100%"
-                        :autoresize=true
-                ></chart>
-            </div>
-        </el-dialog>
+        <!--<el-dialog-->
+                <!--fullscreen="true"-->
+                <!--title="11"-->
+                <!--:visible.sync="screenDialogVisible"-->
+                <!--center>-->
+            <!--<div class="dialog-content2" style="position: relative; " :style="{height:screenHeight+'px'}">-->
+                <!--<img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">-->
+                <!--<img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">-->
+                <!--<chart  ref="chart"-->
+                        <!--:options="option"-->
+                        <!--style="height: 100%;width: 100%"-->
+                        <!--:autoresize=true-->
+                <!--&gt;</chart>-->
+            <!--</div>-->
+        <!--</el-dialog>-->
     </div>
 </template>
 <script>
@@ -310,7 +310,16 @@
             }
         },
         props: [
+            'openSecondEventLeft'
         ],
+        watch:{
+            'openSecondEventLeft':{
+                handler: function (val, oldVal) {
+                    this.onClick(val);
+                },
+                deep: true
+            }
+        },
         created() {
            this.queryData();
         },

@@ -8,8 +8,8 @@
                style="height: 100%;width: 100%"
                :options="option"
                :autoresize=true
-               @click="onClick"
         ></chart>
+               <!--@click="onClick"-->
     </div>
 </template>
 <script>

@@ -91,7 +91,7 @@
                         </div>
                         <div class="right2">
                             <div class="right2-top">
-                                <LittleLegendBlock word1="在外数" word2="在库数"></LittleLegendBlock>
+                                <LittleLegendBlock word1="在库数" word2="在外数"></LittleLegendBlock>
                             </div>
                             <div class="right2-middle">
                             </div>
@@ -432,7 +432,17 @@
                 shouldBorderColor: '#fff'
             }
         },
-        props: [],
+        props: [
+            'openSecondEventBottom'
+        ],
+        watch:{
+            'openSecondEventBottom':{
+                handler: function (val, oldVal) {
+                    this.onClick(val);
+                },
+                deep: true
+            }
+        },
         mounted() {
             setTimeout(() => {
                 //进行一级页面颜色动态配置
@@ -594,7 +604,7 @@
                                         },
                                         data: [],
                                         itemStyle: {
-                                            color: '26508a',
+                                            color: '#26508a',
                                             borderColor: this.shouldBorderColor,
                                             borderWidth: 1,
                                             opacity: 1

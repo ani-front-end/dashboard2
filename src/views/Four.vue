@@ -10,6 +10,7 @@
                 <FirstCenterTop :screenWidth="screenWidth"
                                 :screenHeight="screenHeight"
                                 @getChildOption="getChildOption"
+                                :openSecondEventLeft="eventLeft"
                 ></FirstCenterTop>
             </div>
         </div>
@@ -21,7 +22,9 @@
             </div>
             <div class="four-right-bottom">
                 <FiveLeftTop :screenWidth="screenWidth"
-                             @getChildOption="getChildOption"></FiveLeftTop>
+                             @getChildOption="getChildOption"
+                             :openSecondEventRight="eventRight"
+                ></FiveLeftTop>
             </div>
         </div>
         <el-dialog
@@ -37,6 +40,7 @@
                         :options="option"
                         style="height: 100%;width: 100%"
                         :autoresize=true
+                        @click="onClick"
                 ></chart>
                     <div class="content-right"  v-else @mouseover="mouseOver()" @mouseout="mouseOut()">
                     <Carousel
@@ -81,7 +85,9 @@
                 screenHeight: document.body.clientHeight, // 屏幕宽度
                 screenDialogVisible:false,
                 option:{},
-                autoplay:true
+                autoplay:true,
+                eventLeft:{},
+                eventRight:{}
 
             }
         },
@@ -101,6 +107,19 @@
             }
         },
         methods: {
+            onClick(event){
+                let item = {
+                    seriesName:event.seriesName,
+                    name:event.name
+                }
+                if(event.seriesName == '训练伤情况'){
+                    console.log('event.seriesName',event.seriesName)
+
+                    this.eventLeft=item;
+                }else if(event.seriesName == '公差勤务情况'){
+                    this.eventRight=item;
+                }
+            },
             getChildOption(option){
                 console.log('option',option)
                 this.screenDialogVisible=true

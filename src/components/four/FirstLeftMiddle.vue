@@ -332,7 +332,17 @@
         },
         props: [
             'title',
+            'openSecondEvent'
         ],
+        watch:{
+            'openSecondEvent':{
+                handler: function (val, oldVal) {
+//                    console.log('new c: %s, old: %s', val, oldVal)
+                    this.onClick(val);
+                },
+                deep: true
+            }
+        },
         mounted() {
             this.queryData();
             setTimeout(() => {

@@ -5,7 +5,7 @@
         <FirstLeftTop :screenWidth="screenWidth" @getChildOption="getChildOption" ></FirstLeftTop>
       </div>
       <div class="left-middle">
-        <FirstLeftMiddle :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftMiddle>
+        <FirstLeftMiddle :screenWidth="screenWidth" :openSecondEvent="event" @getChildOption="getChildOption"></FirstLeftMiddle>
       </div>
       <div class="left-bottom">
         <FirstLeftBottom :screenWidth="screenWidth" @getChildOption="getChildOption"></FirstLeftBottom>
@@ -35,6 +35,7 @@
                 :options="option"
                 style="height: 100%;width: 100%"
                 :autoresize=true
+                @click="onClick"
         ></chart>
         <div class="content-right"  v-else @mouseover="mouseOver()" @mouseout="mouseOut()">
           <Carousel
@@ -82,7 +83,8 @@
                 value1: 0,
                 screenDialogVisible:false,
                 option:{},
-                autoplay:true
+                autoplay:true,
+                event:{},
             }
         },
         components:{
@@ -107,6 +109,16 @@
             }
         },
         methods: {
+            onClick(event){
+                if(event.seriesName == "人员在位情况"){
+                    let item = {
+                        seriesName:event.seriesName,
+                        name:event.name
+                    }
+                    this.event=item;
+                }
+
+            },
             getChildOption(option){
                 console.log('option',option)
                 this.screenDialogVisible=true
