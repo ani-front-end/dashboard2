@@ -105,7 +105,7 @@
                 console.log('卫生防疫-static-sixCenterBottom:',data);
                   Object.keys(data).forEach(p=>{
                     this.option.xAxis.data.unshift(p);
-                    this.option.series[0].data.unshift(data[p])
+                    this.option.series[0].data.push(data[p])
                   })
 
 //                }

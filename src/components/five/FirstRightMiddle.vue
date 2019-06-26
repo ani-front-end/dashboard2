@@ -132,7 +132,7 @@
                 console.log('风气建设-static-fiveRIghtMiddle:',data);
                         Object.keys(data).forEach(p=>{
                             this.option.xAxis[0].data.unshift(p);
-                            this.option.series[0].data.unshift(data[p])
+                            this.option.series[0].data.push(data[p])
                         })
 //                    }
 //                });
