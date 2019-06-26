@@ -1,82 +1,67 @@
 <template>
-    <!--<div class="first" style="display: none">-->
-    <!--<div class="left">-->
-    <!--<div class="left-top">-->
-    <!--&lt;!&ndash;<CardHeaderTitle title="机关产生问题统计"></CardHeaderTitle>&ndash;&gt;-->
-    <!--<FirstLeftTop :screenWidth="screenWidth"></FirstLeftTop>-->
-    <!--</div>-->
-    <!--<div class="left-middle">-->
-    <!--&lt;!&ndash;<CardHeaderTitle title="机关发现问题统计"></CardHeaderTitle>&ndash;&gt;-->
-    <!--<FirstLeftMiddle :screenWidth="screenWidth"></FirstLeftMiddle>-->
-    <!--</div>-->
-    <!--<div class="left-bottom">-->
-    <!--&lt;!&ndash;<CardHeaderTitle title="机关人员履职情况"></CardHeaderTitle>&ndash;&gt;-->
-    <!--<FirstLeftBottom :screenWidth="screenWidth"></FirstLeftBottom>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="center">-->
-    <!--<div class="center-top">-->
-    <!--&lt;!&ndash;<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>&ndash;&gt;-->
-    <!--<FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>-->
-    <!--</div>-->
-    <!--<div class="center-middle">-->
-    <!--&lt;!&ndash;<CardHeaderSlant titleWord="问题管理状态" titleWidth=14></CardHeaderSlant>&ndash;&gt;-->
-    <!--<FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>-->
-    <!--</div>-->
-    <!--<div class="center-bottom"  style="position: relative">-->
-    <!--&lt;!&ndash;<CardHeaderSlant titleWord="重要目标安全技术防范状态" titleWidth=26></CardHeaderSlant>&ndash;&gt;-->
-    <!--<div class="center-bottom-content">-->
-    <!--<div class="center-bottom-left">-->
-    <!--&lt;!&ndash;<LittleCardHeaderTitle title="报警处置情况"></LittleCardHeaderTitle>&ndash;&gt;-->
-    <!--<FirstCenterBottom :screenWidth="screenWidth"></FirstCenterBottom>-->
-    <!--</div>-->
-    <!--&lt;!&ndash;<div class="center-bottom-center">&ndash;&gt;-->
-    <!--&lt;!&ndash;<LittleCardHeaderTitle title="安全等级"></LittleCardHeaderTitle>&ndash;&gt;-->
-    <!--&lt;!&ndash;<FirstCenterBottomCenter :screenWidth="screenWidth"></FirstCenterBottomCenter>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="center-bottom-right">&ndash;&gt;-->
-    <!--&lt;!&ndash;<LittleCardHeaderTitle title="安防设备故障"></LittleCardHeaderTitle>&ndash;&gt;-->
-    <!--&lt;!&ndash;<FirstCenterBottomRight :screenWidth="screenWidth"></FirstCenterBottomRight>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</div>-->
-    <!--&lt;!&ndash;<img style="position: absolute;bottom:-2px;left:-2px;" src="../assets/images/left-bottom.png" alt="">&ndash;&gt;-->
-    <!--&lt;!&ndash;<img style="position: absolute;bottom:-2px;right:-2px;" src="../assets/images/right-bottom.png" alt="">&ndash;&gt;-->
-
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="right">-->
-    <!--<div class="right-top">-->
-    <!--&lt;!&ndash;<CardHeaderTitle title="机关检查基层问题统计"></CardHeaderTitle>&ndash;&gt;-->
-    <!--<FirstRightTop :screenWidth="screenWidth"></FirstRightTop>-->
-    <!--</div>-->
-    <!--&lt;!&ndash;<div class="right-middle">&ndash;&gt;-->
-    <!--&lt;!&ndash;<CardHeaderTitle title="基层发现问题统计"></CardHeaderTitle>&ndash;&gt;-->
-    <!--&lt;!&ndash;<FirstRightMiddle :screenWidth="screenWidth"></FirstRightMiddle>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--<div class="right-bottom">-->
-    <!--&lt;!&ndash;<CardHeaderTitle title="基层人员履职情况"></CardHeaderTitle>&ndash;&gt;-->
-    <!--<FirstRightBottom :screenWidth="screenWidth"></FirstRightBottom>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
     <div class="four">
         <div class="four-left">
             <div class="four-left-top">
-                <FirstCenterMiddle :screenWidth="screenWidth"></FirstCenterMiddle>
+                <FirstCenterMiddle :screenWidth="screenWidth"
+                                   @getChildOption="getChildOption"
+                ></FirstCenterMiddle>
             </div>
             <div class="four-left-bottom">
-                <FirstCenterTop :screenWidth="screenWidth"></FirstCenterTop>
+                <FirstCenterTop :screenWidth="screenWidth"
+                                :screenHeight="screenHeight"
+                                @getChildOption="getChildOption"
+                ></FirstCenterTop>
             </div>
         </div>
         <div class="four-right">
             <div class="four-right-top">
-                <FiveRightBottom :screenWidth="screenWidth"></FiveRightBottom>
+                <FiveRightBottom :screenWidth="screenWidth"
+                                 @getChildOption="getChildOption"
+                ></FiveRightBottom>
             </div>
             <div class="four-right-bottom">
-                <FiveLeftTop :screenWidth="screenWidth"></FiveLeftTop>
+                <FiveLeftTop :screenWidth="screenWidth"
+                             @getChildOption="getChildOption"></FiveLeftTop>
             </div>
         </div>
+        <el-dialog
+                fullscreen="true"
+                title="11"
+                :visible.sync="screenDialogVisible"
+                center>
+            <div class="dialog-content2" style="position: relative; " :style="{height:screenHeight+'px'}">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close2" width="40" src="../assets/images/close2.png" alt="">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close1" width="40" src="../assets/images/close1.png" alt="">
+                <chart  v-if="option.series"
+                        ref="chart"
+                        :options="option"
+                        style="height: 100%;width: 100%"
+                        :autoresize=true
+                ></chart>
+                    <div class="content-right"  v-else @mouseover="mouseOver()" @mouseout="mouseOut()">
+                    <Carousel
+                        v-model="value1"
+                          :autoplay=autoplay
+                          :autoplay-speed=5000
+                          arrow="never"
+                          :radius-dot=true
+                          :height=screenHeight-30
+
+                >
+                    <CarouselItem style="" v-for="(item,index) in option" :key="index">
+                        <chart ref="chart"
+                               style="height: 100%;width: 100%"
+                               :options="item"
+                               :autoresize=true
+
+                        ></chart>
+                    </CarouselItem>
+                </Carousel>
+                </div>
+            </div>
+
+
+        </el-dialog>
     </div>
 
 </template>
@@ -90,8 +75,14 @@
         name: 'hello',
         data() {
             return {
+                value1: 0,
                 msg: 'Welcome to Your Vue.js App',
                 screenWidth: document.body.clientWidth, // 屏幕宽度
+                screenHeight: document.body.clientHeight, // 屏幕宽度
+                screenDialogVisible:false,
+                option:{},
+                autoplay:true
+
             }
         },
         components: {
@@ -105,10 +96,23 @@
             window.onresize = () => {
                 return (() => {
                     this.screenWidth = document.body.clientWidth
+                    this.screenHeight = document.body.clientHeight
                 })()
             }
         },
-        methods: {}
+        methods: {
+            getChildOption(option){
+                console.log('option',option)
+                this.screenDialogVisible=true
+                    this.option=option;
+            },
+            mouseOver(){
+                this.autoplay = false;
+            },
+            mouseOut(){
+                this.autoplay = true;
+            },
+        }
     }
 </script>
 <style scoped lang="less">
@@ -116,6 +120,12 @@
     @centerBottomBgColor: none;
     /*@centerBorder:1px solid rgba(0,131,179,0.23);*/
     @centerBorder: 1px solid #5fd8e8;
+    .content-right {
+        height: 100%;
+        padding: 0.2rem 0.4rem 0;
+        /*width: 70%;*/
+        /*border: 1px solid grey;*/
+    }
     .four {
         width: 100%;
         height: 90%;

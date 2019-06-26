@@ -1,5 +1,6 @@
 <template>
-    <div class="content">
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
         <chart  ref="chart"
                 style="height: 100%;width: 100%"
                 :options="option"
@@ -52,6 +53,21 @@
 
                     </div>
                 </div>
+            </div>
+        </el-dialog>
+        <el-dialog
+                fullscreen="true"
+                title="11"
+                :visible.sync="screenDialogVisible"
+                center>
+            <div class="dialog-content2" style="position: relative; " :style="{height:screenHeight+'px'}">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close2" width="40" src="../../assets/images/close2.png" alt="">
+                <img @click="screenDialogVisible = false" style="position: absolute;top:10px;right:10px;cursor: pointer" class="close1" width="40" src="../../assets/images/close1.png" alt="">
+                <chart  ref="chart"
+                        :options="option"
+                        style="height: 100%;width: 100%"
+                        :autoresize=true
+                ></chart>
             </div>
         </el-dialog>
     </div>
@@ -174,6 +190,7 @@
                 name:'',
                 seriesName:'',
                 centerDialogVisible:false,
+                screenDialogVisible:false,
                 value1:0,
                 dialogOptions:[],
                 value2:0,
@@ -297,7 +314,12 @@
         created() {
            this.queryData();
         },
+        mounted(){
+        },
         methods:{
+            openScreenDialog(){
+                this.$emit('getChildOption',this.option)
+            },
             onClick(event){
                 this.value2 = 0;
                 let name = event.name;
@@ -344,6 +366,7 @@
             }
         },
         computed: {
+
         }
     }
 </script>

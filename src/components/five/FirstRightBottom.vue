@@ -1,7 +1,7 @@
 <template>
-    <div class="content">
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
         <div class="content-left">
-            <h6>本月上级活动数</h6>
         </div>
         <div class="content-right" @mouseover="mouseOver()" @mouseout="mouseOut()">
             <Carousel v-model="value1"
@@ -354,6 +354,9 @@
 
         },
         methods: {
+            openScreenDialog(){
+                this.$emit('getChildOption',this.options)
+            },
             openDialog(){
                 this.centerDialogVisible = true
             },
@@ -638,13 +641,23 @@
                         let num = 0;
                         let pageNum = 0;
                         this.options.push({
+                            title:{
+                                text: '本月上级活动数',
+                                left: 10,
+                                textStyle: {
+                                    color: '#fff',
+                                    backgroundColor: '#999',
+                                    borderRadius: 3,
+                                    padding: [3, 5]
+                                }
+                            },
                             legend: {
                                 data: ['会议次数', '上级检查', '下达文件'],
                                 textStyle: {
                                     color: '#fff'
                                 },
-                                top: 0,
-                                right: 0
+                                top: 20,
+                                right: 20
                             },
                             textStyle: {
                                 fontFamily: 'Microsoft YaHei',

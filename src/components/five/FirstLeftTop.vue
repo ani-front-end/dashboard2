@@ -1,5 +1,7 @@
 <template>
-    <div class="content">
+    <div class="content" style="position: relative">
+        <el-button size="mini" type="primary" style="position: absolute;right:0;z-index: 999" @click="openScreenDialog()">全屏</el-button>
+
         <!--<div class="content-left">-->
         <!--<LegendNum :num=totalNum word="总数"></LegendNum>-->
         <!--</div>-->
@@ -468,6 +470,9 @@
 
         },
         methods: {
+            openScreenDialog(){
+                this.$emit('getChildOption',this.option)
+            },
             openDialog() {
                 this.centerDialogVisible = true
             },
@@ -502,13 +507,13 @@
                 this.http.get(this.ports.five.leftTop, (res) => {
                     console.log('公差勤务-fourRightBottom:', res);
                     if (res.error_msg == '成功') {
-                        // let data = res.data;
-                        let data={
-                            '一营': 13,
-                            '二营': 26,
-                            '三营': 13,
-                            'sum': 39
-                        };
+                         let data = res.data;
+//                        let data={
+//                            '一营': 13,
+//                            '二营': 26,
+//                            '三营': 13,
+//                            'sum': 39
+//                        };
                         Object.keys(data).forEach(p => {
                             if (p !== 'sum') {
                                 // this.option.xAxis.data.unshift(p);

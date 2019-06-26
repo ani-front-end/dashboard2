@@ -83,6 +83,11 @@
             return {
                 msg: 'Welcome to Your Vue.js App',
                 screenWidth: document.body.clientWidth, // 屏幕宽度
+                screenHeight: document.body.clientHeight, // 屏幕宽度
+                value1: 0,
+                screenDialogVisible:false,
+                option:{},
+                autoplay:true
             }
         },
         components:{
@@ -106,6 +111,11 @@
             }
         },
         methods: {
+            getChildOption(option){
+                console.log('option',option)
+                this.screenDialogVisible=true
+                this.option=option;
+            },
         }
     }
 </script>
